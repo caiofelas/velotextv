@@ -1,0 +1,1472 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!-- Configurações Essenciais do Documento -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+
+    <!-- SEO e Metadados Aprimorados -->
+    <title>Velotex TV | Canais, Filmes e Séries em HD e Full HD - Sua Diversão Conectada</title>
+    <meta name="description" content="Assine Velotex TV e tenha acesso a mais de 200 canais, filmes e séries em HD e Full HD. Entretenimento completo para toda a família, com pagamentos via PIX e sem fidelidade. Qualidade e estabilidade garantidas.">
+    <meta name="keywords" content="Velotex TV, TV online, canais, filmes, séries, streaming, HD, Full HD, IPTV, entretenimento, família, assinar TV, planos TV, TV por assinatura, PIX, sem fidelidade, melhor IPTV, TV em HD, filmes online, séries online">
+    <meta name="author" content="Velotex TV">
+    <meta name="robots" content="index, follow">
+
+    <!-- Meta Tags de Segurança (CSP para proteção contra XSS e outras vulnerabilidades) -->
+    <!-- Content Security Policy para segurança, permitindo recursos necessários. -->
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self';
+        script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://www.gstatic.com https://cdnjs.cloudflare.com;
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
+        img-src 'self' data: https://imgur.com https://placehold.co;
+        font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;
+        connect-src 'self' https://generativelanguage.googleapis.com https://www.gstatic.com https://firestore.googleapis.com https://securetoken.googleapis.com https://formsubmit.co;
+        form-action https://formsubmit.co;
+        frame-ancestors 'self';
+    ">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+
+    <!-- Links para Estilos e Ícones -->
+    <script src="https://cdn.tailwindcss.com"></script> <!-- Tailwind CSS para estilização rápida e responsiva -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Font Awesome para ícones -->
+
+    <!-- Estilos CSS Personalizados e Variáveis CSS para Cores -->
+    <style>
+        /* Importação de Fonte Google Fonts: Poppins para um visual moderno e legível */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        /* Definição de Variáveis CSS para Cores - Facilita a manutenção e consistência */
+        :root {
+            --primary-orange: #FC6A00; /* Laranja principal da marca */
+            --dark-orange: #E35F00;    /* Laranja mais escuro para gradientes e hovers */
+            --accent-orange: #FF6C00;  /* Laranja de destaque para botões e links */
+            --green-success: #10B981;  /* Verde para sucesso e selos de segurança */
+            --dark-green: #0c8a66;     /* Verde mais escuro para hover de selos */
+            --light-gray: #f8f8f8;     /* Cinza claro para fundos de seções */
+            --medium-gray: #e5e7eb;    /* Cinza médio para bordas e separadores */
+            --dark-gray: #333;         /* Cinza escuro para texto principal */
+            --text-light: #6b7280;     /* Cinza mais claro para textos secundários */
+            --bg-light-orange: #FFF1E6; /* Fundo laranja muito claro para seções específicas */
+        }
+
+        /* Estilos Base do Corpo - Aplicação da fonte e cores padrão */
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth; /* Rolagem suave para âncoras */
+            font-weight: 400;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased; /* Suavização de fonte para melhor legibilidade */
+            color: var(--dark-gray); /* Cor de texto padrão mais escura para melhor contraste */
+            box-sizing: border-box; /* Garante que padding e border sejam incluídos na largura/altura */
+        }
+        *, *::before, *::after {
+            box-sizing: inherit; /* Herda o box-sizing para todos os elementos */
+        }
+
+        /* Estilo do Logotipo - Posicionamento relativo para possíveis efeitos futuros */
+        .logo {
+            position: relative;
+        }
+
+        /* Seção Hero - Fundo Gradiente com cores da marca */
+        .hero-gradient {
+            background: linear-gradient(135deg, var(--primary-orange) 0%, var(--dark-orange) 100%);
+        }
+
+        /* Efeitos de Hover para Cartões de Recurso - Animação e sombra aprimoradas */
+        .feature-card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
+            border: 1px solid var(--medium-gray); /* Cor da borda padrão */
+        }
+        .feature-card:hover {
+            transform: translateY(-8px); /* Eleva o cartão */
+            box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.2), 0 6px 10px -3px rgba(0, 0, 0, 0.1); /* Sombra mais pronunciada */
+            border-color: var(--accent-orange); /* Borda laranja ao passar o mouse */
+        }
+
+        /* Efeitos de Hover para Cartões de Plano - Animação de escala suave */
+        .plan-card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
+            border: 1px solid var(--medium-gray); /* Cor da borda padrão */
+        }
+        .plan-card:hover {
+            transform: scale(1.03); /* Levemente maior para destaque */
+            box-shadow: 0 15px 30px rgba(255, 107, 0, 0.3); /* Sombra mais suave e colorida */
+            border-color: var(--accent-orange);
+        }
+
+        /* Efeitos de Hover para Cartões "Como Funciona" - Mesma animação dos cartões de recurso para consistência */
+        .how-it-works-card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
+            border: 1px solid var(--medium-gray); /* Cor da borda padrão */
+        }
+        .how-it-works-card:hover {
+            border-color: var(--accent-orange);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.2), 0 6px 10px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Estilos para Itens do FAQ (Acordeão) - Transições suaves para abertura/fechamento */
+        .faq-item {
+            border: 1px solid var(--medium-gray);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .faq-item:hover {
+            border-color: var(--accent-orange);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out; /* Transição para a altura máxima */
+        }
+        .faq-question .fa-chevron-down {
+            transition: transform 0.3s ease; /* Transição para o ícone de seta */
+        }
+        .faq-question.active .fa-chevron-down {
+            transform: rotate(180deg); /* Gira a seta quando o acordeão está aberto */
+        }
+
+        /* Estilo para Links de Navegação Ativos - Destaque visual */
+        .nav-link.active {
+            color: var(--accent-orange);
+            font-weight: 600;
+        }
+
+        /* Banner de Cookies - Estilização responsiva e acessível */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--dark-gray);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+        }
+        @media (min-width: 768px) {
+            .cookie-banner {
+                flex-direction: row;
+                justify-content: center;
+            }
+        }
+        .cookie-banner p { margin: 0; font-size: 0.9rem; }
+        .cookie-banner a { color: var(--accent-orange); text-decoration: underline; margin-left: 5px; }
+        .cookie-banner button {
+            background-color: var(--accent-orange);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            white-space: nowrap;
+        }
+        .cookie-banner button:hover { background-color: var(--dark-orange); }
+
+        /* Menu de Sobreposição (Mobile) - Animação de slide-in/slide-out */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.98); /* Fundo semi-transparente */
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* Alinha o conteúdo ao topo */
+            align-items: center;
+            transform: translateX(100%); /* Começa fora da tela */
+            transition: transform 0.4s ease-in-out; /* Transição suave */
+            overflow-y: auto; /* Permite rolagem vertical para mais links */
+            padding-top: 5rem; /* Espaçamento do topo para não cobrir pelo cabeçalho */
+            padding-bottom: 2rem; /* Espaçamento na parte inferior */
+        }
+        .mobile-menu-overlay.open {
+            transform: translateX(0); /* Desliza para dentro da tela */
+        }
+        .mobile-menu-overlay .mobile-nav-link {
+            font-size: 1.6rem;
+            padding: 1.2rem;
+            color: var(--dark-gray);
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+        .mobile-menu-overlay .mobile-nav-link:hover {
+            color: var(--accent-orange);
+        }
+
+        /* Estilos para Elementos da Comanda (Formulário de Ativação) - Consistência visual */
+        .comanda-btn-primary {
+            background-color: var(--accent-orange);
+            color: white;
+            font-weight: bold;
+            padding: 14px 28px;
+            border-radius: 10px;
+            text-align: center;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 5px 15px rgba(255, 108, 0, 0.3);
+        }
+        .comanda-btn-primary:hover {
+            background-color: var(--dark-orange);
+            transform: translateY(-3px); /* Efeito de elevação ao passar o mouse */
+        }
+        .comanda-input-field {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid var(--medium-gray);
+            border-radius: 8px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .comanda-input-field:focus {
+            outline: none;
+            border-color: var(--accent-orange);
+            box-shadow: 0 0 0 4px rgba(255, 108, 0, 0.3); /* Anel de foco laranja */
+        }
+        .comanda-pix-container {
+            border: 2px solid var(--accent-orange);
+            background-color: var(--bg-light-orange);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.15);
+        }
+        .comanda-qr-code-img {
+            border: 3px solid var(--accent-orange);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .comanda-spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #fff;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Botão Flutuante de Voltar (FAB) - Estilo e responsividade */
+        .back-button-fab {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            background-color: var(--text-light); /* Cinza para distinção */
+            color: white;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            transition: transform 0.3s ease-in-out, background-color 0.3s ease;
+        }
+        .back-button-fab:hover {
+            transform: scale(1.1);
+            background-color: #4B5563; /* Tom mais escuro de cinza no hover */
+        }
+        .back-button-fab-text {
+            display: none; /* Escondido por padrão em mobile */
+            font-size: 16px;
+            font-weight: 600;
+            margin-left: 10px;
+            white-space: nowrap;
+        }
+        @media (min-width: 768px) {
+            .back-button-fab {
+                width: auto; /* Ajusta a largura para caber o texto */
+                padding: 10px 20px;
+                border-radius: 30px; /* Transforma em pílula */
+            }
+            .back-button-fab-text {
+                display: inline-block; /* Mostra o texto em telas maiores */
+            }
+        }
+
+        /* Estilos para os Selos de Segurança no Rodapé (Botões Arredondados) */
+        .security-badge {
+            background-color: var(--green-success); /* Verde esmeralda */
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px; /* Mais arredondado para um selo */
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: flex; /* Garante que o conteúdo interno se alinhe */
+            align-items: center;
+            justify-content: center; /* Centraliza o conteúdo (ícone e texto) */
+            gap: 8px; /* Espaçamento entre ícone e texto */
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* Sombra mais pronunciada */
+            border: 1px solid rgba(255, 255, 255, 0.3); /* Borda sutil para definição */
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+            margin-bottom: 8px; /* Adiciona espaçamento entre os selos quando empilhados */
+            max-width: 100%; /* Garante que o badge não exceda a largura do seu contêiner pai */
+            text-align: center; /* Garante que o texto se centralize se quebrar linha */
+            box-sizing: border-box; /* Inclui padding e borda na largura total */
+        }
+        .security-badge:hover {
+            background-color: var(--dark-green); /* Tom mais escuro ao passar o mouse */
+            transform: translateY(-2px); /* Efeito de elevação sutil */
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); /* Sombra mais forte no hover */
+        }
+        .security-badge i {
+            font-size: 1.1rem;
+        }
+        /* Remove a margem inferior do último selo para evitar espaçamento extra no final */
+        .security-badge:last-child {
+            margin-bottom: 0;
+        }
+
+
+        /* Animação de Sinal Wi-Fi - Efeito de pulso para indicar conectividade */
+        .wifi-signal {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+        }
+        .wifi-arc {
+            position: absolute;
+            border: 5px solid rgba(255, 255, 255, 0.9); /* Arcos brancos semi-transparentes */
+            border-radius: 50%;
+            animation: wifi-pulse 2.5s infinite ease-out; /* Animação de pulso */
+            opacity: 0; /* Começa invisível */
+        }
+        .wifi-arc:nth-child(1) { width: 50px; height: 50px; animation-delay: 0s; }
+        .wifi-arc:nth-child(2) { width: 75px; height: 75px; animation-delay: 0.3s; }
+        .wifi-arc:nth-child(3) { width: 100px; height: 100px; animation-delay: 0.6s; }
+        .wifi-arc:nth-child(4) { width: 120px; height: 120px; animation-delay: 0.9s; }
+        @keyframes wifi-pulse {
+            0% { transform: scale(0.4); opacity: 0; }
+            40% { opacity: 1; }
+            100% { transform: scale(1.3); opacity: 0; }
+        }
+
+        /* Gráfico de Linha de Status do Servidor - Animação de oscilação para simular atividade */
+        .line-chart-container {
+            width: 100%;
+            height: 90px;
+            display: flex;
+            align-items: flex-end; /* Alinha as barras à base */
+            justify-content: space-around;
+            padding: 10px 0;
+            box-sizing: border-box;
+            background-color: var(--light-gray);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .line-segment {
+            width: 10px;
+            background-color: var(--green-success);
+            margin: 0 3px;
+            border-radius: 3px;
+            animation: oscillate 2.5s infinite ease-in-out; /* Animação de oscilação de altura */
+            transform-origin: bottom; /* Ponto de origem da transformação na base */
+            box-shadow: 0 -2px 5px rgba(16, 185, 129, 0.3); /* Sombra sutil */
+        }
+        /* Alturas e atrasos de animação variados para um efeito mais dinâmico */
+        .line-segment:nth-child(1) { height: 62%; animation-delay: 0s; }
+        .line-segment:nth-child(2) { height: 67%; animation-delay: 0.15s; }
+        .line-segment:nth-child(3) { height: 64%; animation-delay: 0.3s; }
+        .line-segment:nth-child(4) { height: 70%; animation-delay: 0.45s; }
+        .line-segment:nth-child(5) { height: 65%; animation-delay: 0.6s; }
+        .line-segment:nth-child(6) { height: 68%; animation-delay: 0.75s; }
+        .line-segment:nth-child(7) { height: 63%; animation-delay: 0.9s; }
+        .line-segment:nth-child(8) { height: 66%; animation-delay: 1.05s; }
+        .line-segment:nth-child(9) { height: 69%; animation-delay: 1.2s; }
+        .line-segment:nth-child(10) { height: 62%; animation-delay: 1.35s; }
+        @keyframes oscillate {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(1.07); } /* Aumenta ligeiramente a altura no meio da animação */
+        }
+
+        /* Bandeira do Brasil em CSS (Estilo Vetorial de Cores Minimalista e Horizontal) */
+        .brazil-flag-separator {
+            width: 100%; /* Ocupa toda a largura da página */
+            height: 50px; /* Altura fixa para o separador */
+            /* Gradiente linear para criar as duas faixas de cor */
+            background: linear-gradient(to right, #009246 50%, #FFDE00 50%); /* Verde e Amarelo */
+            margin: 2rem auto; /* Espaçamento vertical para separar o conteúdo */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Sombra sutil para profundidade */
+            border-radius: 8px; /* Cantos levemente arredondados */
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800">
+    <!-- Cabeçalho e Navegação Principal - Fixo no topo com sombra para destaque -->
+    <header class="sticky top-0 z-50 bg-white shadow-md">
+        <div class="container mx-auto px-6 py-3 flex items-center justify-between">
+            <div class="flex items-center">
+                <!-- Logotipo da Velotex TV - Agora é um link clicável -->
+                <a href="https://velotextv.netlify.app" class="text-2xl md:text-3xl font-bold text-[var(--primary-orange)] logo" aria-label="Ir para a página inicial da Velotex TV">
+                    Velotex<span class="text-gray-800">TV</span>
+                </a>
+            </div>
+
+            <!-- Botão Hambúrguer para Mobile - Alterna entre ícone de menu e fechar -->
+            <button class="text-[var(--accent-orange)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-orange)] rounded-md p-1" id="mobile-menu-button" aria-label="Alternar menu" aria-expanded="false">
+                <i class="fas fa-bars text-2xl" id="hamburger-icon"></i>
+                <i class="fas fa-times text-2xl hidden" id="close-icon"></i>
+            </button>
+        </div>
+
+        <!-- Menu de Sobreposição Mobile - Desliza da direita para a esquerda -->
+        <div class="mobile-menu-overlay hidden" id="mobile-menu" aria-hidden="true">
+            <div class="flex flex-col space-y-6 text-center">
+                <!-- Links de navegação com transição suave -->
+                <a href="#home" class="mobile-nav-link font-medium hover:text-[var(--accent-orange)] transition" data-section-link="home">Início</a>
+                <a href="#features" class="mobile-nav-link font-medium hover:text-[var(--accent-orange)] transition" data-section-link="features">Recursos</a>
+                <a href="#plans" class="mobile-nav-link font-medium hover:text-[var(--accent-orange)] transition" data-section-link="plans">Planos</a>
+                <a href="#free-trial" class="mobile-nav-link font-medium hover:text-[var(--accent-orange)] transition" data-section-link="free-trial">Teste Grátis</a>
+                <a href="#how-it-works" class="mobile-nav-link font-medium hover:text-[var(--accent-orange)] transition" data-section-link="how-it-works">Como Funciona</a>
+                <a href="#server-status" class="mobile-nav-link font-medium hover:text-[var(--accent-orange)] transition" data-section-link="server-status">Status do Servidor</a>
+                <a href="#brazil-presence" class="mobile-nav-link font-medium hover:text-[var(--accent-orange)] transition" data-section-link="brazil-presence">Presença Nacional</a>
+                <a href="#faq" class="mobile-nav-link font-medium hover:text-[var(--accent-orange)] transition" data-section-link="faq">FAQ</a>
+                <a href="#contact" class="mobile-nav-link font-medium hover:text-[var(--accent-orange)] transition" data-section-link="contact">Contato</a>
+                <a href="#termos-de-uso" class="mobile-nav-link font-medium hover:text-[var(--accent-orange)] transition" data-section-link="termos-de-uso">Termos de Uso</a>
+                <a href="#politica-de-privacidade" class="mobile-nav-link font-medium hover:text-[var(--accent-orange)] transition" data-section-link="politica-de-privacidade">Política de Privacidade</a>
+                <a href="#politica-de-cookies" class="mobile-nav-link font-medium hover:text-[var(--accent-orange)] transition" data-section-link="politica-de-cookies">Cookies</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Seção Principal - Início (Hero) - Destaque com animação de Wi-Fi -->
+    <section id="home" class="hero-gradient text-white py-16 md:py-24 relative overflow-hidden" data-section-main>
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-center relative z-10">
+            <div class="md:w-1/2 mb-10 md:mb-0 text-center md:text-left">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Velotex TV: Sua diversão conectada!</h1>
+                <p class="text-xl mb-8 opacity-90">Mais de 200 canais, filmes e séries para toda a família, tudo em HD e Full HD.</p>
+                <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 justify-center md:justify-start">
+                    <button id="hero-subscribe-button" class="bg-white text-[var(--accent-orange)] font-bold py-3 px-6 rounded-lg text-center hover:bg-gray-100 transition duration-300 ease-in-out shadow-lg hover:shadow-xl" aria-label="Assine Agora!">Assine Agora!</button>
+                    <a href="#features" class="border-2 border-white text-white font-bold py-3 px-6 rounded-lg text-center hover:bg-white hover:bg-opacity-10 transition duration-300 ease-in-out shadow-lg hover:shadow-xl" aria-label="Saiba Mais sobre nossos recursos">Saiba Mais</a>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center items-center mt-10 md:mt-0">
+                <!-- Animação de Sinal Wi-Fi para indicar conectividade -->
+                <div class="wifi-signal">
+                    <div class="wifi-arc"></div>
+                    <div class="wifi-arc"></div>
+                    <div class="wifi-arc"></div>
+                    <div class="wifi-arc"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Banner de Promoção - Destaque para oferta especial -->
+    <section id="promotion-banner" class="bg-orange-600 text-white py-4 text-center shadow-lg" data-section-main>
+        <div class="container mx-auto px-4">
+            <p class="text-xl md:text-2xl font-bold">
+                PROMOÇÃO EXCLUSIVA: De <span class="line-through">R$ 35,00</span> por apenas <span class="text-yellow-300">R$ 25,00</span> no plano mensal!
+            </p>
+        </div>
+    </section>
+
+    <!-- Seção de Recursos - Apresenta os diferenciais do serviço -->
+    <section id="features" class="py-16 bg-gray-50 relative overflow-hidden" data-section-main>
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Por que escolher a Velotex TV?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Cartão de Recurso: Canais -->
+                <div class="feature-card bg-white p-6 rounded-xl shadow-md">
+                    <div class="relative w-16 h-16 bg-[var(--bg-light-orange)] rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-tv text-[var(--accent-orange)] text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-3">+ de 200 canais</h3>
+                    <p class="text-[var(--text-light)] text-center">Desfrute de um universo de entretenimento ilimitado com mais de 200 canais de TV, incluindo esportes, filmes, notícias e desenhos animados.</p>
+                </div>
+                <!-- Cartão de Recurso: Qualidade HD/Full HD -->
+                <div class="feature-card bg-white p-6 rounded-xl shadow-md">
+                    <div class="relative w-16 h-16 bg-[var(--bg-light-orange)] rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-video text-[var(--accent-orange)] text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-3">Qualidade HD/Full HD</h3>
+                    <p class="text-[var(--text-light)] text-center">Experimente seus programas favoritos com clareza cristalina e a melhor qualidade de imagem em HD e Full HD.</p>
+                </div>
+                <!-- Cartão de Recurso: Filmes e Séries On Demand -->
+                <div class="feature-card bg-white p-6 rounded-xl shadow-md">
+                    <div class="relative w-16 h-16 bg-[var(--bg-light-orange)] rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-film text-[var(--accent-orange)] text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-3">Filmes e Séries On Demand</h3>
+                    <p class="text-[var(--text-light)] text-center">Acesse uma biblioteca completa de filmes e séries para assistir quando quiser, sem limites.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Planos - Apresenta a opção de assinatura -->
+    <section id="plans" class="py-16 relative overflow-hidden" data-section-main>
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-4">Nossos Planos</h2>
+            <p class="text-xl text-center text-[var(--text-light)] mb-12">Escolha o plano perfeito para sua diversão</p>
+
+            <div class="max-w-md mx-auto">
+                <div class="plan-card bg-white p-8 rounded-xl shadow-lg">
+                    <h3 class="text-2xl font-bold mb-2">Plano Mensal</h3>
+                    <div class="flex items-end mb-4">
+                        <span class="text-4xl font-bold text-[var(--accent-orange)]">R$ 25</span>
+                        <span class="text-gray-500 ml-2">/mês</span>
+                    </div>
+                    <ul class="mb-6 space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>200+ canais em HD</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Filmes e séries on demand</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Suporte 24/7</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Cancelamento a qualquer momento</span>
+                        </li>
+                    </ul>
+                    <button id="plans-subscribe-button" class="block w-full bg-[var(--accent-orange)] hover:bg-[var(--dark-orange)] text-white font-bold py-3 px-6 rounded-lg text-center transition duration-300 ease-in-out shadow-md hover:shadow-lg" aria-label="Escolher Assinatura">Escolher Assinatura</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Teste Grátis - Convite para experimentar o serviço -->
+    <section id="free-trial" class="py-16 bg-gray-50 relative overflow-hidden scroll-mt-20" data-section-main>
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-4">Experimente Grátis por 3 Horas!</h2>
+            <p class="text-xl text-[var(--text-light)] mb-8">Curioso para conhecer a Velotex TV? Teste nosso serviço por 3 horas sem compromisso e descubra o melhor do entretenimento!</p>
+            <button id="free-trial-button" class="bg-[var(--accent-orange)] text-white font-bold py-3 px-6 rounded-lg text-center hover:bg-[var(--dark-orange)] transition duration-300 ease-in-out inline-block shadow-md hover:shadow-lg" aria-label="Teste Grátis">Quero meu Teste Grátis!</button>
+        </div>
+    </section>
+
+    <!-- Seção da Comanda de Ativação (Inicialmente oculta) - Formulário para dados do cliente e pagamento -->
+    <section id="comanda-section" class="py-12 bg-gray-50 text-gray-800 hidden" data-section-comanda>
+        <div class="container mx-auto px-4">
+            <div class="max-w-xl mx-auto bg-white p-8 rounded-xl shadow-lg border border-gray-200">
+                <h2 class="text-2xl font-bold text-center mb-8">Dados do Cliente e Plano</h2>
+
+                <form id="comanda-form" class="space-y-6">
+                    <div>
+                        <label for="comanda-name" class="block text-gray-700 font-medium mb-2">Nome Completo</label>
+                        <input type="text" id="comanda-name" name="name" required class="comanda-input-field" placeholder="Seu nome completo">
+                    </div>
+                    <div>
+                        <label for="comanda-email" class="block text-gray-700 font-medium mb-2">E-mail</label>
+                        <input type="email" id="comanda-email" name="email" required class="comanda-input-field" placeholder="seuemail@exemplo.com">
+                    </div>
+                    <div>
+                        <label for="comanda-phone" class="block text-gray-700 font-medium mb-2">Celular (WhatsApp)</label>
+                        <input type="tel" id="comanda-phone" name="phone" required class="comanda-input-field" placeholder="(XX) XXXXX-XXXX">
+                    </div>
+                    <div>
+                        <label for="comanda-plan" class="block text-gray-700 font-medium mb-2">Selecione o Plano</label>
+                        <select id="comanda-plan" name="plan" required class="comanda-input-field">
+                            <option value="">Selecione um plano</option>
+                            <option value="Plano Mensal - R$ 25,00">Plano Mensal - R$ 25,00</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="comanda-btn-primary w-full flex items-center justify-center" id="comanda-generate-pix-button">
+                        <span id="comanda-button-text">Gerar PIX para Pagamento</span>
+                        <div id="comanda-spinner" class="comanda-spinner hidden ml-3"></div>
+                    </button>
+                </form>
+
+                <!-- Seção de Pagamento PIX (inicialmente oculta) - Exibe QR Code e chave PIX -->
+                <div id="comanda-pix-payment-section" class="comanda-pix-container mt-10 hidden">
+                    <h3 class="text-xl font-bold text-center mb-6 text-[var(--accent-orange)]">Realize o Pagamento via PIX</h3>
+                    <div class="flex flex-col items-center space-y-6">
+                        <p class="text-gray-700 text-center">Escaneie o QR Code ou use a Chave PIX abaixo para pagar:</p>
+                        <div class="qr-code-wrapper">
+                            <img id="comanda-qr-code-img" src="https://imgur.com/XKLweH0.png" alt="QR Code PIX para pagamento da assinatura Velotex TV" class="comanda-qr-code-img w-48 h-48 mx-auto">
+                        </div>
+                        <div class="text-center">
+                            <p class="text-gray-600 font-medium">Chave PIX (E-mail):</p>
+                            <p id="comanda-pix-key" class="text-xl font-bold text-[var(--dark-gray)] break-all">caiofacundo@jim.com</p>
+                            <button id="comanda-copy-pix-key" class="mt-2 bg-gray-200 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-300 transition text-sm">
+                                <i class="fas fa-copy mr-2"></i>Copiar Chave
+                            </button>
+                            <p id="comanda-copy-message" class="text-green-600 text-sm mt-1 hidden">Copiado!</p>
+                        </div>
+                        <p class="text-sm text-gray-600 text-center">Após o pagamento, clique no botão abaixo para nos enviar a confirmação e ativar seu serviço.</p>
+                        <a id="comanda-send-to-whatsapp-button" href="#" target="_blank" class="comanda-btn-primary w-full flex items-center justify-center mt-6">
+                            <i class="fab fa-whatsapp text-2xl mr-3"></i>
+                            Enviar Comprovante e Ativar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Como Funciona - Explica o processo de uso do serviço -->
+    <section id="how-it-works" class="py-16 bg-gray-50 relative overflow-hidden" data-section-main>
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-4">Como Funciona?</h2>
+            <p class="text-xl text-[var(--text-light)] mb-12">É simples e rápido começar a usar a Velotex TV!</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Cartão Passo 1 -->
+                <div class="how-it-works-card p-6 rounded-xl shadow-md">
+                    <div class="relative w-16 h-16 bg-[var(--bg-light-orange)] rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-user-plus text-[var(--accent-orange)] text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-2">1. Escolha seu Plano</h3>
+                    <p class="text-[var(--text-light)]">Selecione o plano mensal que melhor se adapta às suas necessidades.</p>
+                </div>
+                <!-- Cartão Passo 2 -->
+                <div class="how-it-works-card p-6 rounded-xl shadow-md">
+                    <div class="relative w-16 h-16 bg-[var(--bg-light-orange)] rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-money-bill-wave text-[var(--accent-orange)] text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">2. Pague via PIX</h3>
+                    <p class="text-[var(--text-light)]">Realize o pagamento de forma rápida e segura utilizando o PIX.</p>
+                </div>
+                <!-- Cartão Passo 3 -->
+                <div class="how-it-works-card p-6 rounded-xl shadow-md">
+                    <div class="relative w-16 h-16 bg-[var(--bg-light-orange)] rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-play-circle text-[var(--accent-orange)] text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">3. Comece a Assistir</h3>
+                    <p class="text-[var(--text-light)]">Após a confirmação, seu acesso é liberado e você já pode desfrutar!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Status do Servidor - Informa sobre a disponibilidade do serviço -->
+    <section id="server-status" class="py-16 bg-gray-50 relative overflow-hidden" data-section-main>
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-4">Status do Servidor</h2>
+            <p class="text-xl text-[var(--text-light)] mb-8">Verifique a disponibilidade e o desempenho dos nossos serviços.</p>
+
+            <div class="max-w-xl mx-auto bg-white p-8 rounded-xl shadow-lg border border-gray-200">
+                <div class="flex items-center justify-center mb-6">
+                    <div id="status-indicator" class="w-5 h-5 rounded-full mr-3" style="background-color: var(--green-success);"></div>
+                    <p id="status-message" class="text-2xl font-bold text-[var(--dark-gray)]">Serviços Online</p>
+                </div>
+                <p class="text-[var(--text-light)] mb-6">Nosso sistema de streaming está operando em capacidade total com excelente desempenho.</p>
+
+                <!-- Gráfico de Linha de Status do Servidor com animação (sem data de atualização) -->
+                <div class="line-chart-container">
+                    <div class="line-segment"></div>
+                    <div class="line-segment"></div>
+                    <div class="line-segment"></div>
+                    <div class="line-segment"></div>
+                    <div class="line-segment"></div>
+                    <div class="line-segment"></div>
+                    <div class="line-segment"></div>
+                    <div class="line-segment"></div>
+                    <div class="line-segment"></div>
+                    <div class="line-segment"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Presença Nacional com Bandeira do Brasil em CSS - Destaque para abrangência nacional -->
+    <section id="brazil-presence" class="py-16 bg-white relative overflow-hidden" data-section-main>
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-4">Presente em Todo o Brasil!</h2>
+            <p class="text-xl text-[var(--text-light)] mb-8">A Velotex TV leva o melhor do entretenimento para todos os cantos do país.</p>
+
+            <!-- Bandeira do Brasil Minimalista e Horizontal (apenas cores) -->
+            <div class="brazil-flag-separator"></div>
+
+            <p class="text-gray-700 mt-8 max-w-2xl mx-auto">
+                Com nossa infraestrutura robusta e parcerias estratégicas, garantimos que você tenha acesso aos seus canais, filmes e séries favoritos, não importa onde esteja no Brasil.
+            </p>
+        </div>
+    </section>
+
+    <!-- Seção de Perguntas Frequentes (FAQ) - Acordeão interativo para dúvidas comuns -->
+    <section id="faq" class="py-16 relative overflow-hidden" data-section-main>
+        <div class="container mx-auto px-4 max-w-4xl">
+            <h2 class="text-3xl font-bold text-center mb-12">Perguntas Frequentes</h2>
+
+            <div class="space-y-4">
+                <!-- Item do FAQ 1 -->
+                <div class="faq-item border rounded-lg overflow-hidden">
+                    <button class="faq-question w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 transition duration-200 ease-in-out">
+                        <span class="font-medium text-left">Como é feito o pagamento?</span>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-4 bg-white text-gray-700">
+                            <p>Aceitamos pagamentos exclusivamente via PIX, que é rápido, seguro e sem taxas. Após a confirmação do pagamento, seu acesso é liberado imediatamente.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Item do FAQ 2 -->
+                <div class="faq-item border rounded-lg overflow-hidden">
+                    <button class="faq-question w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 transition duration-200 ease-in-out">
+                        <span class="font-medium text-left">Quantos dispositivos podem assistir simultaneamente?</span>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-4 bg-white text-gray-700">
+                            <p>Cada assinatura permite apenas 1 dispositivo assistindo simultaneamente. Isso garante a melhor qualidade de streaming para você.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Item do FAQ 3 -->
+                <div class="faq-item border rounded-lg overflow-hidden">
+                    <button class="faq-question w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 transition duration-200 ease-in-out">
+                        <span class="font-medium text-left">Quais dispositivos são compatíveis com a Velotex TV?</span>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-4 bg-white text-gray-700">
+                            <p>A Velotex TV é compatível com smartphones e tablets (Android e iOS), computadores (Windows e Mac), Smart TVs (Android TV, Samsung Tizen, LG WebOS), e dispositivos de streaming como Chromecast, Fire TV Stick e Apple TV.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Item do FAQ 4 -->
+                <div class="faq-item border rounded-lg overflow-hidden">
+                    <button class="faq-question w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 transition duration-200 ease-in-out">
+                        <span class="font-medium text-left">Posso cancelar a qualquer momento?</span>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-4 bg-white text-gray-700">
+                            <p>Sim! Você pode cancelar seu plano a qualquer momento sem multa. O cancelamento é imediato.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Item do FAQ 5 -->
+                <div class="faq-item border rounded-lg overflow-hidden">
+                    <button class="faq-question w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 transition duration-200 ease-in-out">
+                        <span class="font-medium text-left">Há algum tipo de fidelidade?</span>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-4 bg-white text-gray-700">
+                            <p>Não temos fidelidade em nenhum de nossos planos. Você pode cancelar quando quiser sem nenhuma penalidade.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Contato - Formulário e informações de contato -->
+    <section id="contact" class="py-16 bg-[var(--bg-light-orange)] relative overflow-hidden" data-section-main>
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-4">Fale Conosco</h2>
+            <p class="text-xl text-center text-[var(--text-light)] mb-12">A Velotex TV é um serviço da Velotex Serviços de Internet.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+                <!-- Informações de Contato -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Informações de Contato</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <i class="fas fa-envelope text-[var(--accent-orange)] text-xl mr-4 mt-1"></i>
+                            <div>
+                                <h4 class="font-medium">E-mail</h4>
+                                <p class="text-gray-600">contato.velotextv@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fab fa-whatsapp text-[var(--accent-orange)] text-xl mr-4 mt-1"></i>
+                            <div>
+                                <h4 class="font-medium">WhatsApp</h4>
+                                <p class="text-gray-600">(85) 98896-0589</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formulário de Mensagem -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Envie sua Mensagem</h3>
+                    <form id="contact-form" action="https://formsubmit.co/contato.velotextv@gmail.com" method="POST" class="space-y-4">
+                        <input type="hidden" name="_captcha" value="false">
+                        <div>
+                            <label for="name" class="block font-medium mb-1">Nome</label>
+                            <input type="text" id="name" name="name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--accent-orange)]">
+                        </div>
+                        <div>
+                            <label for="email" class="block font-medium mb-1">E-mail</label>
+                            <input type="email" id="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--accent-orange)]">
+                        </div>
+                        <div>
+                            <label for="message" class="block font-medium mb-1">Mensagem</label>
+                            <textarea id="message" name="message" rows="4" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--accent-orange)]"></textarea>
+                        </div>
+                        <button type="submit" class="bg-[var(--accent-orange)] hover:bg-[var(--dark-orange)] text-white font-bold py-3 px-6 rounded-lg transition duration-300 ease-in-out flex items-center justify-center min-w-32 shadow-md hover:shadow-lg" id="submit-button" aria-label="Enviar Mensagem">
+                            <span id="button-text">Enviar Mensagem</span>
+                            <svg id="spinner" class="hidden w-5 h-5 ml-2 text-white animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                        </button>
+                        <div id="form-message" class="mt-4 text-center text-sm"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Termos de Uso - Conteúdo legal -->
+    <section id="termos-de-uso" class="py-16 bg-white relative overflow-hidden scroll-mt-20" data-section-main>
+        <div class="container mx-auto px-4 max-w-4xl">
+            <h1 class="text-4xl font-bold text-center mb-8">Termos de Uso da Velotex TV</h1>
+            <div class="prose max-w-none text-gray-700">
+                <p class="mb-4">Bem-vindo(a) à Velotex TV! Ao acessar ou usar nossos serviços, você concorda em cumprir e estar vinculado(a) aos seguintes termos e condições de uso. Por favor, leia-os atentamente.</p>
+                <h2 class="text-2xl font-bold mt-8 mb-4">1. Aceitação dos Termos</h2>
+                <p class="mb-4">Ao se cadastrar, acessar ou utilizar qualquer serviço da Velotex TV, você declara ter lido, compreendido e aceitado estes Termos de Uso. Caso não concorde com qualquer parte destes termos, você não deverá utilizar nossos serviços.</p>
+                <h2 class="text-2xl font-bold mt-8 mb-4">2. Alterações nos Termos</h2>
+                <p class="mb-4">A Velotex TV reserva-se o direito de modificar ou revisar estes Termos de Uso a qualquer momento, a seu exclusivo critério. As alterações entrarão em vigor imediatamente após a publicação no site. É sua responsabilidade revisar periodicamente estes termos para estar ciente de quaisquer modificações. O uso continuado dos serviços após a publicação de alterações constitui aceitação dessas alterações.</p>
+                <h2 class="text-2xl font-bold mt-8 mb-4">3. Acesso e Uso do Serviço</h2>
+                <ul class="list-disc list-inside mb-4 space-y-2">
+                    <li>Você deve ter pelo menos 18 anos de idade para se cadastrar e utilizar os serviços da Velotex TV.</li>
+                    <li>Você é responsável por manter a confidencialidade de sua conta e senha e por todas as atividades que ocorram sob sua conta.</li>
+                    <li>O serviço é para uso pessoal e não comercial. Você não pode compartilhar sua conta ou acesso com terceiros.</li>
+                    <li>A Velotex TV se reserva o direito de suspender ou encerrar seu acesso ao serviço a qualquer momento, sem aviso prévio, por qualquer violação destes Termos.</li>
+                </ul>
+                <h2 class="text-2xl font-bold mt-8 mb-4">4. Pagamento e Assinatura</h2>
+                <p class="mb-4">Os pagamentos são feitos exclusivamente via PIX. A assinatura é mensal e não há fidelidade, permitindo o cancelamento a qualquer momento sem multas.</p>
+                <h2 class="text-2xl font-bold mt-8 mb-4">5. Propriedade Intelectual</h2>
+                <p class="mb-4">Todo o conteúdo disponível na Velotex TV, incluindo, mas não se limitando a, textos, gráficos, logotipos, ícones, imagens, clipes de áudio, downloads digitais, compilações de dados e software, é propriedade da Velotex TV ou de seus fornecedores de conteúdo e é protegido por leis de direitos autorais e outras leis de propriedade intelectual.</p>
+                <h2 class="text-2xl font-bold mt-8 mb-4">6. Limitação de Responsabilidade</h2>
+                <p class="mb-4">A Velotex TV não será responsável por quaisquer danos diretos, indiretos, incidentais, especiais ou consequenciais resultantes do uso ou da incapacidade de usar o serviço, incluindo, mas não se limitando a, perda de lucros, dados ou outras perdas intangíveis.</p>
+                <h2 class="text-2xl font-bold mt-8 mb-4">7. Lei Aplicável</h2>
+                <p class="mb-4">Estes Termos de Uso serão regidos e interpretados de acordo com as leis do Brasil, independentemente de seus conflitos de princípios legais.</p>
+                <h2 class="2xl font-bold mt-8 mb-4">8. Contato</h2>
+                <p class="mb-4">Se você tiver alguma dúvida sobre estes Termos de Uso, entre em contato conosco através do e-mail: contato.velotextv@gmail.com ou WhatsApp: (85) 98896-0589.</p>
+                <p class="text-sm text-gray-500 mt-8">Última atualização: 20 de julho de 2025</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Política de Privacidade - Conteúdo legal -->
+    <section id="politica-de-privacidade" class="py-16 bg-gray-50 relative overflow-hidden scroll-mt-20" data-section-main>
+        <div class="container mx-auto px-4 max-w-4xl">
+            <h1 class="text-4xl font-bold text-center mb-8">Política de Privacidade da Velotex TV</h1>
+            <div class="prose max-w-none text-gray-700">
+                <p class="mb-4">Esta Política de Privacidade descreve como a Velotex TV coleta, usa e protege suas informações pessoais ao utilizar nossos serviços.</p>
+                <h2 class="text-2xl font-bold mt-8 mb-4">1. Informações Coletadas</h2>
+                <p class="mb-4">Coletamos informações que você nos fornece diretamente ao se cadastrar ou interagir com nossos serviços, como nome, endereço de e-mail e informações de pagamento (via PIX, sem armazenamento de dados bancários sensíveis por nós).</p>
+                <p class="mb-4">Também coletamos automaticamente informações sobre seu uso do serviço, incluindo tipo de dispositivo, endereço IP, sistema operacional, navegador, atividade de navegação e dados de localização aproximada. Essas informações são usadas para melhorar a qualidade do serviço e personalizar sua experiência.</p>
+                <h2 class="text-2xl font-bold mt-8 mb-4">3. Compartilhamento de Informações</h2>
+                <p class="mb-4">Não vendemos, alugamos ou compartilhamos suas informações pessoais com terceiros, exceto nas seguintes circunstâncias:</p>
+                <ul class="list-disc list-inside mb-4 space-y-2">
+                    <li>Com provedores de serviços que nos auxiliam na operação do site e na prestação de serviços (ex: processadores de pagamento, suporte ao cliente), sempre sob acordos de confidencialidade.</li>
+                    <li>Em resposta a processos legais ou solicitações governamentais.</li>
+                    <li>Para proteger os direitos, propriedade ou segurança da Velotex TV, nossos usuários ou o público.</li>
+                    <li>Com seu consentimento.</li>
+                </ul>
+                <h2 class="2xl font-bold mt-8 mb-4">4. Segurança dos Dados</h2>
+                <p class="mb-4">Implementamos medidas de segurança razoáveis para proteger suas informações pessoais contra acesso não autorizado, alteração, divulgação ou destruição. No entanto, nenhum método de transmissão pela internet ou armazenamento eletrônico é 100% seguro. Portanto, não podemos garantir segurança absoluta.</p>
+                <h2 class="2xl font-bold mt-8 mb-4">5. Seus Direitos</h2>
+                <p class="mb-4">De acordo com a Lei Geral de Proteção de Dados (LGPD), você tem o direito de acessar, corrigir, atualizar ou solicitar a exclusão de suas informações pessoais. Para exercer esses direitos, entre em contato conosco.</p>
+                <h2 class="2xl font-bold mt-8 mb-4">6. Alterações nesta Política</h2>
+                <p class="mb-4">Podemos atualizar esta Política de Privacidade periodicamente. Notificaremos você sobre quaisquer alterações publicando a nova política nesta página. Recomendamos que você revise esta Política de Privacidade regularmente para quaisquer alterações.</p>
+                <h2 class="2xl font-bold mt-8 mb-4">7. Contato</h2>
+                <p class="mb-4">Se você tiver alguma dúvida sobre o nosso uso de cookies ou outras tecnologias, entre em contato conosco através do e-mail: contato.velotextv@gmail.com ou WhatsApp: (85) 98896-0589.</p>
+                <p class="text-sm text-gray-500 mt-8">Última atualização: 20 de julho de 2025</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Política de Cookies - Conteúdo legal -->
+    <section id="politica-de-cookies" class="py-16 bg-white relative overflow-hidden scroll-mt-20" data-section-main>
+        <div class="container mx-auto px-4 max-w-4xl">
+            <h1 class="text-4xl font-bold text-center mb-8">Política de Cookies da Velotex TV</h1>
+            <div class="prose max-w-none text-gray-700">
+                <p class="mb-4">Esta Política de Cookies explica como a Velotex TV utiliza cookies e tecnologias semelhantes para reconhecer você quando visita nosso site.</p>
+                <h2 class="text-2xl font-bold mt-8 mb-4">1. O que são Cookies?</h2>
+                <p class="mb-4">Cookies são pequenos arquivos de texto que são armazenados em seu computador ou dispositivo móvel quando você visita um site. Eles são amplamente utilizados para fazer com que os sites funcionem, ou funcionem de forma mais eficiente, bem como para fornecer informações aos proprietários do site.</p>
+                <h2 class="text-2xl font-bold mt-8 mb-4">2. Como Usamos Cookies</h2>
+                <p class="mb-4">Utilizamos cookies por diversas razões, incluindo:</p>
+                <ul class="list-disc list-inside mb-4 space-y-2">
+                    <li><strong>Cookies Essenciais:</strong> Necessários para o funcionamento do nosso site, permitindo que você navegue e use recursos básicos.</li>
+                    <li><strong>Cookies de Desempenho e Análise:</strong> Coletam informações sobre como os visitantes usam nosso site, como as páginas mais visitadas, o tempo gasto no site e quaisquer problemas encontrados. Essas informações nos ajudam a melhorar o desempenho e o design do site.</li>
+                    <li><strong>Cookies de Funcionalidade:</strong> Permitem que o site se lembre das escolhas que você faz (como seu nome de usuário, idioma ou região) e forneça recursos aprimorados e mais personalizados.</li>
+                    <li><strong>Cookies de Publicidade:</strong> Usados para fornecer anúncios mais relevantes para você e seus interesses. Eles também são usados para limitar o número de vezes que você vê um anúncio, bem como para ajudar a medir a eficácia das campanhas publicitárias.</li>
+                </ul>
+                <h2 class="2xl font-bold mt-8 mb-4">3. Cookies de Terceiros</h2>
+                <p class="mb-4">Além dos nossos próprios cookies, podemos usar vários cookies de terceiros para relatar estatísticas de uso do site, exibir anúncios e muito mais.</p>
+                <h2 class="2xl font-bold mt-8 mb-4">4. Suas Opções de Cookies</h2>
+                <p class="mb-4">Você tem o direito de decidir se aceita ou rejeita cookies. Você pode configurar ou alterar os controles do seu navegador para aceitar ou recusar cookies. Se você optar por rejeitar cookies, ainda poderá usar nosso site, embora seu acesso a algumas funcionalidades e áreas do site possa ser restrito.</p>
+                <p class="mb-4">A maioria dos navegadores permite que você gerencie suas preferências de cookies. Você pode configurar seu navegador para recusar cookies ou excluir determinados cookies. Para saber mais sobre como gerenciar cookies, consulte a seção de ajuda do seu navegador.</p>
+                <h2 class="2xl font-bold mt-8 mb-4">5. Alterações nesta Política de Cookies</h2>
+                <p class="mb-4">Podemos atualizar esta Política de Cookies periodicamente para refletir, por exemplo, alterações nos cookies que usamos ou por outras razões operacionais, legais ou regulamentares. Por favor, revisite esta Política de Cookies regularmente para se manter informado sobre o nosso uso de cookies e tecnologias relacionadas.</p>
+                <h2 class="2xl font-bold mt-8 mb-4">6. Contato</h2>
+                <p class="mb-4">Se você tiver alguma dúvida sobre o nosso uso de cookies ou outras tecnologias, entre em contato conosco através do e-mail: contato.velotextv@gmail.com ou WhatsApp: (85) 98896-0589.</p>
+                <p class="text-sm text-gray-500 mt-8">Última atualização: 20 de julho de 2025</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé - Informações de contato, links rápidos e selos de segurança -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Seção do Logotipo no Rodapé -->
+                <div>
+                    <span class="text-2xl font-bold mb-4 block">Velotex<span class="text-white">TV</span></span>
+                    <p class="text-gray-400">Sua diversão conectada com mais de 200 canais, filmes e séries para toda a família.</p>
+                </div>
+
+                <!-- Links Rápidos do Rodapé -->
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Links Rápidos</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="nav-link text-gray-400 hover:text-white transition duration-200" data-section-link="home">Início</a></li>
+                        <li><a href="#features" class="nav-link text-gray-400 hover:text-white transition duration-200" data-section-link="features">Recursos</a></li>
+                        <li><a href="#plans" class="nav-link text-gray-400 hover:text-white transition duration-200" data-section-link="plans">Planos</a></li>
+                        <li><a href="#free-trial" class="nav-link text-gray-400 hover:text-white transition duration-200" data-section-link="free-trial">Teste Grátis</a></li>
+                        <li><a href="#how-it-works" class="nav-link text-gray-400 hover:text-white transition duration-200" data-section-link="how-it-works">Como Funciona</a></li>
+                        <li><a href="#server-status" class="nav-link text-gray-400 hover:text-white transition duration-200" data-section-link="server-status">Status do Servidor</a></li>
+                        <li><a href="#brazil-presence" class="nav-link text-gray-400 hover:text-white transition duration-200" data-section-link="brazil-presence">Presença Nacional</a></li>
+                        <li><a href="#faq" class="nav-link text-gray-400 hover:text-white transition duration-200" data-section-link="faq">FAQ</a></li>
+                        <li><a href="#contact" class="nav-link text-gray-400 hover:text-white transition duration-200" data-section-link="contact">Contato</a></li>
+                    </ul>
+                </div>
+
+                <!-- Links Legais do Rodapé -->
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Legal</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#termos-de-uso" class="nav-link text-gray-400 hover:text-white transition duration-200" data-section-link="termos-de-uso">Termos de Uso</a></li>
+                        <li><a href="#politica-de-privacidade" class="nav-link text-gray-400 hover:text-white transition duration-200" data-section-link="politica-de-privacidade">Política de Privacidade</a></li>
+                        <li><a href="#politica-de-cookies" class="nav-link text-gray-400 hover:text-white transition duration-200" data-section-link="politica-de-cookies">Cookies</a></li>
+                    </ul>
+                </div>
+
+                <!-- Redes Sociais do Rodapé -->
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Redes Sociais</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[var(--accent-orange)] transition duration-300" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[var(--accent-orange)] transition duration-300" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[var(--accent-orange)] transition duration-300" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Direitos Autorais e Selos de Segurança -->
+            <div class="text-center text-gray-500 mt-8 pt-8 border-t border-gray-700">
+                <p>&copy; 2025 Velotex TV. Todos os direitos reservados.</p>
+                <!--
+                    Os selos de segurança abaixo são estilizados inteiramente com CSS.
+                    A classe 'security-badge' define o fundo verde, texto branco, bordas arredondadas,
+                    sombra e centralização do conteúdo (ícone e texto).
+                    As variáveis CSS (--green-success, --dark-green) garantem consistência de cores.
+                    As propriedades 'max-width: 100%' e 'box-sizing: border-box' foram adicionadas
+                    para garantir que os selos se ajustem corretamente em ecrãs menores e não saiam da margem.
+                -->
+                <div class="flex flex-col items-center mx-auto mt-4">
+                    <!-- Selo de Site Seguro (HTTPS) com estilo de botão arredondado -->
+                    <div class="security-badge">
+                        <i class="fas fa-lock"></i> Site Seguro (HTTPS)
+                    </div>
+                    <!-- Selo de Compra Segura com estilo de botão arredondado -->
+                    <div class="security-badge">
+                        <i class="fas fa-shield-alt"></i> Compra Segura
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botão Flutuante de Voltar (FAB) - Visível apenas quando na seção da comanda -->
+    <button id="back-button" class="back-button-fab hidden" aria-label="Voltar para a página anterior">
+        <i class="fas fa-arrow-left"></i>
+        <span class="back-button-fab-text">Voltar</span>
+    </button>
+
+    <!-- Banner de Aceitação de Cookies - Exibido na primeira visita -->
+    <div id="cookie-banner" class="cookie-banner hidden">
+        <p>Este site utiliza cookies para garantir que obtém a melhor experiência de navegação. Ao continuar a navegar, concorda com a nossa <a href="#politica-de-cookies">Política de Cookies</a>.</p>
+        <button id="accept-cookies-button">Aceitar</button>
+    </div>
+
+    <!-- Scripts JavaScript - Carregados no final do body para melhor performance -->
+    <script type="module">
+        // Importa as funcionalidades do Firebase SDK - Módulos específicos para otimização
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Variáveis Globais do Firebase (fornecidas pelo ambiente Canvas)
+        // Garante que as variáveis sejam definidas ou tenham valores padrão seguros
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        let firebaseConfig = {};
+        if (typeof __firebase_config === 'string' && __firebase_config.length > 0) {
+            try {
+                firebaseConfig = JSON.parse(__firebase_config);
+            } catch (e) {
+                console.error("Erro ao analisar __firebase_config:", e);
+                // Permanece como objeto vazio se a análise falhar, evitando quebra
+            }
+        }
+        let initialAuthToken = undefined;
+        if (typeof __initial_auth_token !== 'undefined') {
+            initialAuthToken = __initial_auth_token;
+        }
+
+        let db; // Instância do Firestore
+        let auth; // Instância do Auth
+        let userId; // ID do usuário autenticado
+
+        /**
+         * @function initFirebase
+         * @description Inicializa o Firebase e autentica o usuário (anônimo ou com token).
+         * Esta função é assíncrona para lidar com a inicialização e autenticação.
+         */
+        async function initFirebase() {
+            try {
+                // Log firebaseConfig para ajudar a depurar se estiver vazio ou malformado
+                console.log("Firebase Config recebida:", firebaseConfig);
+
+                // Inicializa o aplicativo Firebase com a configuração fornecida
+                const app = initializeApp(firebaseConfig);
+                // Obtém as instâncias do Firestore e Auth
+                db = getFirestore(app);
+                auth = getAuth(app);
+
+                // Tenta autenticar com o token personalizado se disponível, caso contrário, autentica anonimamente
+                if (initialAuthToken) {
+                    console.log("Tentando autenticar com token personalizado...");
+                    await signInWithCustomToken(auth, initialAuthToken);
+                } else {
+                    console.log("Tentando autenticar anonimamente...");
+                    await signInAnonymously(auth);
+                }
+                // Define o ID do usuário (UID se autenticado, ou um UUID aleatório para anônimos)
+                userId = auth.currentUser?.uid || crypto.randomUUID();
+                console.log("Firebase inicializado e usuário autenticado com ID:", userId);
+
+            } catch (error) {
+                console.error("Erro ao inicializar Firebase ou autenticar:", error);
+                console.error("Detalhes do erro:", error.code, error.message);
+                // Pode-se adicionar um fallback de UI aqui para informar o usuário sobre o erro
+            }
+        }
+
+        // Seletores de Elementos DOM - Centralizados para fácil acesso
+        const mainSections = document.querySelectorAll('section[data-section-main]');
+        const comandaSection = document.getElementById('comanda-section');
+        const backButton = document.getElementById('back-button');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+        const hamburgerIcon = document.getElementById('hamburger-icon');
+        const closeIcon = document.getElementById('close-icon');
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        const contactForm = document.getElementById('contact-form');
+        const submitButton = document.getElementById('submit-button');
+        const contactButtonText = submitButton ? submitButton.querySelector('#button-text') : null;
+        const contactSpinner = submitButton ? submitButton.querySelector('#spinner') : null;
+        const formMessage = document.getElementById('form-message');
+        const headerNavLinks = document.querySelectorAll('.mobile-nav-link'); // Usado para destacar links no menu
+        const cookieBanner = document.getElementById('cookie-banner');
+        const acceptCookiesButton = document.getElementById('accept-cookies-button');
+        const comandaForm = document.getElementById('comanda-form');
+        const comandaGeneratePixButton = document.getElementById('comanda-generate-pix-button');
+        const comandaPixPaymentSection = document.getElementById('comanda-pix-payment-section');
+        const comandaPixKeyElement = document.getElementById('comanda-pix-key');
+        const comandaCopyPixKeyButton = document.getElementById('comanda-copy-pix-key');
+        const comandaCopyMessage = document.getElementById('comanda-copy-message');
+        const comandaSendToWhatsappButton = document.getElementById('comanda-send-to-whatsapp-button');
+        const comandaButtonTextComanda = document.getElementById('comanda-button-text');
+        const comandaSpinnerComanda = document.getElementById('comanda-spinner');
+        const comandaPhoneInput = document.getElementById('comanda-phone');
+        const heroSubscribeButton = document.getElementById('hero-subscribe-button');
+        const plansSubscribeButton = document.getElementById('plans-subscribe-button');
+        const freeTrialButton = document.getElementById('free-trial-button');
+
+
+        /**
+         * @function showSection
+         * @description Controla a visibilidade das seções principais do site e do botão de voltar.
+         * @param {string} sectionId - O ID da seção a ser mostrada.
+         */
+        function showSection(sectionId) {
+            // Esconde todas as seções principais e mostra a seção da comanda se for o caso
+            if (sectionId === 'comanda-section') {
+                mainSections.forEach(section => {
+                    section.classList.add('hidden');
+                });
+                comandaSection.classList.remove('hidden');
+                backButton.classList.remove('hidden'); // Mostra o botão de voltar
+            } else {
+                // Mostra todas as seções principais e esconde a seção da comanda
+                mainSections.forEach(section => {
+                    section.classList.remove('hidden');
+                });
+                comandaSection.classList.add('hidden');
+                backButton.classList.add('hidden'); // Esconde o botão de voltar
+            }
+
+            // Rola suavemente para a seção alvo
+            const targetElement = document.getElementById(sectionId);
+            if (targetElement) {
+                const headerOffset = document.querySelector('header').offsetHeight; // Altura do cabeçalho para ajuste de rolagem
+                const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                const offsetPosition = elementPosition - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
+            }
+            updateActiveNavLink(); // Atualiza o destaque do link de navegação
+        }
+
+        /**
+         * @function toggleMobileMenu
+         * @description Alterna a visibilidade do menu mobile e troca os ícones de hambúrguer/fechar.
+         * Controla também a rolagem do corpo da página.
+         */
+        function toggleMobileMenu() {
+            const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+            mobileMenuButton.setAttribute('aria-expanded', !isExpanded); // Atualiza o estado ARIA
+
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                // Pequeno atraso para permitir a transição CSS de `transform`
+                setTimeout(() => mobileMenu.classList.add('open'), 10);
+                hamburgerIcon.classList.add('hidden');
+                closeIcon.classList.remove('hidden');
+                document.body.style.overflow = 'hidden'; // Previne rolagem do corpo quando o menu está aberto
+            } else {
+                mobileMenu.classList.remove('open');
+                // Pequeno atraso para permitir a transição CSS antes de esconder completamente
+                setTimeout(() => mobileMenu.classList.add('hidden'), 300);
+                hamburgerIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+                document.body.style.overflow = ''; // Restaura a rolagem do corpo
+            }
+            mobileMenu.setAttribute('aria-hidden', isExpanded); // Atualiza o estado ARIA
+        }
+
+        /**
+         * @function updateActiveNavLink
+         * @description Atualiza a classe 'active' nos links de navegação com base na seção visível na viewport.
+         * Isso fornece feedback visual ao usuário sobre qual seção está sendo visualizada.
+         */
+        function updateActiveNavLink() {
+            let currentActiveSectionId = '';
+            const headerHeight = document.querySelector('header').offsetHeight;
+
+            mainSections.forEach(section => {
+                // Verifica se a seção não está oculta pela lógica da comanda
+                if (!section.classList.contains('hidden')) {
+                    const sectionTop = section.offsetTop - headerHeight;
+                    const sectionBottom = sectionTop + section.offsetHeight;
+                    // Determina se a seção está visível na viewport (com ajuste para o cabeçalho)
+                    if (window.scrollY >= sectionTop && window.scrollY < sectionBottom) {
+                        currentActiveSectionId = section.id;
+                    }
+                }
+            });
+
+            // Remove a classe 'active' de todos os links e adiciona ao link da seção atual
+            headerNavLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('data-section-link') === currentActiveSectionId) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        /**
+         * @function formatPhoneNumber
+         * @description Formata um número de telefone para o padrão (XX) XXXXX-XXXX enquanto o usuário digita.
+         * @param {string} value - O valor bruto do input do telefone.
+         * @returns {string} O número de telefone formatado.
+         */
+        function formatPhoneNumber(value) {
+            if (!value) return value;
+            const phoneNumber = value.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
+            let formattedNumber = '';
+
+            if (phoneNumber.length > 0) {
+                formattedNumber += `(${phoneNumber.substring(0, 2)}`;
+            }
+            if (phoneNumber.length > 2) {
+                formattedNumber += `) ${phoneNumber.substring(2, 7)}`;
+            }
+            if (phoneNumber.length > 7) {
+                formattedNumber += `-${phoneNumber.substring(7, 11)}`;
+            }
+            return formattedNumber;
+        }
+
+        // --- Adição de Listeners de Eventos ---
+
+        // Listener para o botão do menu mobile
+        if (mobileMenuButton) {
+            mobileMenuButton.addEventListener('click', toggleMobileMenu);
+        }
+
+        // Listeners para links de navegação mobile (fecham o menu e rolam para a seção)
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault(); // Previne o comportamento padrão do link
+                const targetSectionId = link.getAttribute('data-section-link');
+                if (targetSectionId) {
+                    showSection(targetSectionId); // Mostra a seção alvo
+                }
+                toggleMobileMenu(); // Fecha o menu após o clique
+            });
+        });
+
+        // Listeners para os itens do FAQ (acordeão) - Lógica de abrir/fechar e girar seta
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const content = question.nextElementSibling; // O conteúdo do acordeão
+                const icon = question.querySelector('.fa-chevron-down'); // O ícone de seta
+
+                // Fecha outros acordeões abertos para garantir que apenas um esteja aberto por vez
+                faqQuestions.forEach(otherQuestion => {
+                    if (otherQuestion !== question) {
+                        const otherContent = otherQuestion.nextElementSibling;
+                        const otherIcon = otherQuestion.querySelector('.fa-chevron-down');
+                        otherContent.style.maxHeight = null; // Fecha o conteúdo
+                        otherQuestion.classList.remove('active'); // Remove a classe 'active'
+                        otherIcon.classList.remove('rotate-180'); // Reseta a rotação da seta
+                    }
+                });
+
+                // Alterna o estado do acordeão clicado
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null; // Fecha o conteúdo
+                    question.classList.remove('active'); // Remove a classe 'active'
+                    icon.classList.remove('rotate-180'); // Reseta a rotação da seta
+                } else {
+                    content.style.maxHeight = content.scrollHeight + 'px'; // Abre o conteúdo definindo a altura máxima
+                    question.classList.add('active'); // Adiciona a classe 'active'
+                    icon.classList.add('rotate-180'); // Gira a seta
+                }
+            });
+        });
+
+        // Listener para o formulário de contato - Envio assíncrono com feedback visual
+        if (contactForm) {
+            contactForm.addEventListener('submit', async (event) => {
+                event.preventDefault(); // Previne o envio padrão do formulário
+
+                // Mostra spinner e desabilita botão
+                if (contactButtonText) contactButtonText.classList.add('hidden');
+                if (contactSpinner) contactSpinner.classList.remove('hidden');
+                submitButton.disabled = true;
+                if (formMessage) formMessage.textContent = ''; // Limpa mensagens anteriores
+
+                const formData = new FormData(contactForm);
+                const object = {};
+                formData.forEach((value, key) => {
+                    if (key !== '_captcha') { // Exclui campos internos do FormSubmit
+                        object[key] = value;
+                    }
+                });
+                const json = JSON.stringify(object); // Converte dados para JSON
+
+                try {
+                    const response = await fetch(contactForm.action, {
+                        method: contactForm.method,
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: json
+                    });
+
+                    if (response.ok) {
+                        if (formMessage) {
+                            formMessage.textContent = 'Mensagem enviada com sucesso! Em breve entraremos em contato.';
+                            formMessage.classList.remove('text-red-500');
+                            formMessage.classList.add('text-green-500');
+                        }
+                        contactForm.reset(); // Reseta o formulário após sucesso
+                    } else {
+                        const errorData = await response.json(); // Tenta ler a mensagem de erro da resposta
+                        if (formMessage) {
+                            formMessage.textContent = `Erro ao enviar mensagem: ${errorData.message || 'Tente novamente mais tarde.'}`;
+                            formMessage.classList.remove('text-green-500');
+                            formMessage.classList.add('text-red-500');
+                        }
+                    }
+                } catch (error) {
+                    // Captura erros de rede ou outros problemas
+                    if (formMessage) {
+                        formMessage.textContent = 'Ocorreu um erro na conexão. Por favor, tente novamente.';
+                        formMessage.classList.remove('text-green-500');
+                        formMessage.classList.add('text-red-500');
+                    }
+                    console.error('Erro de envio do formulário:', error);
+                } finally {
+                    // Esconde spinner e reabilita botão
+                    if (contactButtonText) contactButtonText.classList.remove('hidden');
+                    if (contactSpinner) contactSpinner.classList.add('hidden');
+                    submitButton.disabled = false;
+                }
+            });
+        }
+
+        // Smooth scrolling para todos os links internos que começam com '#'
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                // Evita duplicidade de comportamento com links do menu mobile que já usam showSection
+                if (!this.hasAttribute('data-section-link')) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        const headerOffset = document.querySelector('header').offsetHeight;
+                        const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                        const offsetPosition = elementPosition - headerOffset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: "smooth"
+                        });
+                    }
+                }
+            });
+        });
+
+        // Lógica do Banner de Cookies - Gerencia a exibição com base no localStorage
+        if (localStorage.getItem('cookiesAccepted') === 'true') {
+            cookieBanner.classList.add('hidden'); // Esconde se já aceito
+        } else {
+            cookieBanner.classList.remove('hidden'); // Mostra se não aceito
+        }
+        if (acceptCookiesButton) {
+            acceptCookiesButton.addEventListener('click', () => {
+                localStorage.setItem('cookiesAccepted', 'true'); // Salva a preferência
+                cookieBanner.classList.add('hidden'); // Esconde o banner
+            });
+        }
+
+        // Lógica da Comanda de Ativação - Formatação de telefone e fluxo de PIX
+        if (comandaPhoneInput) {
+            comandaPhoneInput.addEventListener('input', (event) => {
+                event.target.value = formatPhoneNumber(event.target.value); // Formata o número ao digitar
+            });
+        }
+
+        if (comandaForm) {
+            comandaForm.addEventListener('submit', async (event) => {
+                event.preventDefault(); // Previne o envio padrão do formulário
+
+                // Mostra spinner e desabilita botão
+                comandaButtonTextComanda.classList.add('hidden');
+                comandaSpinnerComanda.classList.remove('hidden');
+                comandaGeneratePixButton.disabled = true;
+
+                // Simula um atraso de processamento para a geração do PIX
+                await new Promise(resolve => setTimeout(resolve, 1000));
+
+                // Coleta os dados do formulário
+                const name = document.getElementById('comanda-name').value;
+                const email = document.getElementById('comanda-email').value;
+                const phone = document.getElementById('comanda-phone').value;
+                const plan = document.getElementById('comanda-plan').value;
+
+                // Define a chave PIX (hardcoded para este exemplo)
+                comandaPixKeyElement.textContent = 'caiofacundo@jim.com';
+
+                // Mostra a seção de pagamento PIX
+                comandaPixPaymentSection.classList.remove('hidden');
+
+                // Prepara a mensagem do WhatsApp com os dados do cliente
+                const whatsappMessage = `Olá, Velotex TV!%0A%0ARealizei o pagamento do meu plano via PIX (chave e-mail: caiofacundo@jim.com) e gostaria de ativar meu serviço.%0A%0ADados do Cliente:%0A- Nome: ${encodeURIComponent(name)}%0A- E-mail: ${encodeURIComponent(email)}%0A- Celular: ${encodeURIComponent(phone)}%0A- Plano Escolhido: ${encodeURIComponent(plan)}%0A%0AAguardando a ativação!`;
+                const whatsappLink = `https://wa.me/5585988960589?text=${whatsappMessage}`;
+
+                // Define o link do botão para enviar para o WhatsApp
+                comandaSendToWhatsappButton.href = whatsappLink;
+
+                // Esconde spinner e reabilita botão
+                comandaButtonTextComanda.classList.remove('hidden');
+                comandaSpinnerComanda.classList.add('hidden');
+                comandaGeneratePixButton.disabled = false;
+
+                // Rola suavemente para a seção de pagamento PIX
+                comandaPixPaymentSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        }
+
+        if (comandaCopyPixKeyButton) {
+            comandaCopyPixKeyButton.addEventListener('click', () => {
+                const pixKey = comandaPixKeyElement.textContent;
+                // Cria um elemento textarea temporário para copiar o texto
+                const textArea = document.createElement("textarea");
+                textArea.value = pixKey;
+                document.body.appendChild(textArea);
+                textArea.select(); // Seleciona o texto
+                try {
+                    document.execCommand('copy'); // Tenta copiar para a área de transferência
+                    comandaCopyMessage.classList.remove('hidden'); // Mostra mensagem de sucesso
+                    setTimeout(() => {
+                        comandaCopyMessage.classList.add('hidden'); // Esconde mensagem após 2 segundos
+                    }, 2000);
+                } catch (err) {
+                    console.error('Falha ao copiar:', err);
+                }
+                document.body.removeChild(textArea); // Remove o textarea temporário
+            });
+        }
+
+        // Eventos para os botões que abrem a seção da comanda
+        if (heroSubscribeButton) {
+            heroSubscribeButton.addEventListener('click', () => {
+                showSection('comanda-section');
+            });
+        }
+        if (plansSubscribeButton) {
+            plansSubscribeButton.addEventListener('click', () => {
+                showSection('comanda-section');
+            });
+        }
+        if (freeTrialButton) {
+            freeTrialButton.addEventListener('click', () => {
+                showSection('comanda-section');
+            });
+        }
+
+        // Evento para o botão de voltar - Retorna para a seção inicial
+        if (backButton) {
+            backButton.addEventListener('click', () => {
+                showSection('home');
+            });
+        }
+
+        // Eventos de Carregamento e Rolagem da Página
+        window.addEventListener('scroll', updateActiveNavLink); // Atualiza o link ativo ao rolar
+        window.addEventListener('load', () => {
+            updateActiveNavLink(); // Atualiza o link ativo no carregamento inicial
+            initFirebase(); // Inicializa o Firebase
+            comandaSection.classList.add('hidden'); // Garante que a comanda esteja oculta no carregamento
+            backButton.classList.add('hidden'); // Garante que o botão de voltar esteja oculto
+        });
+    </script>
+</body>
+</html>
