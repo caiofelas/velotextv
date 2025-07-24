@@ -698,10 +698,10 @@
     </section>
 
     <!-- Seção da Comanda (Formulário de Cliente e Pagamento PIX): Oculta por padrão -->
-    <section id="comanda-section" class="py-12 bg-[var(--light-gray-background)] text-[var(--secondary-charcoal-blue)] hidden" data-section-comanda>
+    <section id="comanda-section" class="py-12 bg-[var(--light-gray-background)] text-[var(--secondary-charcoal-blue)] hidden" data-section-main>
         <div class="container mx-auto px-4">
             <div class="max-w-xl mx-auto bg-white p-8 rounded-xl shadow-lg border border-[var(--medium-gray-border)]">
-                <h2 class="text-2xl font-bold text-center mb-8">Dados do Cliente e Plano</h2>
+                <h2 class="text-2xl font-bold text-center mb-8">Dados do Cliente e Plano Mensal</h2>
                 <form id="comanda-form" class="space-y-6">
                     <div>
                         <label for="comanda-name" class="block text-[var(--secondary-charcoal-blue)] font-medium mb-2">Nome Completo</label>
@@ -716,19 +716,16 @@
                         <input type="tel" id="comanda-phone" name="phone" required class="input-field" placeholder="(XX) XXXXX-XXXX">
                     </div>
                     <div>
-                        <label for="comanda-plan" class="block text-[var(--secondary-charcoal-blue)] font-medium mb-2">Selecione o Plano</label>
-                        <select id="comanda-plan" name="plan" required class="input-field">
-                            <option value="">Selecione um plano</option>
-                            <option value="Plano Mensal - R$ 25,00">Plano Mensal - R$ 25,00</option>
-                            <!-- Nova opção de Teste Grátis de 3 Horas -->
-                            <option value="Teste Grátis - 3 Horas">Teste Grátis - 3 Horas</option>
-                        </select>
+                        <label for="comanda-plan" class="block text-[var(--secondary-charcoal-blue)] font-medium mb-2">Plano Selecionado</label>
+                        <input type="text" id="comanda-plan" name="plan" value="Plano Mensal - R$ 25,00" readonly class="input-field bg-gray-100 cursor-not-allowed">
                     </div>
+                    <!-- Botão para Gerar PIX -->
                     <button type="submit" class="btn-primary w-full" id="comanda-generate-pix-button">
                         <span id="comanda-button-text">Gerar PIX para Pagamento</span>
                         <div id="comanda-spinner" class="spinner hidden ml-3"></div>
                     </button>
                 </form>
+                <!-- Seção de Pagamento PIX (visibilidade controlada por JS) -->
                 <div id="comanda-pix-payment-section" class="pix-container mt-10 hidden">
                     <h3 class="text-xl font-bold text-center mb-6 text-[var(--primary-accent-green)]">Realize o Pagamento via PIX</h3>
                     <div class="flex flex-col items-center space-y-6">
@@ -753,6 +750,35 @@
                         </button>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nova Seção: Formulário de Teste Grátis -->
+    <section id="free-trial-form-section" class="py-12 bg-[var(--light-gray-background)] text-[var(--secondary-charcoal-blue)] hidden" data-section-main>
+        <div class="container mx-auto px-4">
+            <div class="max-w-xl mx-auto bg-white p-8 rounded-xl shadow-lg border border-[var(--medium-gray-border)]">
+                <h2 class="text-2xl font-bold text-center mb-8">Ative seu Teste Grátis de 3 Horas!</h2>
+                <p class="text-center text-[var(--secondary-charcoal-blue)] mb-6">Preencha seus dados para começar a desfrutar da Velotex TV.</p>
+                <form id="free-trial-form" class="space-y-6">
+                    <div>
+                        <label for="free-trial-name" class="block text-[var(--secondary-charcoal-blue)] font-medium mb-2">Nome Completo</label>
+                        <input type="text" id="free-trial-name" name="name" required class="input-field" placeholder="Seu nome completo">
+                    </div>
+                    <div>
+                        <label for="free-trial-email" class="block text-[var(--secondary-charcoal-blue)] font-medium mb-2">E-mail</label>
+                        <input type="email" id="free-trial-email" name="email" required class="input-field" placeholder="seuemail@exemplo.com">
+                    </div>
+                    <div>
+                        <label for="free-trial-phone" class="block text-[var(--secondary-charcoal-blue)] font-medium mb-2">Celular (WhatsApp)</label>
+                        <input type="tel" id="free-trial-phone" name="phone" required class="input-field" placeholder="(XX) XXXXX-XXXX">
+                    </div>
+                    <button type="submit" class="btn-primary w-full" id="free-trial-activate-button">
+                        <span id="free-trial-button-text">Ativar Teste Grátis</span>
+                        <div id="free-trial-spinner" class="spinner hidden ml-3"></div>
+                    </button>
+                </form>
+                <div id="free-trial-message" class="mt-4 text-center text-sm"></div>
             </div>
         </div>
     </section>
@@ -1043,7 +1069,7 @@
         </div>
     </footer>
 
-    <!-- Botão Flutuante de Voltar: Visível apenas quando na seção de comanda -->
+    <!-- Botão Flutuante de Voltar: Visível apenas quando na seção de comanda ou teste grátis -->
     <button id="back-button" class="back-button-fab hidden" aria-label="Voltar para a página anterior">
         <i class="fas fa-arrow-left"></i>
         <span class="back-button-fab-text">Voltar</span>
@@ -1071,47 +1097,42 @@
             if (phoneNumber.length > 7) {
                 formattedNumber += `-${phoneNumber.substring(7, 11)}`;
             }
-            return formattedNumber;
+            return formattedNumber; // Retorna o número formatado
         }
 
         /**
          * @function showSection
          * @description Controla a visibilidade das seções principais do site e do botão de voltar.
-         * Quando a seção 'comanda-section' é mostrada, as outras são ocultadas.
+         * Quando a seção 'comanda-section' ou 'free-trial-form-section' é mostrada, as outras são ocultadas.
          * @param {string} sectionId - O ID da seção a ser mostrada.
          */
         function showSection(sectionId) {
             const mainSections = document.querySelectorAll('section[data-section-main]');
-            const comandaSection = document.getElementById('comanda-section');
             const backButton = document.getElementById('back-button');
 
-            if (sectionId === 'comanda-section') {
-                // Oculta todas as seções principais
-                mainSections.forEach(section => {
-                    section.classList.add('hidden');
-                });
-                // Mostra a seção da comanda
-                if (comandaSection) comandaSection.classList.remove('hidden');
-                // Mostra o botão de voltar
+            // Oculta todas as seções marcadas como 'data-section-main'
+            mainSections.forEach(section => {
+                section.classList.add('hidden');
+            });
+
+            // Mostra apenas a seção alvo
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.remove('hidden');
+            }
+
+            // Controla a visibilidade do botão de voltar
+            if (sectionId === 'comanda-section' || sectionId === 'free-trial-form-section') {
                 if (backButton) backButton.classList.remove('hidden');
             } else {
-                // Mostra todas as seções principais
-                mainSections.forEach(section => {
-                    section.classList.remove('hidden');
-                });
-                // Oculta a seção da comanda
-                if (comandaSection) comandaSection.classList.add('hidden');
-                // Esconde o botão de voltar
                 if (backButton) backButton.classList.add('hidden');
             }
 
             // Rola suavemente para a seção alvo
-            const targetElement = document.getElementById(sectionId);
-            if (targetElement) {
+            if (targetSection) {
                 const header = document.querySelector('header');
-                // Ajusta a rolagem para considerar a altura do cabeçalho fixo
                 const headerOffset = header ? header.offsetHeight : 0;
-                const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                const elementPosition = targetSection.getBoundingClientRect().top + window.pageYOffset;
                 const offsetPosition = elementPosition - headerOffset;
 
                 window.scrollTo({
@@ -1206,6 +1227,8 @@
             const contactButtonText = submitButton ? submitButton.querySelector('#button-text') : null;
             const contactSpinner = submitButton ? submitButton.querySelector('#spinner') : null;
             const formMessage = document.getElementById('form-message');
+
+            // Comanda Section Elements
             const comandaForm = document.getElementById('comanda-form');
             const comandaGeneratePixButton = document.getElementById('comanda-generate-pix-button');
             const comandaPixPaymentSection = document.getElementById('comanda-pix-payment-section');
@@ -1216,14 +1239,30 @@
             const comandaButtonTextComanda = document.getElementById('comanda-button-text');
             const comandaSpinnerComanda = document.getElementById('comanda-spinner');
             const comandaPhoneInput = document.getElementById('comanda-phone');
+            const comandaPlanInput = document.getElementById('comanda-plan'); // Input de plano da comanda
+
+            // Free Trial Form Section Elements
+            const freeTrialForm = document.getElementById('free-trial-form');
+            const freeTrialNameInput = document.getElementById('free-trial-name');
+            const freeTrialEmailInput = document.getElementById('free-trial-email');
+            const freeTrialPhoneInput = document.getElementById('free-trial-phone');
+            const freeTrialActivateButton = document.getElementById('free-trial-activate-button');
+            const freeTrialButtonText = freeTrialActivateButton ? freeTrialActivateButton.querySelector('#free-trial-button-text') : null;
+            const freeTrialSpinner = freeTrialActivateButton ? freeTrialActivateButton.querySelector('#free-trial-spinner') : null;
+            const freeTrialMessage = document.getElementById('free-trial-message');
+
+            // Global Buttons
             const heroSubscribeButton = document.getElementById('hero-subscribe-button');
             const plansSubscribeButton = document.getElementById('plans-subscribe-button');
             const freeTrialButton = document.getElementById('free-trial-button');
             const backButton = document.getElementById('back-button');
 
-            // Garante que a seção da comanda e o botão de voltar estejam ocultos no carregamento inicial
+
+            // Garante que as seções de formulário e o botão de voltar estejam ocultos no carregamento inicial
             const comandaSection = document.getElementById('comanda-section');
+            const freeTrialFormSection = document.getElementById('free-trial-form-section');
             if (comandaSection) comandaSection.classList.add('hidden');
+            if (freeTrialFormSection) freeTrialFormSection.classList.add('hidden');
             if (backButton) backButton.classList.add('hidden');
 
 
@@ -1373,14 +1412,13 @@
                 });
             });
 
-            // Lógica da Comanda de Ativação - Formatação de telefone e fluxo de PIX
+            // Lógica da Comanda de Ativação (Pagamento PIX)
             if (comandaPhoneInput) {
                 comandaPhoneInput.addEventListener('input', (event) => {
                     event.target.value = formatPhoneNumber(event.target.value); // Formata o número ao digitar
                 });
             }
 
-            // Listener para o formulário da comanda (gerar PIX)
             if (comandaForm && comandaGeneratePixButton && comandaPixPaymentSection && comandaPixKeyElement) {
                 comandaForm.addEventListener('submit', async (event) => {
                     event.preventDefault(); // Previne o envio padrão do formulário
@@ -1455,8 +1493,7 @@
                 });
             }
 
-
-            // Listener para o botão "Enviar Comprovante e Ativar" (WhatsApp)
+            // Listener para o botão "Enviar Comprovante e Ativar" (WhatsApp) na seção de comanda
             if (comandaSendToWhatsappButton) {
                 comandaSendToWhatsappButton.addEventListener('click', () => {
                     // Coleta os dados do formulário no momento do clique
@@ -1465,24 +1502,80 @@
                     const phone = document.getElementById('comanda-phone')?.value || '';
                     const plan = document.getElementById('comanda-plan')?.value || '';
 
-                    console.log('Dados do formulário para WhatsApp:');
+                    console.log('Dados do formulário para WhatsApp (Comanda):');
                     console.log('Nome:', name);
                     console.log('Email:', email);
                     console.log('Telefone:', phone);
                     console.log('Plano:', plan);
 
                     // Prepara a mensagem do WhatsApp com os dados do cliente
-                    const whatsappMessage = `Olá, Velotex TV!%0A%0ARealizei o pagamento do meu plano via PIX (chave: 8e01ee02-20f5-4e51-8422-ba84a7ebfe22) e gostaria de ativar meu serviço.%0A%0ADados do Cliente:%0A- Nome: ${encodeURIComponent(name)}%0A-- E-mail: ${encodeURIComponent(email)}%0A- Celular: ${encodeURIComponent(phone)}%0A- Plano Escolhido: ${encodeURIComponent(plan)}%0A%0AAguardando a ativação!`;
+                    const whatsappMessage = `Olá, Velotex TV!%0A%0ARealizei o pagamento do meu plano via PIX (chave: 8e01ee02-20f5-4e51-8422-ba84a7ebfe22) e gostaria de ativar meu serviço.%0A%0ADados do Cliente:%0A- Nome: ${encodeURIComponent(name)}%0A- E-mail: ${encodeURIComponent(email)}%0A- Celular: ${encodeURIComponent(phone)}%0A- Plano Escolhido: ${encodeURIComponent(plan)}%0A%0AAguardando a ativação!`;
                     const whatsappLink = `https://wa.me/5585988960589?text=${whatsappMessage}`;
 
-                    console.log('Link do WhatsApp gerado:', whatsappLink);
+                    console.log('Link do WhatsApp gerado (Comanda):', whatsappLink);
 
                     // Abre o link do WhatsApp em uma nova aba
                     window.open(whatsappLink, '_blank');
                 });
             }
 
-            // Eventos para os botões que abrem a seção da comanda
+            // Lógica do Formulário de Teste Grátis
+            if (freeTrialPhoneInput) {
+                freeTrialPhoneInput.addEventListener('input', (event) => {
+                    event.target.value = formatPhoneNumber(event.target.value); // Formata o número ao digitar
+                });
+            }
+
+            if (freeTrialForm && freeTrialActivateButton) {
+                freeTrialForm.addEventListener('submit', async (event) => {
+                    event.preventDefault(); // Previne o envio padrão do formulário
+
+                    try {
+                        // Mostra spinner e desabilita botão
+                        if (freeTrialButtonText) freeTrialButtonText.classList.add('hidden');
+                        if (freeTrialSpinner) freeTrialSpinner.classList.remove('hidden');
+                        freeTrialActivateButton.disabled = true;
+                        if (freeTrialMessage) freeTrialMessage.textContent = ''; // Limpa mensagens anteriores
+
+                        // Simula um atraso de processamento
+                        await new Promise(resolve => setTimeout(resolve, 1500));
+
+                        const name = freeTrialNameInput?.value || '';
+                        const email = freeTrialEmailInput?.value || '';
+                        const phone = freeTrialPhoneInput?.value || '';
+
+                        // Prepara a mensagem do WhatsApp para o teste grátis
+                        const whatsappMessage = `Olá, Velotex TV!%0A%0AGostaria de ativar meu Teste Grátis de 3 Horas.%0A%0ADados do Cliente:%0A- Nome: ${encodeURIComponent(name)}%0A- E-mail: ${encodeURIComponent(email)}%0A- Celular: ${encodeURIComponent(phone)}%0A%0AAguardando a ativação!`;
+                        const whatsappLink = `https://wa.me/5585988960589?text=${whatsappMessage}`;
+
+                        console.log('Link do WhatsApp gerado (Teste Grátis):', whatsappLink);
+
+                        // Abre o link do WhatsApp em uma nova aba
+                        window.open(whatsappLink, '_blank');
+
+                        if (freeTrialMessage) {
+                            freeTrialMessage.textContent = 'Seu pedido de teste grátis foi enviado! Verifique o WhatsApp para ativação.';
+                            freeTrialMessage.classList.remove('text-red-500');
+                            freeTrialMessage.classList.add('text-green-500');
+                        }
+                        freeTrialForm.reset(); // Reseta o formulário após o envio
+                    } catch (error) {
+                        console.error('Erro ao processar o formulário de teste grátis:', error);
+                        if (freeTrialMessage) {
+                            freeTrialMessage.textContent = 'Ocorreu um erro. Por favor, tente novamente.';
+                            freeTrialMessage.classList.remove('text-green-500');
+                            freeTrialMessage.classList.add('text-red-500');
+                        }
+                    } finally {
+                        // Esconde spinner e reabilita botão
+                        if (freeTrialButtonText) freeTrialButtonText.classList.remove('hidden');
+                        if (freeTrialSpinner) freeTrialSpinner.classList.add('hidden');
+                        freeTrialActivateButton.disabled = false;
+                    }
+                });
+            }
+
+            // Eventos para os botões que abrem as seções
             if (heroSubscribeButton) {
                 heroSubscribeButton.addEventListener('click', () => {
                     showSection('comanda-section');
@@ -1495,12 +1588,7 @@
             }
             if (freeTrialButton) {
                 freeTrialButton.addEventListener('click', () => {
-                    // Define o plano selecionado como "Teste Grátis - 3 Horas"
-                    const comandaPlanSelect = document.getElementById('comanda-plan');
-                    if (comandaPlanSelect) {
-                        comandaPlanSelect.value = 'Teste Grátis - 3 Horas';
-                    }
-                    showSection('comanda-section');
+                    showSection('free-trial-form-section');
                 });
             }
 
@@ -1533,7 +1621,6 @@
             document.querySelectorAll('.feature-card, .plan-card, .how-it-works-card').forEach(card => {
                 animateOnScrollObserver.observe(card);
             });
-
 
             // Atualiza o link ativo no carregamento inicial e ao rolar
             window.addEventListener('scroll', updateActiveNavLink);
