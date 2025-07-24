@@ -362,35 +362,121 @@
             margin-bottom: 0;
         }
 
-        /* Animação do sinal Wi-Fi na seção hero */
-        .wifi-signal {
+        /* --- Animação IPTV na Seção Hero (Smart TV e TV Box) --- */
+        .iptv-animation-container {
             position: relative;
-            width: 120px;
-            height: 120px;
+            width: 280px; /* Largura total do container da TV e TV Box */
+            height: 250px; /* Altura total do container */
             display: flex;
-            align-items: center;
+            flex-direction: column; /* Organiza verticalmente */
             justify-content: center;
+            align-items: center;
             margin: 0 auto;
+            transform: scale(0.9);
         }
 
-        .wifi-arc {
+        .smart-tv {
             position: absolute;
-            border: 5px solid rgba(255, 255, 255, 0.9);
-            border-radius: 50%;
-            animation: wifi-pulse 2.5s infinite ease-out;
+            top: 0; /* Alinha no topo do container */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px; /* Tamanho da TV */
+            height: 130px;
+            z-index: 10;
+        }
+
+        .tv-bezel {
+            width: 100%;
+            height: 100%;
+            background-color: #1a1a1a; /* Cor da moldura da TV */
+            border-radius: 12px; /* Cantos mais arredondados para Smart TV */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Sombra mais profunda */
+            overflow: hidden; /* Para conter o ecrã */
+            position: relative;
+        }
+
+        .tv-screen {
+            position: absolute;
+            top: 3%; /* Molduras finas */
+            left: 3%;
+            width: 94%; /* (100% - 2*3%) */
+            height: 94%;
+            background: linear-gradient(145deg, #000000, #111111); /* Ecrã mais escuro */
+            border-radius: 6px; /* Cantos ligeiramente arredondados para o ecrã */
+            overflow: hidden; /* Importante para as linhas de stream */
+        }
+
+        .tv-content {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--primary-accent-green), #00b36b); /* Brilho esverdeado */
+            opacity: 0.2; /* Mais sutil */
+            animation: tv-glow 3s infinite alternate ease-in-out;
+            filter: blur(5px); /* Efeito de brilho suave */
+        }
+
+        @keyframes tv-glow {
+            0% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(1.02); }
+            100% { opacity: 0.2; transform: scale(1); }
+        }
+
+        .tv-box {
+            position: absolute;
+            bottom: 20px; /* Posição abaixo da TV, com espaço */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px; /* Tamanho do TV Box */
+            height: 40px;
+            background-color: #333;
+            border-radius: 8px; /* Cantos arredondados */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 15; /* Acima das linhas de velocidade */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .speed-line {
+            position: absolute;
+            width: 4px; /* Mais visível */
+            height: 4px; /* Começa como um ponto */
+            background-color: var(--primary-accent-green);
+            border-radius: 50%; /* Começa como um círculo */
             opacity: 0;
+            z-index: 14;
+            box-shadow: 0 0 15px var(--primary-accent-green); /* Brilho forte */
+            /* Posição inicial próxima ao centro superior do TV Box */
+            top: calc(100% - 40px - 10px); /* Altura do container - altura do tv-box - margem inferior */
+            left: 50%;
+            transform: translateX(-50%); /* Centraliza horizontalmente */
+            animation: speed-burst 1.8s infinite ease-out; /* Animação mais rápida */
         }
 
-        .wifi-arc:nth-child(1) { width: 50px; height: 50px; animation-delay: 0s; }
-        .wifi-arc:nth-child(2) { width: 75px; height: 75px; animation-delay: 0.3s; }
-        .wifi-arc:nth-child(3) { width: 100px; height: 100px; animation-delay: 0.6s; }
-        .wifi-arc:nth-child(4) { width: 120px; height: 120px; animation-delay: 0.9s; }
-
-        @keyframes wifi-pulse {
-            0% { transform: scale(0.4); opacity: 0; }
-            40% { opacity: 1; }
-            100% { transform: scale(1.3); opacity: 0; }
+        /* Animação para as linhas de velocidade */
+        @keyframes speed-burst {
+            0% {
+                transform: translateX(-50%) translateY(0px) scale(0.2); /* Começa no TV Box, pequeno */
+                opacity: 0;
+            }
+            20% {
+                transform: translateX(-50%) translateY(-20px) scale(1); /* Cresce e move para cima */
+                opacity: 1;
+            }
+            80% {
+                transform: translateX(-50%) translateY(-150px) scale(1.2); /* Move em direção ao ecrã da TV */
+                opacity: 1;
+                filter: blur(0px); /* Sem desfoque no auge */
+            }
+            100% {
+                transform: translateX(-50%) translateY(-180px) scale(0.5); /* Passa pelo ecrã da TV, desaparece */
+                opacity: 0;
+                filter: blur(5px); /* Desfoque ao desaparecer */
+            }
         }
+
+        .speed-line.line-1 { animation-delay: 0s; }
+        .speed-line.line-2 { animation-delay: 0.5s; }
+        .speed-line.line-3 { animation-delay: 1s; }
+
 
         /* Gráfico de linha animado para status do servidor */
         .line-chart-container {
@@ -580,12 +666,19 @@
                 </div>
             </div>
             <div class="md:w-1/2 flex justify-center items-center mt-10 md:mt-0 animate-fade-in-up delay-3">
-                <!-- Animação do Sinal Wi-Fi para ilustrar conectividade -->
-                <div class="wifi-signal">
-                    <div class="wifi-arc"></div>
-                    <div class="wifi-arc"></div>
-                    <div class="wifi-arc"></div>
-                    <div class="wifi-arc"></div>
+                <!-- Animação Smart TV e TV Box com Linhas de Velocidade -->
+                <div class="iptv-animation-container">
+                    <div class="smart-tv">
+                        <div class="tv-bezel">
+                            <div class="tv-screen">
+                                <div class="tv-content"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tv-box"></div>
+                    <div class="speed-line line-1"></div>
+                    <div class="speed-line line-2"></div>
+                    <div class="speed-line line-3"></div>
                 </div>
             </div>
         </div>
@@ -750,6 +843,13 @@
                         </button>
                     </div>
                 </div>
+                <!-- Mensagem de sucesso para o formulário de pagamento -->
+                <div id="comanda-success-message" class="mt-4 text-center text-sm hidden">
+                    <div class="bg-[var(--light-accent-green-bg)] text-[var(--success-green)] p-4 rounded-lg shadow-md">
+                        <p class="text-lg font-semibold">Seu pedido de ativação foi enviado!</p>
+                        <p>Verifique o WhatsApp para mais detalhes sobre a ativação do seu plano.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -778,7 +878,12 @@
                         <div id="free-trial-spinner" class="spinner hidden ml-3"></div>
                     </button>
                 </form>
-                <div id="free-trial-message" class="mt-4 text-center text-sm"></div>
+                <div id="free-trial-message" class="mt-4 text-center text-sm">
+                    <div class="bg-[var(--light-accent-green-bg)] text-[var(--success-green)] p-4 rounded-lg shadow-md hidden">
+                        <p class="text-lg font-semibold">Seu pedido de teste grátis foi enviado!</p>
+                        <p>Verifique o WhatsApp para ativação.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -891,6 +996,29 @@
                         <i class="fas fa-chevron-down transition-transform"></i>
                     </button>
                     <div class="accordion-content"><div class="p-4"><p>Não temos fidelidade em nenhum de nossos planos. Você pode cancelar quando quiser sem nenhuma penalidade.</p></div></div>
+                </div>
+            </div>
+
+            <!-- Nova secção de FAQ com LLM -->
+            <div class="mt-12 p-6 rounded-xl shadow-lg border border-[var(--dark-border)] bg-[var(--secondary-charcoal-blue)] text-light-text-on-dark">
+                <h3 class="text-2xl font-bold text-center mb-6">✨ Pergunte ao nosso Assistente de FAQ ✨</h3>
+                <p class="text-center text-secondary-text-on-dark mb-6">Digite sua pergunta e obtenha uma resposta instantânea do nosso assistente de IA.</p>
+                <div class="space-y-4">
+                    <div>
+                        <label for="llm-faq-question" class="block font-medium mb-2">Sua Pergunta:</label>
+                        <textarea id="llm-faq-question" rows="4" class="input-field bg-gray-700 text-white placeholder-gray-400" placeholder="Ex: Como posso assistir em minha Smart TV?"></textarea>
+                    </div>
+                    <button id="ask-llm-button" class="btn-primary w-full">
+                        <span id="ask-llm-button-text">Obter Resposta ✨</span>
+                        <div id="ask-llm-spinner" class="spinner hidden ml-3"></div>
+                    </button>
+                    <div id="llm-faq-answer" class="mt-4 p-4 bg-gray-700 rounded-lg text-white hidden">
+                        <p class="font-semibold mb-2">Resposta do Assistente:</p>
+                        <div id="llm-answer-content"></div>
+                    </div>
+                    <div id="llm-faq-error" class="mt-4 p-4 bg-red-800 text-white rounded-lg hidden">
+                        <p>Ocorreu um erro ao obter a resposta. Por favor, tente novamente mais tarde.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1078,14 +1206,14 @@
     <script type="module">
         /**
          * @function formatPhoneNumber
-         * @description Formata uma string de número de telefone no formato (XX) XXXXX-XXXX.
-         * Remove todos os caracteres não numéricos e aplica a máscara.
-         * @param {string} value - O número de telefone a ser formatado.
-         * @returns {string} O número de telefone formatado.
+         * @description Formats a phone number string into (XX) XXXXX-XXXX format.
+         * Removes all non-numeric characters and applies the mask.
+         * @param {string} value - The phone number to be formatted.
+         * @returns {string} The formatted phone number.
          */
         function formatPhoneNumber(value) {
             if (!value) return value;
-            const phoneNumber = value.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
+            const phoneNumber = value.replace(/\D/g, ''); // Remove all non-numeric characters
             let formattedNumber = '';
 
             if (phoneNumber.length > 0) {
@@ -1097,42 +1225,57 @@
             if (phoneNumber.length > 7) {
                 formattedNumber += `-${phoneNumber.substring(7, 11)}`;
             }
-            return formattedNumber; // Retorna o número formatado
+            return formattedNumber; // Returns the formatted number
         }
 
         /**
          * @function showSection
-         * @description Controla a visibilidade das seções principais do site e do botão de voltar.
-         * Quando a seção 'comanda-section' ou 'free-trial-form-section' é mostrada, as outras são ocultadas.
-         * @param {string} sectionId - O ID da seção a ser mostrada.
+         * @description Controls the visibility of main website sections and the back button.
+         * When 'comanda-section' or 'free-trial-form-section' is shown, others are hidden.
+         * @param {string} sectionId - The ID of the section to be shown.
          */
         function showSection(sectionId) {
             const mainSections = document.querySelectorAll('section[data-section-main]');
+            const comandaSection = document.getElementById('comanda-section');
+            const freeTrialFormSection = document.getElementById('free-trial-form-section');
             const backButton = document.getElementById('back-button');
 
-            // Oculta todas as seções marcadas como 'data-section-main'
-            mainSections.forEach(section => {
-                section.classList.add('hidden');
-            });
+            // Determine if we are navigating to a "special" section that requires hiding others
+            const isSpecialSection = (sectionId === 'comanda-section' || sectionId === 'free-trial-form-section');
 
-            // Mostra apenas a seção alvo
-            const targetSection = document.getElementById(sectionId);
-            if (targetSection) {
-                targetSection.classList.remove('hidden');
-            }
-
-            // Controla a visibilidade do botão de voltar
-            if (sectionId === 'comanda-section' || sectionId === 'free-trial-form-section') {
+            if (isSpecialSection) {
+                // If it's a special section, hide all main sections first
+                mainSections.forEach(section => {
+                    section.classList.add('hidden');
+                });
+                // Then show the specific special section
+                const targetSpecialSection = document.getElementById(sectionId);
+                if (targetSpecialSection) {
+                    targetSpecialSection.classList.remove('hidden');
+                }
+                // Show the back button
                 if (backButton) backButton.classList.remove('hidden');
             } else {
+                // If it's a regular navigation link (home, features, plans, etc.),
+                // ensure comanda and free trial forms are hidden, and other main sections are visible.
+                if (comandaSection) comandaSection.classList.add('hidden');
+                if (freeTrialFormSection) freeTrialFormSection.classList.add('hidden');
+                mainSections.forEach(section => {
+                    // Ensure all regular main sections are visible
+                    if (section.id !== 'comanda-section' && section.id !== 'free-trial-form-section') {
+                        section.classList.remove('hidden');
+                    }
+                });
+                // Hide the back button
                 if (backButton) backButton.classList.add('hidden');
             }
 
-            // Rola suavemente para a seção alvo
-            if (targetSection) {
+            // Scroll to the target section regardless of its type
+            const targetElement = document.getElementById(sectionId);
+            if (targetElement) {
                 const header = document.querySelector('header');
                 const headerOffset = header ? header.offsetHeight : 0;
-                const elementPosition = targetSection.getBoundingClientRect().top + window.pageYOffset;
+                const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
                 const offsetPosition = elementPosition - headerOffset;
 
                 window.scrollTo({
@@ -1140,14 +1283,14 @@
                     behavior: "smooth"
                 });
             }
-            // Atualiza o destaque do link de navegação no menu
+            // Update active nav link
             updateActiveNavLink();
         }
 
         /**
          * @function toggleMobileMenu
-         * @description Alterna a visibilidade do menu mobile e troca os ícones de hambúrguer/fechar.
-         * Controla também a rolagem do corpo da página para evitar rolagem de fundo quando o menu está aberto.
+         * @description Toggles the visibility of the mobile menu and swaps hamburger/close icons.
+         * Also controls page body scrolling to prevent background scrolling when the menu is open.
          */
         function toggleMobileMenu() {
             const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -1155,35 +1298,35 @@
             const hamburgerIcon = document.getElementById('hamburger-icon');
             const closeIcon = document.getElementById('close-icon');
 
-            // Verifica se todos os elementos necessários estão presentes
+            // Checks if all necessary elements are present
             if (!mobileMenuButton || !mobileMenu || !hamburgerIcon || !closeIcon) {
-                console.error("Elementos do menu móvel não encontrados. Verifique os IDs.");
+                console.error("Mobile menu elements not found. Check IDs.");
                 return;
             }
 
-            // Verifica o estado atual do menu (aberto ou fechado)
+            // Checks the current state of the menu (open or closed)
             const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
-            mobileMenuButton.setAttribute('aria-expanded', !isExpanded); // Atualiza o estado ARIA
+            mobileMenuButton.setAttribute('aria-expanded', !isExpanded); // Updates ARIA state
 
             if (mobileMenu.classList.contains('open')) {
-                // Menu está aberto, fechar
+                // Menu is open, close it
                 mobileMenu.classList.remove('open');
-                document.body.style.overflow = ''; // Restaura a rolagem do corpo
-                hamburgerIcon.classList.remove('hidden'); // Mostra o ícone de hambúrguer
-                closeIcon.classList.add('hidden'); // Esconde o ícone de fechar
+                document.body.style.overflow = ''; // Restores body scrolling
+                hamburgerIcon.classList.remove('hidden'); // Shows hamburger icon
+                closeIcon.classList.add('hidden'); // Hides close icon
             } else {
-                // Menu está fechado, abrir
+                // Menu is closed, open it
                 mobileMenu.classList.add('open');
-                document.body.style.overflow = 'hidden'; // Previne rolagem do corpo quando o menu está aberto
-                hamburgerIcon.classList.add('hidden'); // Esconde o ícone de hambúrguer
-                closeIcon.classList.remove('hidden'); // Mostra o ícone de fechar
+                document.body.style.overflow = 'hidden'; // Prevents body scrolling when menu is open
+                hamburgerIcon.classList.add('hidden'); // Hides hamburger icon
+                closeIcon.classList.remove('hidden'); // Shows close icon
             }
         }
 
         /**
          * @function updateActiveNavLink
-         * @description Atualiza a classe 'active' nos links de navegação com base na seção visível na viewport.
-         * Isso fornece feedback visual ao usuário sobre qual seção está sendo visualizada.
+         * @description Updates the 'active' class on navigation links based on the visible section in the viewport.
+         * This provides visual feedback to the user about which section is currently being viewed.
          */
         function updateActiveNavLink() {
             const mainSections = document.querySelectorAll('section[data-section-main]');
@@ -1193,20 +1336,20 @@
 
             let currentActiveSectionId = '';
 
-            // Itera sobre as seções principais para encontrar qual está visível
+            // Iterates over main sections to find which one is visible
             mainSections.forEach(section => {
-                // Verifica se a seção não está oculta pela lógica da comanda
+                // Checks if the section is not hidden by the command logic
                 if (!section.classList.contains('hidden')) {
                     const sectionTop = section.offsetTop - headerHeight;
                     const sectionBottom = sectionTop + section.offsetHeight;
-                    // Determina se a seção está visível na viewport (com ajuste para o cabeçalho)
+                    // Determines if the section is visible in the viewport (with header adjustment)
                     if (window.scrollY >= sectionTop && window.scrollY < sectionBottom) {
                         currentActiveSectionId = section.id;
                     }
                 }
             });
 
-            // Remove a classe 'active' de todos os links e adiciona ao link da seção atual
+            // Removes 'active' class from all links and adds it to the current section's link
             headerNavLinks.forEach(link => {
                 link.classList.remove('active');
                 if (link.getAttribute('data-section-link') === currentActiveSectionId) {
@@ -1215,11 +1358,11 @@
             });
         }
 
-        // Garante que o DOM esteja completamente carregado antes de executar o script
+        // Ensures the DOM is fully loaded before executing the script
         document.addEventListener('DOMContentLoaded', () => {
-            // --- Seletores de Elementos DOM (Centralizados para fácil acesso e manutenção) ---
+            // --- DOM Element Selectors (Centralized for easy access and maintenance) ---
             const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const closeMenuButton = document.getElementById('close-menu-button'); // Botão de fechar dentro do menu
+            const closeMenuButton = document.getElementById('close-menu-button'); // Close button inside the menu
             const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
             const faqQuestions = document.querySelectorAll('.faq-question');
             const contactForm = document.getElementById('contact-form');
@@ -1239,7 +1382,8 @@
             const comandaButtonTextComanda = document.getElementById('comanda-button-text');
             const comandaSpinnerComanda = document.getElementById('comanda-spinner');
             const comandaPhoneInput = document.getElementById('comanda-phone');
-            const comandaPlanInput = document.getElementById('comanda-plan'); // Input de plano da comanda
+            const comandaPlanInput = document.getElementById('comanda-plan'); // Comanda plan input
+            const comandaSuccessMessage = document.getElementById('comanda-success-message'); // Payment success message
 
             // Free Trial Form Section Elements
             const freeTrialForm = document.getElementById('free-trial-form');
@@ -1249,7 +1393,7 @@
             const freeTrialActivateButton = document.getElementById('free-trial-activate-button');
             const freeTrialButtonText = freeTrialActivateButton ? freeTrialActivateButton.querySelector('#free-trial-button-text') : null;
             const freeTrialSpinner = freeTrialActivateButton ? freeTrialActivateButton.querySelector('#free-trial-spinner') : null;
-            const freeTrialMessage = document.getElementById('free-trial-message');
+            const freeTrialMessageContainer = document.querySelector('#free-trial-form-section #free-trial-message div'); // Free trial success message container
 
             // Global Buttons
             const heroSubscribeButton = document.getElementById('hero-subscribe-button');
@@ -1257,8 +1401,16 @@
             const freeTrialButton = document.getElementById('free-trial-button');
             const backButton = document.getElementById('back-button');
 
+            // LLM FAQ Elements
+            const llmFaqQuestionInput = document.getElementById('llm-faq-question');
+            const askLlmButton = document.getElementById('ask-llm-button');
+            const askLlmButtonText = document.getElementById('ask-llm-button-text');
+            const askLlmSpinner = document.getElementById('ask-llm-spinner');
+            const llmFaqAnswerDiv = document.getElementById('llm-faq-answer');
+            const llmAnswerContentDiv = document.getElementById('llm-answer-content');
+            const llmFaqErrorDiv = document.getElementById('llm-faq-error');
 
-            // Garante que as seções de formulário e o botão de voltar estejam ocultos no carregamento inicial
+            // Ensure form sections and back button are hidden on initial load
             const comandaSection = document.getElementById('comanda-section');
             const freeTrialFormSection = document.getElementById('free-trial-form-section');
             if (comandaSection) comandaSection.classList.add('hidden');
@@ -1266,82 +1418,82 @@
             if (backButton) backButton.classList.add('hidden');
 
 
-            // --- Adição de Listeners de Eventos ---
+            // --- Event Listeners Addition ---
 
-            // Listener para o botão do menu mobile (abre/fecha o menu)
+            // Listener for the mobile menu button (opens/closes the menu)
             if (mobileMenuButton) {
                 mobileMenuButton.addEventListener('click', toggleMobileMenu);
             }
 
-            // Listener para o botão de fechar dentro do menu mobile
+            // Listener for the close button inside the mobile menu
             if (closeMenuButton) {
                 closeMenuButton.addEventListener('click', toggleMobileMenu);
             }
 
-            // Listeners para links de navegação mobile (fecham o menu e rolam para a seção)
+            // Listeners for mobile navigation links (close the menu and scroll to section)
             mobileNavLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
-                    e.preventDefault(); // Previne o comportamento padrão do link
+                    e.preventDefault(); // Prevents default link behavior
                     const targetSectionId = link.getAttribute('data-section-link');
                     if (targetSectionId) {
-                        showSection(targetSectionId); // Mostra a seção alvo
+                        showSection(targetSectionId); // Shows the target section
                     }
-                    toggleMobileMenu(); // Fecha o menu após o clique
+                    toggleMobileMenu(); // Closes the menu after click
                 });
             });
 
-            // Listeners para os itens do FAQ (acordeão) - Lógica de abrir/fechar e girar seta
+            // Listeners for FAQ items (accordion) - Open/close logic and arrow rotation
             faqQuestions.forEach(question => {
                 question.addEventListener('click', () => {
-                    const content = question.nextElementSibling; // O conteúdo do acordeão
-                    const icon = question.querySelector('.fa-chevron-down'); // O ícone de seta
+                    const content = question.nextElementSibling; // The accordion content
+                    const icon = question.querySelector('.fa-chevron-down'); // The arrow icon
 
-                    // Fecha outros acordeões abertos para garantir que apenas um esteja aberto por vez
+                    // Closes other open accordions to ensure only one is open at a time
                     faqQuestions.forEach(otherQuestion => {
                         if (otherQuestion !== question) {
                             const otherContent = otherQuestion.nextElementSibling;
                             const otherIcon = otherQuestion.querySelector('.fa-chevron-down');
-                            if (otherContent) otherContent.style.maxHeight = null; // Fecha o conteúdo
-                            otherQuestion.classList.remove('active'); // Remove a classe 'active'
-                            if (otherIcon) otherIcon.classList.remove('rotate-180'); // Reseta a rotação da seta
+                            if (otherContent) otherContent.style.maxHeight = null; // Closes content
+                            otherQuestion.classList.remove('active'); // Removes 'active' class
+                            if (otherIcon) otherIcon.classList.remove('rotate-180'); // Resets arrow rotation
                         }
                     });
 
-                    // Alterna o estado do acordeão clicado
+                    // Toggles the state of the clicked accordion
                     if (content) {
                         if (content.style.maxHeight) {
-                            content.style.maxHeight = null; // Fecha o conteúdo
-                            question.classList.remove('active'); // Remove a classe 'active'
-                            if (icon) icon.classList.remove('rotate-180'); // Reseta a rotação da seta
+                            content.style.maxHeight = null; // Closes content
+                            question.classList.remove('active'); // Removes 'active' class
+                            if (icon) icon.classList.remove('rotate-180'); // Resets arrow rotation
                         } else {
-                            content.style.maxHeight = content.scrollHeight + 'px'; // Abre o conteúdo definindo a altura máxima
-                            question.classList.add('active'); // Adiciona a classe 'active'
-                            if (icon) icon.classList.add('rotate-180'); // Gira a seta
+                            content.style.maxHeight = content.scrollHeight + 'px'; // Opens content by setting max height
+                            question.classList.add('active'); // Adds 'active' class
+                            if (icon) icon.classList.add('rotate-180'); // Rotates arrow
                         }
                     }
                 });
             });
 
-            // Listener para o formulário de contato - Envio assíncrono com feedback visual
+            // Listener for the contact form - Asynchronous submission with visual feedback
             if (contactForm && submitButton) {
                 contactForm.addEventListener('submit', async (event) => {
-                    event.preventDefault(); // Previne o envio padrão do formulário
+                    event.preventDefault(); // Prevents default form submission
 
                     try {
-                        // Mostra spinner e desabilita botão
+                        // Shows spinner and disables button
                         if (contactButtonText) contactButtonText.classList.add('hidden');
                         if (contactSpinner) contactSpinner.classList.remove('hidden');
                         submitButton.disabled = true;
-                        if (formMessage) formMessage.textContent = ''; // Limpa mensagens anteriores
+                        if (formMessage) formMessage.textContent = ''; // Clears previous messages
 
                         const formData = new FormData(contactForm);
                         const object = {};
                         formData.forEach((value, key) => {
-                            if (key !== '_captcha') { // Exclui campos internos do FormSubmit
+                            if (key !== '_captcha') { // Excludes internal FormSubmit fields
                                 object[key] = value;
                             }
                         });
-                        const json = JSON.stringify(object); // Converte dados para JSON
+                        const json = JSON.stringify(object); // Converts data to JSON
 
                         const response = await fetch(contactForm.action, {
                             method: contactForm.method,
@@ -1358,9 +1510,9 @@
                                 formMessage.classList.remove('text-red-500');
                                 formMessage.classList.add('text-green-500');
                             }
-                            contactForm.reset(); // Reseta o formulário após sucesso
+                            contactForm.reset(); // Resets form after success
                         } else {
-                            const errorData = await response.json(); // Tenta ler a mensagem de erro da resposta
+                            const errorData = await response.json(); // Tries to read error message from response
                             if (formMessage) {
                                 formMessage.textContent = `Erro ao enviar mensagem: ${errorData.message || 'Tente novamente mais tarde.'}`;
                                 formMessage.classList.remove('text-green-500');
@@ -1368,15 +1520,15 @@
                             }
                         }
                     } catch (error) {
-                        // Captura erros de rede ou outros problemas
+                        // Catches network errors or other issues
                         if (formMessage) {
                             formMessage.textContent = 'Ocorreu um erro na conexão. Por favor, tente novamente.';
                             formMessage.classList.remove('text-green-500');
                             formMessage.classList.add('text-red-500');
                         }
-                        console.error('Erro de envio do formulário:', error);
+                        console.error('Form submission error:', error);
                     } finally {
-                        // Esconde spinner e reabilita botão
+                        // Hides spinner and re-enables button
                         if (contactButtonText) contactButtonText.classList.remove('hidden');
                         if (contactSpinner) contactSpinner.classList.add('hidden');
                         submitButton.disabled = false;
@@ -1384,16 +1536,16 @@
                 });
             }
 
-            // Smooth scrolling para todos os links internos que começam com '#'
+            // Smooth scrolling for all internal links starting with '#'
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
-                    // Evita duplicidade de comportamento com links do menu mobile que já usam showSection
+                    // Prevents duplicate behavior with mobile menu links that already use showSection
                     if (!this.hasAttribute('data-section-link')) {
                         e.preventDefault();
                         const targetId = this.getAttribute('href');
-                        // Adiciona verificação para garantir que targetId não é apenas "#" ou vazio.
+                        // Adds check to ensure targetId is not just "#" or empty.
                         if (!targetId || targetId === '#') {
-                            return; // Sai da função se o href for inválido ou apenas "#"
+                            return; // Exits function if href is invalid or just "#"
                         }
                         const targetElement = document.querySelector(targetId);
 
@@ -1412,68 +1564,103 @@
                 });
             });
 
-            // Lógica da Comanda de Ativação (Pagamento PIX)
+            // Comanda Activation Logic (PIX Payment)
             if (comandaPhoneInput) {
                 comandaPhoneInput.addEventListener('input', (event) => {
-                    event.target.value = formatPhoneNumber(event.target.value); // Formata o número ao digitar
+                    event.target.value = formatPhoneNumber(event.target.value); // Formats the number as typed
                 });
             }
 
-            if (comandaForm && comandaGeneratePixButton && comandaPixPaymentSection && comandaPixKeyElement) {
+            if (comandaForm && comandaGeneratePixButton && comandaPixPaymentSection && comandaPixKeyElement && comandaSuccessMessage) {
                 comandaForm.addEventListener('submit', async (event) => {
-                    event.preventDefault(); // Previne o envio padrão do formulário
+                    event.preventDefault(); // Prevents default form submission
+
+                    // Hides previous success message, if any
+                    comandaSuccessMessage.classList.add('hidden');
 
                     try {
-                        // Mostra spinner e desabilita botão
+                        // Shows spinner and disables button
                         if (comandaButtonTextComanda) comandaButtonTextComanda.classList.add('hidden');
                         if (comandaSpinnerComanda) comandaSpinnerComanda.classList.remove('hidden');
                         comandaGeneratePixButton.disabled = true;
 
-                        // Simula um atraso de processamento para a geração do PIX
+                        // Simulates a processing delay for PIX generation
                         await new Promise(resolve => setTimeout(resolve, 1000));
 
-                        // Define a chave PIX (hardcoded para este exemplo)
-                        comandaPixKeyElement.textContent = '8e01ee02-20f5-4e51-8422-ba84a7ebfe22'; // Chave PIX atualizada
+                        // Sets the PIX key (hardcoded for this example)
+                        comandaPixKeyElement.textContent = '8e01ee02-20f5-4e51-8422-ba84a7ebfe22'; // Updated PIX key
 
-                        // Mostra a seção de pagamento PIX
+                        // Shows the PIX payment section
                         comandaPixPaymentSection.classList.remove('hidden');
 
-                        // Log do URL da imagem do QR Code para depuração
+                        // Logs QR Code image URL for debugging
                         const qrCodeImg = document.getElementById('comanda-qr-code-img');
                         if (qrCodeImg) {
-                            console.log('URL da imagem do QR Code:', qrCodeImg.src);
+                            console.log('QR Code image URL:', qrCodeImg.src);
                         } else {
-                            console.error('Elemento da imagem do QR Code não encontrado.');
+                            console.error('QR Code image element not found.');
                         }
 
-                        // Rola suavemente para a seção de pagamento PIX
+                        // Smoothly scrolls to the PIX payment section
                         comandaPixPaymentSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
                     } catch (error) {
-                        console.error('Erro ao processar o formulário de comanda:', error);
-                        // Opcionalmente, exiba uma mensagem de erro para o usuário na interface
+                        console.error('Error processing command form:', error);
+                        // Optionally, display an error message to the user on the interface
                     } finally {
-                        // Esconde spinner e reabilita botão
+                        // Hides spinner and re-enables button
                         if (comandaButtonTextComanda) comandaButtonTextComanda.classList.remove('hidden');
                         if (comandaSpinnerComanda) comandaSpinnerComanda.classList.add('hidden');
                         comandaGeneratePixButton.disabled = false;
                     }
                 });
+
+                // Listener for the "Send Proof and Activate" (WhatsApp) button in the command section
+                if (comandaSendToWhatsappButton) {
+                    comandaSendToWhatsappButton.addEventListener('click', () => {
+                        // Collects form data at the time of click
+                        const name = document.getElementById('comanda-name')?.value || '';
+                        const email = document.getElementById('comanda-email')?.value || '';
+                        const phone = document.getElementById('comanda-phone')?.value || '';
+                        const plan = document.getElementById('comanda-plan')?.value || '';
+
+                        console.log('Form data for WhatsApp (Comanda):');
+                        console.log('Name:', name);
+                        console.log('Email:', email);
+                        console.log('Phone:', phone);
+                        console.log('Plan:', plan);
+
+                        // Prepares the WhatsApp message with client data
+                        const whatsappMessage = `Olá, Velotex TV!%0A%0ARealizei o pagamento do meu plano via PIX (chave: 8e01ee02-20f5-4e51-8422-ba84a7ebfe22) e gostaria de ativar meu serviço.%0A%0ADados do Cliente:%0A- Nome: ${encodeURIComponent(name)}%0A- E-mail: ${encodeURIComponent(email)}%0A- Celular: ${encodeURIComponent(phone)}%0A- Plano Escolhido: ${encodeURIComponent(plan)}%0A%0AAguardando a ativação!`;
+                        const whatsappLink = `https://wa.me/5585988960589?text=${whatsappMessage}`;
+
+                        console.log('WhatsApp link generated (Comanda):', whatsappLink);
+
+                        // Opens the WhatsApp link in a new tab
+                        window.open(whatsappLink, '_blank');
+
+                        // Shows success message and hides PIX section
+                        if (comandaSuccessMessage) comandaSuccessMessage.classList.remove('hidden');
+                        if (comandaPixPaymentSection) comandaPixPaymentSection.classList.add('hidden');
+                        if (comandaForm) comandaForm.reset(); // Resets the form
+                    });
+                }
             }
 
-            // Listener para o botão "Copiar Chave PIX"
+
+            // Listener for the "Copy PIX Key" button
             if (comandaCopyPixKeyButton && comandaPixKeyElement && comandaCopyMessage) {
                 comandaCopyPixKeyButton.addEventListener('click', () => {
                     const pixKey = comandaPixKeyElement.textContent;
-                    // Usa a API Clipboard para copiar o texto
+                    // Uses the Clipboard API to copy text
                     navigator.clipboard.writeText(pixKey).then(() => {
-                        comandaCopyMessage.classList.remove('hidden'); // Mostra mensagem "Copiado!"
+                        comandaCopyMessage.classList.remove('hidden'); // Shows "Copied!" message
                         setTimeout(() => {
-                            comandaCopyMessage.classList.add('hidden'); // Esconde após 2 segundos
+                            comandaCopyMessage.classList.add('hidden'); // Hides after 2 seconds
                         }, 2000);
                     }).catch(err => {
-                        console.error('Erro ao copiar a chave PIX:', err);
-                        // Fallback para navegadores mais antigos ou ambientes restritos (como iframes)
+                        console.error('Error copying PIX key:', err);
+                        // Fallback for older browsers or restricted environments (like iframes)
                         const textArea = document.createElement('textarea');
                         textArea.value = pixKey;
                         document.body.appendChild(textArea);
@@ -1485,89 +1672,60 @@
                                 comandaCopyMessage.classList.add('hidden');
                             }, 2000);
                         } catch (copyErr) {
-                            console.error('Falha ao copiar usando execCommand:', copyErr);
-                            // Se ambos falharem, pode-se informar o usuário para copiar manualmente
+                            console.error('Failed to copy using execCommand:', copyErr);
+                            // If both fail, the user can be informed to copy manually
                         }
                         document.body.removeChild(textArea);
                     });
                 });
             }
 
-            // Listener para o botão "Enviar Comprovante e Ativar" (WhatsApp) na seção de comanda
-            if (comandaSendToWhatsappButton) {
-                comandaSendToWhatsappButton.addEventListener('click', () => {
-                    // Coleta os dados do formulário no momento do clique
-                    const name = document.getElementById('comanda-name')?.value || '';
-                    const email = document.getElementById('comanda-email')?.value || '';
-                    const phone = document.getElementById('comanda-phone')?.value || '';
-                    const plan = document.getElementById('comanda-plan')?.value || '';
 
-                    console.log('Dados do formulário para WhatsApp (Comanda):');
-                    console.log('Nome:', name);
-                    console.log('Email:', email);
-                    console.log('Telefone:', phone);
-                    console.log('Plano:', plan);
-
-                    // Prepara a mensagem do WhatsApp com os dados do cliente
-                    const whatsappMessage = `Olá, Velotex TV!%0A%0ARealizei o pagamento do meu plano via PIX (chave: 8e01ee02-20f5-4e51-8422-ba84a7ebfe22) e gostaria de ativar meu serviço.%0A%0ADados do Cliente:%0A- Nome: ${encodeURIComponent(name)}%0A- E-mail: ${encodeURIComponent(email)}%0A- Celular: ${encodeURIComponent(phone)}%0A- Plano Escolhido: ${encodeURIComponent(plan)}%0A%0AAguardando a ativação!`;
-                    const whatsappLink = `https://wa.me/5585988960589?text=${whatsappMessage}`;
-
-                    console.log('Link do WhatsApp gerado (Comanda):', whatsappLink);
-
-                    // Abre o link do WhatsApp em uma nova aba
-                    window.open(whatsappLink, '_blank');
-                });
-            }
-
-            // Lógica do Formulário de Teste Grátis
+            // Free Trial Form Logic
             if (freeTrialPhoneInput) {
                 freeTrialPhoneInput.addEventListener('input', (event) => {
-                    event.target.value = formatPhoneNumber(event.target.value); // Formata o número ao digitar
+                    event.target.value = formatPhoneNumber(event.target.value); // Formats the number as typed
                 });
             }
 
-            if (freeTrialForm && freeTrialActivateButton) {
+            if (freeTrialForm && freeTrialActivateButton && freeTrialMessageContainer) {
                 freeTrialForm.addEventListener('submit', async (event) => {
-                    event.preventDefault(); // Previne o envio padrão do formulário
+                    event.preventDefault(); // Prevents default form submission
+
+                    // Hides previous success message, if any
+                    freeTrialMessageContainer.classList.add('hidden');
 
                     try {
-                        // Mostra spinner e desabilita botão
+                        // Shows spinner and disables button
                         if (freeTrialButtonText) freeTrialButtonText.classList.add('hidden');
                         if (freeTrialSpinner) freeTrialSpinner.classList.remove('hidden');
                         freeTrialActivateButton.disabled = true;
-                        if (freeTrialMessage) freeTrialMessage.textContent = ''; // Limpa mensagens anteriores
 
-                        // Simula um atraso de processamento
+                        // Simulates a processing delay
                         await new Promise(resolve => setTimeout(resolve, 1500));
 
                         const name = freeTrialNameInput?.value || '';
                         const email = freeTrialEmailInput?.value || '';
                         const phone = freeTrialPhoneInput?.value || '';
 
-                        // Prepara a mensagem do WhatsApp para o teste grátis
+                        // Prepares the WhatsApp message for the free trial
                         const whatsappMessage = `Olá, Velotex TV!%0A%0AGostaria de ativar meu Teste Grátis de 3 Horas.%0A%0ADados do Cliente:%0A- Nome: ${encodeURIComponent(name)}%0A- E-mail: ${encodeURIComponent(email)}%0A- Celular: ${encodeURIComponent(phone)}%0A%0AAguardando a ativação!`;
                         const whatsappLink = `https://wa.me/5585988960589?text=${whatsappMessage}`;
 
-                        console.log('Link do WhatsApp gerado (Teste Grátis):', whatsappLink);
+                        console.log('WhatsApp link generated (Free Trial):', whatsappLink);
 
-                        // Abre o link do WhatsApp em uma nova aba
+                        // Opens the WhatsApp link in a new tab
                         window.open(whatsappLink, '_blank');
 
-                        if (freeTrialMessage) {
-                            freeTrialMessage.textContent = 'Seu pedido de teste grátis foi enviado! Verifique o WhatsApp para ativação.';
-                            freeTrialMessage.classList.remove('text-red-500');
-                            freeTrialMessage.classList.add('text-green-500');
-                        }
-                        freeTrialForm.reset(); // Reseta o formulário após o envio
+                        // Shows success message
+                        freeTrialMessageContainer.classList.remove('hidden');
+                        freeTrialForm.reset(); // Resets the form after submission
                     } catch (error) {
-                        console.error('Erro ao processar o formulário de teste grátis:', error);
-                        if (freeTrialMessage) {
-                            freeTrialMessage.textContent = 'Ocorreu um erro. Por favor, tente novamente.';
-                            freeTrialMessage.classList.remove('text-green-500');
-                            freeTrialMessage.classList.add('text-red-500');
-                        }
+                        console.error('Error processing free trial form:', error);
+                        // Optionally, display an error message to the user on the interface
+                        // You can add a div to display error messages here too
                     } finally {
-                        // Esconde spinner e reabilita botão
+                        // Hides spinner and re-enables button
                         if (freeTrialButtonText) freeTrialButtonText.classList.remove('hidden');
                         if (freeTrialSpinner) freeTrialSpinner.classList.add('hidden');
                         freeTrialActivateButton.disabled = false;
@@ -1575,7 +1733,7 @@
                 });
             }
 
-            // Eventos para os botões que abrem as seções
+            // Events for buttons that open sections
             if (heroSubscribeButton) {
                 heroSubscribeButton.addEventListener('click', () => {
                     showSection('comanda-section');
@@ -1592,39 +1750,112 @@
                 });
             }
 
-            // Evento para o botão de voltar - Retorna para a seção inicial
+            // Event for the back button - Returns to the home section
             if (backButton) {
                 backButton.addEventListener('click', () => {
                     showSection('home');
                 });
             }
 
-            // Implementação do Intersection Observer para animações de entrada ao rolar
+            // Intersection Observer implementation for scroll-in animations
             const observerOptions = {
-                root: null, // O viewport como root
+                root: null, // The viewport as root
                 rootMargin: '0px',
-                threshold: 0.1 // 10% do elemento visível para disparar
+                threshold: 0.1 // 10% of the element visible to trigger
             };
 
             const animateOnScrollObserver = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        // Adiciona a classe de animação quando o elemento entra na viewport
+                        // Adds animation class when element enters viewport
                         entry.target.classList.add('animate-fade-in-up');
-                        // Para de observar o elemento após a animação para evitar re-animações
+                        // Stops observing the element after animation to prevent re-animations
                         observer.unobserve(entry.target);
                     }
                 });
             }, observerOptions);
 
-            // Observa todos os elementos que devem ter animação de entrada
+            // Observes all elements that should have entry animation
             document.querySelectorAll('.feature-card, .plan-card, .how-it-works-card').forEach(card => {
                 animateOnScrollObserver.observe(card);
             });
 
-            // Atualiza o link ativo no carregamento inicial e ao rolar
+            // Updates active link on initial load and on scroll
             window.addEventListener('scroll', updateActiveNavLink);
-            updateActiveNavLink(); // Chamada inicial para definir o link ativo
+            updateActiveNavLink(); // Initial call to set active link
+
+            // --- Gemini API Integration for FAQ Assistant ---
+            if (askLlmButton && llmFaqQuestionInput && llmAnswerContentDiv && llmFaqAnswerDiv && llmFaqErrorDiv) {
+                askLlmButton.addEventListener('click', async () => {
+                    const userQuestion = llmFaqQuestionInput.value.trim();
+                    if (!userQuestion) {
+                        llmAnswerContentDiv.textContent = 'Por favor, digite a sua pergunta.';
+                        llmFaqAnswerDiv.classList.remove('hidden');
+                        llmFaqErrorDiv.classList.add('hidden');
+                        return;
+                    }
+
+                    // Show loading spinner and hide previous results/errors
+                    askLlmButtonText.classList.add('hidden');
+                    askLlmSpinner.classList.remove('hidden');
+                    askLlmButton.disabled = true;
+                    llmFaqAnswerDiv.classList.add('hidden');
+                    llmFaqErrorDiv.classList.add('hidden');
+                    llmAnswerContentDiv.textContent = ''; // Clear previous answer
+
+                    // Define the existing FAQs to provide context to the LLM
+                    const existingFaqs = `
+                        **Como é feito o pagamento?** Aceitamos pagamentos exclusivamente via PIX, que é rápido, seguro e sem taxas. Após a confirmação do pagamento, seu acesso é liberado imediatamente.
+                        **Quantos dispositivos podem assistir simultaneamente?** Cada assinatura permite apenas 1 dispositivo assistindo simultaneamente. Isso garante a melhor qualidade de streaming para você.
+                        **Quais dispositivos são compatíveis com a Velotex TV?** A Velotex TV é compatível com smartphones e tablets (Android e iOS), computadores (Windows e Mac), Smart TVs (Android TV, Samsung Tizen, LG WebOS), e dispositivos de streaming como Chromecast, Fire TV Stick e Apple TV.
+                        **Posso cancelar a qualquer momento?** Sim! Você pode cancelar seu plano a qualquer momento sem multa. O cancelamento é imediato.
+                        **Há algum tipo de fidelidade?** Não temos fidelidade em nenhum de nossos planos. Você pode cancelar quando quiser sem nenhuma penalidade.
+                    `;
+
+                    // Construct the prompt for the LLM
+                    const prompt = `Você é um assistente de suporte para a Velotex TV. Responda à pergunta do utilizador com base nas seguintes Perguntas Frequentes. Se a resposta não for encontrada explicitamente nas FAQs, forneça uma resposta útil e concisa relacionada com serviços de IPTV ou a Velotex TV. Seja sempre amigável e direto.
+
+                    Perguntas Frequentes da Velotex TV:
+                    ${existingFaqs}
+
+                    Pergunta do Utilizador: ${userQuestion}`;
+
+                    try {
+                        let chatHistory = [];
+                        chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                        const payload = { contents: chatHistory };
+                        const apiKey = ""; // Leave this as-is; Canvas will provide the key
+                        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                        const response = await fetch(apiUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        });
+
+                        const result = await response.json();
+
+                        if (result.candidates && result.candidates.length > 0 &&
+                            result.candidates[0].content && result.candidates[0].content.parts &&
+                            result.candidates[0].content.parts.length > 0) {
+                            const text = result.candidates[0].content.parts[0].text;
+                            llmAnswerContentDiv.textContent = text;
+                            llmFaqAnswerDiv.classList.remove('hidden');
+                        } else {
+                            llmFaqErrorDiv.classList.remove('hidden');
+                            console.error('Unexpected LLM response structure:', result);
+                        }
+                    } catch (error) {
+                        llmFaqErrorDiv.classList.remove('hidden');
+                        console.error('Error calling Gemini API:', error);
+                    } finally {
+                        // Hide loading spinner and re-enable button
+                        askLlmButtonText.classList.remove('hidden');
+                        askLlmSpinner.classList.add('hidden');
+                        askLlmButton.disabled = false;
+                    }
+                });
+            }
         });
     </script>
     <!-- Script do Imgur para a incorporação da galeria (assíncrono para não bloquear o carregamento) -->
