@@ -8,7 +8,7 @@
     <meta name="keywords" content="Velotex TV, TV online, canais, filmes, séries, streaming, HD, Full HD, IPTV, entretenimento, família, assinar TV, planos TV, TV por assinatura, PIX, sem fidelidade, melhor IPTV, TV em HD, filmes online, séries online">
     <meta name="author" content="Velotex TV">
     <meta name="robots" content="index, follow">
-    <!-- Content Security Policy para segurança, permitindo recursos necessários. -->
+    <!-- Content Security Policy for security, allowing necessary resources. -->
     <meta http-equiv="Content-Security-Policy" content="
         default-src 'self';
         script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://cdnjs.cloudflare.com https://s.imgur.com;
@@ -26,64 +26,64 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Importação de Fonte Google Fonts: Poppins para um visual moderno e legível -->
+    <!-- Google Fonts Import: Poppins for a modern and readable look -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* Variáveis CSS para cores e consistência da marca (Paleta Premium com Verdes) */
+        /* CSS Variables for brand colors and consistency (Premium Green Palette) */
         :root {
-            --primary-brand-blue: #0A192F; /* Azul Marinho Profundo - Força, Confiança, Autoridade */
-            --secondary-charcoal-blue: #2C3E50; /* Azul-Cinza Carvão - Sofisticação, Profissionalismo */
-            --primary-accent-green: #2ECC71; /* Verde Vibrante - Energia, Ação, Destaque */
-            --dark-accent-green: #25B260;    /* Verde mais escuro para hover */
-            --light-text-on-dark: #F0F0F0; /* Texto claro em fundos escuros */
-            --secondary-text-on-dark: #A0A0A0; /* Texto secundário em fundos escuros */
-            --light-gray-background: #F8F8F8; /* Fundo claro para seções claras */
-            --medium-gray-border: #E0E0E0; /* Borda em fundos claros */
-            --dark-border: #3A4A5A;    /* Borda em fundos escuros */
-            --success-green: #27AE60; /* Verde de Sucesso - Responsabilidade, Confiabilidade */
-            --dark-success-green: #1E8449; /* Verde mais escuro para hover */
-            --light-accent-green-bg: #E6FAE6; /* Fundo verde muito claro para seções específicas */
+            --primary-brand-blue: #0A192F; /* Deep Navy Blue - Strength, Trust, Authority */
+            --secondary-charcoal-blue: #2C3E50; /* Charcoal Gray-Blue - Sophistication, Professionalism */
+            --primary-accent-green: #2ECC71; /* Vibrant Green - Energy, Action, Highlight */
+            --dark-accent-green: #25B260;    /* Darker green for hover */
+            --light-text-on-dark: #F0F0F0; /* Light text on dark backgrounds */
+            --secondary-text-on-dark: #A0A0A0; /* Secondary text on dark backgrounds */
+            --light-gray-background: #F8F8F8; /* Light background for light sections */
+            --medium-gray-border: #E0E0E0; /* Border on light backgrounds */
+            --dark-border: #3A4A5A;    /* Border on dark backgrounds */
+            --success-green: #27AE60; /* Success Green - Responsibility, Reliability */
+            --dark-success-green: #1E8449; /* Darker green for hover */
+            --light-accent-green-bg: #E6FAE6; /* Very light green background for specific sections */
 
-            /* Novas variáveis para sombras e transições aprimoradas */
+            /* New variables for enhanced shadows and transitions */
             --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.08);
             --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.15);
             --shadow-deep: 0 15px 40px rgba(0, 0, 0, 0.25);
             --transition-ease: all 0.3s ease-in-out;
         }
 
-        /* Estilos globais para o corpo do documento e elementos básicos */
+        /* Global styles for the document body and basic elements */
         body {
             font-family: 'Poppins', sans-serif;
-            scroll-behavior: smooth; /* Rolagem suave ao navegar para âncoras */
+            scroll-behavior: smooth; /* Smooth scrolling for anchor navigation */
             font-weight: 400;
             line-height: 1.6;
-            -webkit-font-smoothing: antialiased; /* Suavização de fonte para melhor legibilidade */
-            color: var(--secondary-charcoal-blue); /* Cor de texto padrão para seções claras */
-            background-color: var(--light-gray-background); /* Fundo padrão do corpo */
+            -webkit-font-smoothing: antialiased; /* Font smoothing for better readability */
+            color: var(--secondary-charcoal-blue); /* Default text color for light sections */
+            background-color: var(--light-gray-background); /* Default body background */
             box-sizing: border-box;
         }
 
-        /* Reset de box-sizing para todos os elementos, garantindo modelo de caixa consistente */
+        /* Reset box-sizing for all elements, ensuring consistent box model */
         *, *::before, *::after {
             box-sizing: inherit;
         }
 
-        /* Estilo para o logo, permitindo posicionamento relativo para elementos internos */
+        /* Logo style, allowing relative positioning for internal elements */
         .logo {
             position: relative;
         }
         .logo span {
-            font-weight: 800; /* Logo mais impactante */
+            font-weight: 800; /* More impactful logo */
         }
 
-        /* Gradiente de fundo para a seção hero (destaque inicial) */
+        /* Background gradient for the hero section (initial highlight) */
         .hero-gradient {
-            background: linear-gradient(135deg, var(--primary-brand-blue) 0%, #3a1c71 100%); /* Gradiente mais profundo e sofisticado */
-            color: var(--light-text-on-dark); /* Texto claro para contraste */
-            box-shadow: var(--shadow-deep); /* Sombra para dar profundidade à seção */
+            background: linear-gradient(135deg, var(--primary-brand-blue) 0%, #3a1c71 100%); /* Deeper, more sophisticated gradient */
+            color: var(--light-text-on-dark); /* Light text for contrast */
+            box-shadow: var(--shadow-deep); /* Shadow for section depth */
         }
 
-        /* Animações de entrada para elementos da seção hero e outros elementos observados */
+        /* Entry animations for hero section elements and other observed elements */
         .animate-fade-in-up {
             opacity: 0;
             transform: translateY(20px);
@@ -101,100 +101,100 @@
             }
         }
 
-        /* Estilos base para cartões de recursos, planos e "como funciona" com transições suaves */
+        /* Base styles for feature cards, plans, and "how it works" with smooth transitions */
         .feature-card, .plan-card, .how-it-works-card {
             transition: var(--transition-ease);
             border: 1px solid var(--medium-gray-border);
-            background-color: white; /* Garante fundo branco para cartões em seções claras */
-            border-radius: 16px; /* Cantos mais arredondados para um visual premium */
-            overflow: hidden; /* Garante que a sombra não vaze */
-            box-shadow: var(--shadow-light); /* Sombra inicial sutil */
+            background-color: white; /* Ensures white background for cards in light sections */
+            border-radius: 16px; /* More rounded corners for a premium look */
+            overflow: hidden; /* Ensures shadow does not overflow */
+            box-shadow: var(--shadow-light); /* Subtle initial shadow */
         }
 
-        /* Efeitos de hover para cartões de recursos e "como funciona" */
+        /* Hover effects for feature cards and "how it works" */
         .feature-card:hover, .how-it-works-card:hover {
-            transform: translateY(-12px); /* Desliza um pouco mais para cima */
-            box-shadow: var(--shadow-medium); /* Sombra mais pronunciada e elegante */
-            border-color: var(--primary-accent-green); /* Borda verde no hover */
+            transform: translateY(-12px); /* Slides up slightly more */
+            box-shadow: var(--shadow-medium); /* More pronounced and elegant shadow */
+            border-color: var(--primary-accent-green); /* Green border on hover */
         }
 
-        /* Efeitos de hover para cartões de planos */
+        /* Hover effects for plan cards */
         .plan-card:hover {
-            transform: scale(1.04); /* Aumenta ligeiramente mais o tamanho */
-            box-shadow: 0 20px 45px rgba(46, 204, 113, 0.5); /* Sombra verde mais intensa e com glow */
-            border-color: var(--primary-accent-green); /* Borda verde no hover */
+            transform: scale(1.04); /* Slightly increases size more */
+            box-shadow: 0 20px 45px rgba(46, 204, 113, 0.5); /* More intense green shadow with glow */
+            border-color: var(--primary-accent-green); /* Green border on hover */
         }
 
-        /* Estilos para itens do FAQ (acordeão) com transições */
+        /* Styles for FAQ items (accordion) with transitions */
         .faq-item {
             border: 1px solid var(--medium-gray-border);
             transition: var(--transition-ease);
-            border-radius: 12px; /* Cantos arredondados */
+            border-radius: 12px; /* Rounded corners */
             background-color: white;
             box-shadow: var(--shadow-light);
         }
 
-        /* Efeitos de hover para itens do FAQ */
+        /* Hover effects for FAQ items */
         .faq-item:hover {
-            border-color: var(--primary-accent-green); /* Borda verde no hover */
-            box-shadow: var(--shadow-medium); /* Sombra suave e elegante */
+            border-color: var(--primary-accent-green); /* Green border on hover */
+            box-shadow: var(--shadow-medium); /* Smooth and elegant shadow */
         }
 
-        /* Estilos para o conteúdo do acordeão (inicialmente oculto) */
+        /* Styles for accordion content (initially hidden) */
         .accordion-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.4s ease-out; /* Transição suave para abrir/fechar */
+            transition: max-height 0.4s ease-out; /* Smooth transition to open/close */
         }
 
-        /* Estilos para o ícone de seta no FAQ */
+        /* Styles for the arrow icon in FAQ */
         .faq-question .fa-chevron-down {
-            transition: transform 0.3s ease; /* Transição suave para rotação */
+            transition: transform 0.3s ease; /* Smooth transition for rotation */
         }
 
-        /* Rotação do ícone de seta quando o FAQ está ativo */
+        /* Arrow icon rotation when FAQ is active */
         .faq-question.active .fa-chevron-down {
             transform: rotate(180deg);
         }
 
-        /* Estilo para o link de navegação ativo */
+        /* Style for the active navigation link */
         .nav-link.active {
             color: var(--primary-accent-green);
             font-weight: 600;
         }
 
-        /* Menu de Sobreposição (Mobile) - Animação de slide-in/slide-out */
+        /* Mobile Overlay Menu - Slide-in/slide-out animation */
         .mobile-menu-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(255, 255, 255, 0.98); /* Fundo semi-transparente */
+            background-color: rgba(255, 255, 255, 0.98); /* Semi-transparent background */
             z-index: 999;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start; /* Alinha o conteúdo ao topo */
+            justify-content: flex-start; /* Align content to top */
             align-items: center;
-            transform: translateX(100%); /* Começa fora da tela (à direita) */
+            transform: translateX(100%); /* Starts off-screen (to the right) */
             transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
-            overflow-y: auto; /* Permite rolagem vertical para mais links */
-            padding-top: 5rem; /* Espaçamento do topo para não cobrir pelo cabeçalho */
-            padding-bottom: 2rem; /* Espaçamento na parte inferior */
-            opacity: 0; /* Começa invisível */
-            visibility: hidden; /* Não clicável quando oculto */
-            pointer-events: none; /* Garante que não há interação quando oculto */
+            overflow-y: auto; /* Allows vertical scrolling for more links */
+            padding-top: 5rem; /* Top spacing to not be covered by header */
+            padding-bottom: 2rem; /* Bottom spacing */
+            opacity: 0; /* Starts invisible */
+            visibility: hidden; /* Not clickable when hidden */
+            pointer-events: none; /* Ensures no interaction when hidden */
         }
 
-        /* Estado 'open' para o menu mobile: desliza para dentro e fica visível */
+        /* 'open' state for mobile menu: slides in and becomes visible */
         .mobile-menu-overlay.open {
-            transform: translateX(0); /* Desliza para dentro da tela */
-            opacity: 1; /* Totalmente visível */
-            visibility: visible; /* Clicável */
-            pointer-events: auto; /* Permite interação */
+            transform: translateX(0); /* Slides into view */
+            opacity: 1; /* Fully visible */
+            visibility: visible; /* Clickable */
+            pointer-events: auto; /* Allows interaction */
         }
 
-        /* Estilos para os links dentro do menu mobile */
+        /* Styles for links inside the mobile menu */
         .mobile-menu-overlay .mobile-nav-link {
             font-size: 1.6rem;
             padding: 1.2rem;
@@ -203,12 +203,12 @@
             transition: color 0.2s ease;
         }
 
-        /* Efeito de hover para links do menu mobile */
+        /* Hover effect for mobile menu links */
         .mobile-menu-overlay .mobile-nav-link:hover {
             color: var(--primary-accent-green);
         }
 
-        /* Estilos para o botão primário (geral) */
+        /* Styles for the primary button (general) */
         .btn-primary {
             background-color: var(--primary-accent-green);
             color: white;
@@ -217,18 +217,18 @@
             border-radius: 10px;
             text-align: center;
             transition: var(--transition-ease);
-            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3); /* Sombra ajustada para o novo tom de verde */
-            display: inline-flex; /* Para alinhar spinner/texto */
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3); /* Shadow adjusted for the new green shade */
+            display: inline-flex; /* For spinner/text alignment */
             align-items: center;
             justify-content: center;
         }
         .btn-primary:hover {
             background-color: var(--dark-accent-green);
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(37, 178, 96, 0.4); /* Sombra ajustada para o novo tom de verde */
+            box-shadow: 0 8px 20px rgba(37, 178, 96, 0.4); /* Shadow adjusted for the new green shade */
         }
 
-        /* Estilos para campos de input */
+        /* Styles for input fields */
         .input-field {
             width: 100%;
             padding: 14px;
@@ -241,10 +241,10 @@
         .input-field:focus {
             outline: none;
             border-color: var(--primary-accent-green);
-            box-shadow: 0 0 0 4px rgba(46, 204, 113, 0.3); /* Sombra ajustada para o novo tom de verde */
+            box-shadow: 0 0 0 4px rgba(46, 204, 113, 0.3); /* Shadow adjusted for the new green shade */
         }
 
-        /* Contêiner para a seção de pagamento PIX */
+        /* Container for the PIX payment section */
         .pix-container {
             border: 2px solid var(--primary-accent-green);
             background-color: var(--light-accent-green-bg);
@@ -253,7 +253,7 @@
             box-shadow: var(--shadow-medium);
         }
 
-        /* Estilos para a imagem do QR Code PIX */
+        /* Styles for the PIX QR Code image */
         .qr-code-img {
             border: 3px solid var(--primary-accent-green);
             border-radius: 10px;
@@ -262,7 +262,7 @@
             height: auto;
         }
 
-        /* Estilos para o spinner de carregamento */
+        /* Styles for the loading spinner */
         .spinner {
             border: 4px solid rgba(255, 255, 255, 0.3);
             border-top: 4px solid #fff;
@@ -272,18 +272,18 @@
             animation: spin 1s linear infinite;
         }
 
-        /* Animação de rotação para o spinner */
+        /* Rotation animation for the spinner */
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
 
-        /* Botão flutuante de ação (FAB) para voltar */
+        /* Floating Action Button (FAB) for back */
         .back-button-fab {
             position: fixed;
             bottom: 80px;
             right: 20px;
-            background-color: var(--secondary-charcoal-blue); /* Cor mais neutra para o FAB */
+            background-color: var(--secondary-charcoal-blue); /* More neutral color for FAB */
             color: white;
             border-radius: 50%;
             width: 60px;
@@ -297,13 +297,13 @@
             transition: var(--transition-ease);
         }
 
-        /* Efeitos de hover para o botão FAB */
+        /* Hover effects for the FAB button */
         .back-button-fab:hover {
             transform: scale(1.1);
-            background-color: #4B5563; /* Cinza mais escuro no hover */
+            background-color: #4B5563; /* Darker gray on hover */
         }
 
-        /* Texto dentro do botão FAB (oculto em mobile, visível em desktop) */
+        /* Text inside the FAB button (hidden on mobile, visible on desktop) */
         .back-button-fab-text {
             display: none;
             font-size: 16px;
@@ -312,19 +312,19 @@
             white-space: nowrap;
         }
 
-        /* Media query para adaptar o botão FAB em telas maiores (desktop) */
+        /* Media query to adapt FAB button on larger screens (desktop) */
         @media (min-width: 768px) {
             .back-button-fab {
-                width: auto; /* Largura automática para acomodar o texto */
+                width: auto; /* Auto width to accommodate text */
                 padding: 10px 20px;
-                border-radius: 30px; /* Borda arredondada para parecer um pílula */
+                border-radius: 30px; /* Rounded border to look like a pill */
             }
             .back-button-fab-text {
-                display: inline-block; /* Torna o texto visível */
+                display: inline-block; /* Makes text visible */
             }
         }
 
-        /* Estilos para os selos de segurança */
+        /* Styles for security badges */
         .security-badge {
             background-color: var(--success-green);
             color: white;
@@ -345,74 +345,65 @@
             box-sizing: border-box;
         }
 
-        /* Efeitos de hover para os selos de segurança */
+        /* Hover effects for security badges */
         .security-badge:hover {
             background-color: var(--dark-success-green);
             transform: translateY(-2px);
             box-shadow: var(--shadow-medium);
         }
 
-        /* Ícone dentro do selo de segurança */
+        /* Icon inside the security badge */
         .security-badge i {
             font-size: 1.1rem;
         }
 
-        /* Remove margem inferior do último selo de segurança */
+        /* Removes bottom margin from the last security badge */
         .security-badge:last-child {
             margin-bottom: 0;
         }
 
-        /* --- Animação IPTV na Seção Hero (Smart TV e TV Box) --- */
+        /* --- IPTV Animation in Hero Section (Smart TV) --- */
         .iptv-animation-container {
             position: relative;
-            width: 280px; /* Largura total do container da TV e TV Box */
-            height: 250px; /* Altura total do container */
+            width: 200px; /* Total width of the TV container */
+            height: 150px; /* Total height of the TV container */
             display: flex;
-            flex-direction: column; /* Organiza verticalmente */
             justify-content: center;
             align-items: center;
             margin: 0 auto;
             transform: scale(0.9);
         }
 
-        .smart-tv {
-            position: absolute;
-            top: 0; /* Alinha no topo do container */
-            left: 50%;
-            transform: translateX(-50%);
-            width: 200px; /* Tamanho da TV */
-            height: 130px;
-            z-index: 10;
-        }
-
         .tv-bezel {
+            position: absolute;
             width: 100%;
             height: 100%;
-            background-color: #1a1a1a; /* Cor da moldura da TV */
-            border-radius: 12px; /* Cantos mais arredondados para Smart TV */
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Sombra mais profunda */
-            overflow: hidden; /* Para conter o ecrã */
-            position: relative;
+            background-color: #1a1a1a; /* TV bezel color */
+            border-radius: 15px; /* More rounded corners for Smart TV */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Deeper shadow */
+            z-index: 10;
+            overflow: hidden; /* To contain the screen */
         }
 
         .tv-screen {
             position: absolute;
-            top: 3%; /* Molduras finas */
-            left: 3%;
-            width: 94%; /* (100% - 2*3%) */
-            height: 94%;
-            background: linear-gradient(145deg, #000000, #111111); /* Ecrã mais escuro */
-            border-radius: 6px; /* Cantos ligeiramente arredondados para o ecrã */
-            overflow: hidden; /* Importante para as linhas de stream */
+            top: 5%; /* Top bezel */
+            left: 5%; /* Left bezel */
+            width: 90%; /* Screen width (100% - 2*5%) */
+            height: 90%; /* Screen height (100% - 2*5%) */
+            background: linear-gradient(145deg, #000000, #111111); /* Darker screen */
+            border-radius: 8px; /* Slightly rounded corners for the screen */
+            z-index: 11;
+            overflow: hidden; /* Important for streaming lines */
         }
 
         .tv-content {
             width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, var(--primary-accent-green), #00b36b); /* Brilho esverdeado */
-            opacity: 0.2; /* Mais sutil */
+            background: linear-gradient(45deg, var(--primary-accent-green), #00b36b); /* Greenish glow */
+            opacity: 0.2; /* More subtle */
             animation: tv-glow 3s infinite alternate ease-in-out;
-            filter: blur(5px); /* Efeito de brilho suave */
+            filter: blur(5px); /* Soft glow effect */
         }
 
         @keyframes tv-glow {
@@ -421,64 +412,61 @@
             100% { opacity: 0.2; transform: scale(1); }
         }
 
-        .tv-box {
-            position: absolute;
-            bottom: 20px; /* Posição abaixo da TV, com espaço */
-            left: 50%;
-            transform: translateX(-50%);
-            width: 120px; /* Tamanho do TV Box */
-            height: 40px;
-            background-color: #333;
-            border-radius: 8px; /* Cantos arredondados */
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            z-index: 15; /* Acima das linhas de velocidade */
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .speed-line {
-            position: absolute;
-            width: 4px; /* Mais visível */
-            height: 4px; /* Começa como um ponto */
-            background-color: var(--primary-accent-green);
-            border-radius: 50%; /* Começa como um círculo */
-            opacity: 0;
-            z-index: 14;
-            box-shadow: 0 0 15px var(--primary-accent-green); /* Brilho forte */
-            /* Posição inicial próxima ao centro superior do TV Box */
-            top: calc(100% - 40px - 10px); /* Altura do container - altura do tv-box - margem inferior */
-            left: 50%;
-            transform: translateX(-50%); /* Centraliza horizontalmente */
-            animation: speed-burst 1.8s infinite ease-out; /* Animação mais rápida */
-        }
-
-        /* Animação para as linhas de velocidade */
-        @keyframes speed-burst {
+        /* New animation for horizontal streaming lines */
+        @keyframes horizontal-stream-flow {
             0% {
-                transform: translateX(-50%) translateY(0px) scale(0.2); /* Começa no TV Box, pequeno */
+                transform: translate(-150px, var(--y-offset)); /* Start far left, at specific Y */
                 opacity: 0;
             }
-            20% {
-                transform: translateX(-50%) translateY(-20px) scale(1); /* Cresce e move para cima */
-                opacity: 1;
+            10% {
+                opacity: 1; /* Fade in as it enters the visible area */
             }
-            80% {
-                transform: translateX(-50%) translateY(-150px) scale(1.2); /* Move em direção ao ecrã da TV */
-                opacity: 1;
-                filter: blur(0px); /* Sem desfoque no auge */
+            90% {
+                opacity: 1; /* Stay opaque while visible */
             }
             100% {
-                transform: translateX(-50%) translateY(-180px) scale(0.5); /* Passa pelo ecrã da TV, desaparece */
-                opacity: 0;
-                filter: blur(5px); /* Desfoque ao desaparecer */
+                transform: translate(150px, var(--y-offset)); /* End far right */
+                opacity: 0; /* Fade out as it leaves */
             }
         }
 
-        .speed-line.line-1 { animation-delay: 0s; }
-        .speed-line.line-2 { animation-delay: 0.5s; }
-        .speed-line.line-3 { animation-delay: 1s; }
+        .stream-line {
+            position: absolute;
+            width: 40px; /* Ray length */
+            height: 2px; /* Ray thickness */
+            background-color: var(--primary-accent-green);
+            border-radius: 1px;
+            opacity: 0;
+            z-index: 12;
+            box-shadow: 0 0 10px var(--primary-accent-green);
+            left: 50%; /* Center horizontally within iptv-animation-container */
+            top: 50%; /* Center vertically within iptv-animation-container */
+            transform: translate(-50%, -50%); /* Adjust for element's own size to truly center */
+        }
 
+        /* Specific line animations */
+        .stream-line.line-1 {
+            --y-offset: -40px; /* Top line relative to center */
+            animation: horizontal-stream-flow 2s infinite linear;
+            animation-delay: 0s;
+        }
+        .stream-line.line-2 {
+            --y-offset: -10px; /* Mid-top line relative to center */
+            animation: horizontal-stream-flow 2s infinite linear;
+            animation-delay: 0.5s;
+        }
+        .stream-line.line-3 {
+            --y-offset: 20px; /* Mid-bottom line relative to center */
+            animation: horizontal-stream-flow 2s infinite linear;
+            animation-delay: 1s;
+        }
+        .stream-line.line-4 {
+            --y-offset: 50px; /* Bottom line relative to center */
+            animation: horizontal-stream-flow 2s infinite linear;
+            animation-delay: 1.5s;
+        }
 
-        /* Gráfico de linha animado para status do servidor */
+        /* Animated line chart for server status */
         .line-chart-container {
             width: 100%;
             height: 90px;
@@ -487,7 +475,7 @@
             justify-content: space-around;
             padding: 10px 0;
             box-sizing: border-box;
-            background-color: var(--secondary-charcoal-blue); /* Fundo mais escuro para o gráfico */
+            background-color: var(--secondary-charcoal-blue); /* Darker background for the chart */
             border-radius: 8px;
             overflow: hidden;
             box-shadow: var(--shadow-light);
@@ -500,10 +488,10 @@
             border-radius: 3px;
             animation: oscillate 2.5s infinite ease-in-out;
             transform-origin: bottom;
-            box-shadow: 0 -2px 5px rgba(39, 174, 96, 0.3); /* Sombra verde */
+            box-shadow: 0 -2px 5px rgba(39, 174, 96, 0.3); /* Green shadow */
         }
 
-        /* Definição das alturas e atrasos de animação para cada segmento da linha */
+        /* Defining heights and animation delays for each line segment */
         .line-segment:nth-child(1) { height: 62%; animation-delay: 0s; }
         .line-segment:nth-child(2) { height: 67%; animation-delay: 0.15s; }
         .line-segment:nth-child(3) { height: 64%; animation-delay: 0.3s; }
@@ -515,35 +503,35 @@
         .line-segment:nth-child(9) { height: 69%; animation-delay: 1.2s; }
         .line-segment:nth-child(10) { height: 62%; animation-delay: 1.35s; }
 
-        /* Animação de oscilação para os segmentos da linha */
+        /* Oscillation animation for line segments */
         @keyframes oscillate {
             0%, 100% { transform: scaleY(1); }
             50% { transform: scaleY(1.07); }
         }
 
-        /* Separador com cores da bandeira do Brasil */
+        /* Separator with Brazil flag colors */
         .brazil-flag-separator {
             width: 100%;
             height: 50px;
-            background: linear-gradient(to right, #009246 50%, #FFDE00 50%); /* Verde e Amarelo */
+            background: linear-gradient(to right, #009246 50%, #FFDE00 50%); /* Green and Yellow */
             margin: 2rem auto;
             box-shadow: var(--shadow-light);
             border-radius: 8px;
         }
 
-        /* Estilos para seções com fundo escuro (nova classe para aplicar a paleta escura) */
+        /* Styles for dark background sections (new class to apply dark palette) */
         .section-dark {
             background-color: var(--primary-brand-blue);
             color: var(--light-text-on-dark);
         }
-        .section-dark .text-secondary { /* Ajuste para texto secundário em seções escuras */
+        .section-dark .text-secondary { /* Adjustment for secondary text in dark sections */
             color: var(--secondary-text-on-dark);
         }
         .section-dark .feature-card, .section-dark .plan-card, .section-dark .how-it-works-card, .section-dark .faq-item {
-            background-color: var(--secondary-charcoal-blue); /* Cartões mais escuros dentro da seção escura */
+            background-color: var(--secondary-charcoal-blue); /* Darker cards within dark section */
             border-color: var(--dark-border);
             color: var(--light-text-on-dark);
-            box-shadow: var(--shadow-medium); /* Sombra mais forte para cartões em fundos escuros */
+            box-shadow: var(--shadow-medium); /* Stronger shadow for cards on dark backgrounds */
         }
         .section-dark .feature-card .text-light, .section-dark .how-it-works-card .text-light, .section-dark .faq-item .text-gray-700 {
             color: var(--secondary-text-on-dark);
@@ -553,21 +541,21 @@
             color: var(--light-text-on-dark);
         }
         .section-dark .faq-question:hover {
-            background-color: #3A506A; /* Um tom ligeiramente mais claro no hover */
+            background-color: #3A506A; /* Slightly lighter shade on hover */
         }
         .section-dark .accordion-content .p-4 {
             background-color: var(--secondary-charcoal-blue);
             color: var(--secondary-text-on-dark);
         }
 
-        /* Estilos para a tabela de comparação de preços */
+        /* Styles for the price comparison table */
         .comparison-table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 2rem;
             box-shadow: var(--shadow-medium);
             border-radius: 12px;
-            overflow: hidden; /* Garante que o border-radius seja aplicado */
+            overflow: hidden; /* Ensures border-radius is applied */
         }
 
         .comparison-table th, .comparison-table td {
@@ -610,31 +598,31 @@
     </style>
 </head>
 <body class="bg-white text-gray-800">
-    <!-- Cabeçalho Principal do Site: Fixo no topo e com sombra -->
+    <!-- Main Site Header: Fixed at the top and with shadow -->
     <header class="sticky top-0 z-50 bg-white shadow-md py-3">
         <div class="container mx-auto px-6 flex items-center justify-between">
             <div class="flex items-center">
-                <!-- Logo do Site: VelotexTV com cores da marca -->
-                <a href="https://velotextv.netlify.app" class="text-2xl md:text-3xl font-bold text-[var(--primary-brand-blue)] logo" aria-label="Ir para a página inicial da Velotex TV">
+                <!-- Site Logo: VelotexTV with brand colors -->
+                <a href="https://velotextv.netlify.app" class="text-2xl md:text-3xl font-bold text-[var(--primary-brand-blue)] logo" aria-label="Go to Velotex TV homepage">
                     Velotex<span class="text-gray-800">TV</span>
                 </a>
             </div>
-            <!-- Botão de Alternar Menu Mobile (Hamburger/Close Icon) -->
-            <button class="text-[var(--primary-accent-green)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-accent-green)] rounded-md p-1" id="mobile-menu-button" aria-label="Alternar menu" aria-expanded="false">
-                <!-- Ícone de Hambúrguer (visível quando o menu está fechado) -->
+            <!-- Mobile Menu Toggle Button (Hamburger/Close Icon) -->
+            <button class="text-[var(--primary-accent-green)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-accent-green)] rounded-md p-1" id="mobile-menu-button" aria-label="Toggle menu" aria-expanded="false">
+                <!-- Hamburger Icon (visible when menu is closed) -->
                 <i class="fas fa-bars text-2xl" id="hamburger-icon"></i>
-                <!-- Ícone de Fechar (visível quando o menu está aberto) -->
+                <!-- Close Icon (visible when menu is open) -->
                 <i class="fas fa-times text-2xl hidden" id="close-icon"></i>
             </button>
         </div>
-        <!-- Menu de Sobreposição Mobile: Desliza da direita para a esquerda -->
+        <!-- Mobile Overlay Menu: Slides from right to left -->
         <div class="mobile-menu-overlay" id="mobile-menu" aria-hidden="true">
-            <!-- Botão para fechar o menu, posicionado no canto superior direito do overlay -->
-            <button class="absolute top-4 right-4 text-[var(--secondary-charcoal-blue)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-accent-green)] rounded-md p-1" id="close-menu-button" aria-label="Fechar menu">
+            <!-- Button to close the menu, positioned in the top right corner of the overlay -->
+            <button class="absolute top-4 right-4 text-[var(--secondary-charcoal-blue)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-accent-green)] rounded-md p-1" id="close-menu-button" aria-label="Close menu">
                 <i class="fas fa-times text-3xl"></i>
             </button>
             <div class="flex flex-col space-y-6 text-center">
-                <!-- Links de Navegação do Menu Mobile -->
+                <!-- Mobile Menu Navigation Links -->
                 <a href="#home" class="mobile-nav-link font-medium hover:text-[var(--primary-accent-green)] transition" data-section-link="home">Início</a>
                 <a href="#features" class="mobile-nav-link font-medium hover:text-[var(--primary-accent-green)] transition" data-section-link="features">Recursos</a>
                 <a href="#price-comparison" class="mobile-nav-link font-medium hover:text-[var(--primary-accent-green)] transition" data-section-link="price-comparison">Comparativo de Preços</a>
@@ -648,43 +636,41 @@
                 <a href="#termos-de-uso" class="mobile-nav-link font-medium hover:text-[var(--primary-accent-green)] transition" data-section-link="termos-de-uso">Termos de Uso</a>
                 <a href="#politica-de-privacidade" class="mobile-nav-link font-medium hover:text-[var(--primary-accent-green)] transition" data-section-link="politica-de-privacidade">Política de Privacidade</a>
                 <a href="#politica-de-cookies" class="mobile-nav-link font-medium hover:text-[var(--primary-accent-green)] transition" data-section-link="politica-de-cookies">Política de Cookies</a>
-                <!-- Adicionado espaço extra no final do menu para evitar corte em telas pequenas -->
+                <!-- Added extra space at the end of the menu to prevent clipping on small screens -->
                 <div class="h-24"></div>
             </div>
         </div>
     </header>
 
-    <!-- Seção Principal: Início (Hero Section) -->
+    <!-- Main Section: Home (Hero Section) -->
     <section id="home" class="hero-gradient text-white py-16 md:py-28 relative overflow-hidden" data-section-main>
         <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-center relative z-10">
             <div class="md:w-1/2 mb-10 md:mb-0 text-center md:text-left">
                 <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight animate-fade-in-up">Velotex TV: Sua diversão conectada!</h1>
                 <p class="text-xl md:text-2xl mb-8 opacity-90 animate-fade-in-up delay-1">Mais de 200 canais, filmes e séries para toda a família, tudo em HD e Full HD.</p>
                 <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 justify-center md:justify-start animate-fade-in-up delay-2">
-                    <button id="hero-subscribe-button" class="bg-white text-[var(--primary-brand-blue)] font-bold py-3 px-6 rounded-lg text-center hover:bg-gray-100 transition duration-300 ease-in-out shadow-lg hover:shadow-xl btn-primary" aria-label="Assine Agora!">Assine Agora!</button>
-                    <a href="#features" class="border-2 border-white text-white font-bold py-3 px-6 rounded-lg text-center hover:bg-white hover:bg-opacity-10 transition duration-300 ease-in-out shadow-lg hover:shadow-xl" aria-label="Saiba Mais sobre nossos recursos">Saiba Mais</a>
+                    <button id="hero-subscribe-button" class="bg-white text-[var(--primary-brand-blue)] font-bold py-3 px-6 rounded-lg text-center hover:bg-gray-100 transition duration-300 ease-in-out shadow-lg hover:shadow-xl btn-primary" aria-label="Subscribe Now!">Assine Agora!</button>
+                    <a href="#features" class="border-2 border-white text-white font-bold py-3 px-6 rounded-lg text-center hover:bg-white hover:bg-opacity-10 transition duration-300 ease-in-out shadow-lg hover:shadow-xl" aria-label="Learn More about our features">Saiba Mais</a>
                 </div>
             </div>
             <div class="md:w-1/2 flex justify-center items-center mt-10 md:mt-0 animate-fade-in-up delay-3">
-                <!-- Animação Smart TV e TV Box com Linhas de Velocidade -->
+                <!-- Smart TV Animation with IPTV Streams -->
                 <div class="iptv-animation-container">
-                    <div class="smart-tv">
-                        <div class="tv-bezel">
-                            <div class="tv-screen">
-                                <div class="tv-content"></div>
-                            </div>
+                    <div class="tv-bezel">
+                        <div class="tv-screen">
+                            <div class="tv-content"></div>
                         </div>
                     </div>
-                    <div class="tv-box"></div>
-                    <div class="speed-line line-1"></div>
-                    <div class="speed-line line-2"></div>
-                    <div class="speed-line line-3"></div>
+                    <div class="stream-line line-1"></div>
+                    <div class="stream-line line-2"></div>
+                    <div class="stream-line line-3"></div>
+                    <div class="stream-line line-4"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Seção de Banner de Promoção: Destaca uma oferta especial -->
+    <!-- Promotion Banner Section: Highlights a special offer -->
     <section id="promotion-banner" class="bg-[var(--primary-accent-green)] text-white py-4 text-center shadow-lg" data-section-main>
         <div class="container mx-auto px-4">
             <p class="text-xl md:text-2xl font-bold">
@@ -693,12 +679,12 @@
         </div>
     </section>
 
-    <!-- Seção de Recursos (Features): Apresenta os diferenciais do serviço -->
+    <!-- Features Section: Presents the service's differentials -->
     <section id="features" class="py-16 bg-[var(--light-gray-background)] relative overflow-hidden" data-section-main>
         <div class="container mx-auto px-4">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Por que escolher a Velotex TV?</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Cartão de Recurso: Mais de 200 canais -->
+                <!-- Feature Card: 200+ channels -->
                 <div class="feature-card bg-white p-6 rounded-xl shadow-md animate-fade-in-up">
                     <div class="relative w-16 h-16 bg-[var(--light-accent-green-bg)] rounded-full flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-tv text-[var(--primary-accent-green)] text-2xl"></i>
@@ -706,7 +692,7 @@
                     <h3 class="text-xl font-bold text-center mb-3">200+ canais</h3>
                     <p class="text-[var(--secondary-charcoal-blue)] text-center">Desfrute de um universo de entretenimento ilimitado com mais de 200 canais de TV, incluindo esportes, filmes, notícias e desenhos animados.</p>
                 </div>
-                <!-- Cartão de Recurso: Qualidade HD/Full HD -->
+                <!-- Feature Card: HD/Full HD Quality -->
                 <div class="feature-card bg-white p-6 rounded-xl shadow-md animate-fade-in-up delay-1">
                     <div class="relative w-16 h-16 bg-[var(--light-accent-green-bg)] rounded-full flex items-center justify-center mb-4 mx-auto">
                         <i class="fas fa-video text-[var(--primary-accent-green)] text-2xl"></i>
@@ -714,7 +700,7 @@
                     <h3 class="text-xl font-bold text-center mb-3">Qualidade HD/Full HD</h3>
                     <p class="text-[var(--secondary-charcoal-blue)] text-center">Experimente seus programas favoritos com clareza cristalina e a melhor qualidade de imagem em HD e Full HD.</p>
                 </div>
-                <!-- Cartão de Recurso: Filmes e Séries On Demand -->
+                <!-- Feature Card: On Demand Movies and Series -->
                 <div class="feature-card bg-white p-6 rounded-xl shadow-md animate-fade-in-up delay-2">
                     <div class="relative w-16 h-16 bg-[var(--light-accent-green-bg)] rounded-full flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-film text-[var(--primary-accent-green)] text-2xl"></i>
@@ -726,7 +712,7 @@
         </div>
     </section>
 
-    <!-- Nova Seção: Comparativo de Preços de Streaming -->
+    <!-- New Section: Streaming Price Comparison -->
     <section id="price-comparison" class="py-16 bg-[var(--light-gray-background)] relative overflow-hidden scroll-mt-20" data-section-main>
         <div class="container mx-auto px-4 text-center">
             <h2 class="text-3xl md:text-4xl font-bold mb-4">Compare e Economize!</h2>
@@ -756,13 +742,13 @@
         </div>
     </section>
 
-    <!-- Seção de Planos: Apresenta as opções de assinatura -->
+    <!-- Plans Section: Presents subscription options -->
     <section id="plans" class="py-16 relative overflow-hidden section-dark" data-section-main>
         <div class="container mx-auto px-4">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Nossos Planos</h2>
             <p class="text-xl text-center text-secondary-text-on-dark mb-12">Escolha o plano perfeito para sua diversão</p>
             <div class="max-w-md mx-auto">
-                <!-- Cartão do Plano Mensal -->
+                <!-- Monthly Plan Card -->
                 <div class="plan-card p-8 rounded-xl shadow-lg animate-fade-in-up">
                     <h3 class="text-2xl font-bold mb-2">Plano Mensal</h3>
                     <div class="flex items-end mb-4">
@@ -775,22 +761,22 @@
                         <li class="flex items-center"><i class="fas fa-check text-[var(--success-green)] mr-2"></i><span>Suporte 24/7</span></li>
                         <li class="flex items-center"><i class="fas fa-check text-[var(--success-green)] mr-2"></i><span>Cancelamento a qualquer momento</span></li>
                     </ul>
-                    <button id="plans-subscribe-button" class="btn-primary w-full" aria-label="Escolher Assinatura">Escolher Assinatura</button>
+                    <button id="plans-subscribe-button" class="btn-primary w-full" aria-label="Choose Subscription">Escolher Assinatura</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Seção de Teste Grátis: Convite para experimentar o serviço -->
+    <!-- Free Trial Section: Invitation to try the service -->
     <section id="free-trial" class="py-16 bg-[var(--light-gray-background)] relative overflow-hidden scroll-mt-20" data-section-main>
         <div class="container mx-auto px-4 text-center">
             <h2 class="text-3xl md:text-4xl font-bold mb-4">Experimente Grátis por 3 Horas!</h2>
             <p class="text-xl text-[var(--secondary-charcoal-blue)] mb-8">Curioso para conhecer a Velotex TV? Teste nosso serviço por 3 horas sem compromisso e descubra o melhor do entretenimento!</p>
-            <button id="free-trial-button" class="btn-primary" aria-label="Teste Grátis">Quero meu Teste Grátis!</button>
+            <button id="free-trial-button" class="btn-primary" aria-label="Free Trial">Quero meu Teste Grátis!</button>
         </div>
     </section>
 
-    <!-- Seção da Comanda (Formulário de Cliente e Pagamento PIX): Oculta por padrão -->
+    <!-- Order Section (Client Form and PIX Payment): Hidden by default -->
     <section id="comanda-section" class="py-12 bg-[var(--light-gray-background)] text-[var(--secondary-charcoal-blue)] hidden" data-section-main>
         <div class="container mx-auto px-4">
             <div class="max-w-xl mx-auto bg-white p-8 rounded-xl shadow-lg border border-[var(--medium-gray-border)]">
@@ -812,20 +798,20 @@
                         <label for="comanda-plan" class="block text-[var(--secondary-charcoal-blue)] font-medium mb-2">Plano Selecionado</label>
                         <input type="text" id="comanda-plan" name="plan" value="Plano Mensal - R$ 25,00" readonly class="input-field bg-gray-100 cursor-not-allowed">
                     </div>
-                    <!-- Botão para Gerar PIX -->
+                    <!-- Button to Generate PIX -->
                     <button type="submit" class="btn-primary w-full" id="comanda-generate-pix-button">
                         <span id="comanda-button-text">Gerar PIX para Pagamento</span>
                         <div id="comanda-spinner" class="spinner hidden ml-3"></div>
                     </button>
                 </form>
-                <!-- Seção de Pagamento PIX (visibilidade controlada por JS) -->
+                <!-- PIX Payment Section (visibility controlled by JS) -->
                 <div id="comanda-pix-payment-section" class="pix-container mt-10 hidden">
                     <h3 class="text-xl font-bold text-center mb-6 text-[var(--primary-accent-green)]">Realize o Pagamento via PIX</h3>
                     <div class="flex flex-col items-center space-y-6">
                         <p class="text-[var(--secondary-charcoal-blue)] text-center">Escaneie o QR Code ou use a Chave PIX abaixo para pagar:</p>
                         <div class="qr-code-wrapper">
-                            <!-- QR Code PIX - Imagem direta do Imgur, com fallback -->
-                            <img id="comanda-qr-code-img" src="https://i.imgur.com/XKLweH0.png" alt="QR Code PIX para pagamento da assinatura Velotex TV" class="qr-code-img w-48 h-48 mx-auto" onerror="this.onerror=null;this.src='https://placehold.co/192x192/2ECC71/FFFFFF?text=QR+Code+Indisponível'; console.error('Erro ao carregar imagem do QR Code. Verifique o URL ou a conexão.');">
+                            <!-- PIX QR Code - Direct Imgur image, with fallback -->
+                            <img id="comanda-qr-code-img" src="https://i.imgur.com/XKLweH0.png" alt="QR Code PIX for Velotex TV subscription payment" class="qr-code-img w-48 h-48 mx-auto" onerror="this.onerror=null;this.src='https://placehold.co/192x192/2ECC71/FFFFFF?text=QR+Code+Indisponível'; console.error('Error loading QR Code image. Check URL or connection.');">
                         </div>
                         <div class="text-center">
                             <p class="text-[var(--secondary-charcoal-blue)] font-medium">Chave PIX Aleatória:</p>
@@ -836,14 +822,14 @@
                             <p id="comanda-copy-message" class="text-[var(--success-green)] text-sm mt-1 hidden">Copiado!</p>
                         </div>
                         <p class="text-sm text-[var(--secondary-charcoal-blue)] text-center">Após o pagamento, clique no botão abaixo para nos enviar a confirmação e ativar seu serviço.</p>
-                        <!-- Botão para enviar comprovante via WhatsApp -->
+                        <!-- Button to send proof via WhatsApp -->
                         <button id="comanda-send-to-whatsapp-button" class="btn-primary w-full mt-6">
                             <i class="fab fa-whatsapp text-2xl mr-3"></i>
                             Enviar Comprovante e Ativar
                         </button>
                     </div>
                 </div>
-                <!-- Mensagem de sucesso para o formulário de pagamento -->
+                <!-- Success message for the payment form -->
                 <div id="comanda-success-message" class="mt-4 text-center text-sm hidden">
                     <div class="bg-[var(--light-accent-green-bg)] text-[var(--success-green)] p-4 rounded-lg shadow-md">
                         <p class="text-lg font-semibold">Seu pedido de ativação foi enviado!</p>
@@ -854,7 +840,7 @@
         </div>
     </section>
 
-    <!-- Nova Seção: Formulário de Teste Grátis -->
+    <!-- New Section: Free Trial Form -->
     <section id="free-trial-form-section" class="py-12 bg-[var(--light-gray-background)] text-[var(--secondary-charcoal-blue)] hidden" data-section-main>
         <div class="container mx-auto px-4">
             <div class="max-w-xl mx-auto bg-white p-8 rounded-xl shadow-lg border border-[var(--medium-gray-border)]">
@@ -888,13 +874,13 @@
         </div>
     </section>
 
-    <!-- Seção "Como Funciona": Explica o processo de uso do serviço -->
+    <!-- "How It Works" Section: Explains the service usage process -->
     <section id="how-it-works" class="py-16 bg-[var(--light-gray-background)] relative overflow-hidden" data-section-main>
         <div class="container mx-auto px-4">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Como Funciona?</h2>
             <p class="text-xl text-[var(--secondary-charcoal-blue)] mb-12">É simples e rápido começar a usar a Velotex TV!</p>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Cartão "Escolha seu Plano" -->
+                <!-- Card "Choose your Plan" -->
                 <div class="how-it-works-card p-6 rounded-xl shadow-md animate-fade-in-up">
                     <div class="relative w-16 h-16 bg-[var(--light-accent-green-bg)] rounded-full flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-user-plus text-[var(--primary-accent-green)] text-2xl"></i>
@@ -902,7 +888,7 @@
                     <h3 class="text-xl font-bold text-center mb-2">1. Escolha seu Plano</h3>
                     <p class="text-[var(--secondary-charcoal-blue)]">Selecione o plano mensal que melhor se adapta às suas necessidades.</p>
                 </div>
-                <!-- Cartão "Pague via PIX" -->
+                <!-- Card "Pay via PIX" -->
                 <div class="how-it-works-card p-6 rounded-xl shadow-md animate-fade-in-up delay-1">
                     <div class="relative w-16 h-16 bg-[var(--light-accent-green-bg)] rounded-full flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-money-bill-wave text-[var(--primary-accent-green)] text-2xl"></i>
@@ -910,7 +896,7 @@
                     <h3 class="text-xl font-bold mb-2">2. Pague via PIX</h3>
                     <p class="text-[var(--secondary-charcoal-blue)]">Realize o pagamento de forma rápida e segura utilizando o PIX.</p>
                 </div>
-                <!-- Cartão "Comece a Assistir" -->
+                <!-- Card "Start Watching" -->
                 <div class="how-it-works-card p-6 rounded-xl shadow-md animate-fade-in-up delay-2">
                     <div class="relative w-16 h-16 bg-[var(--light-accent-green-bg)] rounded-full flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-play-circle text-[var(--primary-accent-green)] text-2xl"></i>
@@ -922,7 +908,7 @@
         </div>
     </section>
 
-    <!-- Seção de Status do Servidor: Informa sobre a disponibilidade do serviço -->
+    <!-- Server Status Section: Informs about service availability -->
     <section id="server-status" class="py-16 relative overflow-hidden section-dark" data-section-main>
         <div class="container mx-auto px-4 text-center">
             <h2 class="text-3xl md:text-4xl font-bold mb-4">Status do Servidor</h2>
@@ -933,7 +919,7 @@
                     <p id="status-message" class="text-2xl font-bold text-[var(--light-text-on-dark)]">Serviços Online</p>
                 </div>
                 <p class="text-secondary-text-on-dark mb-6">Nosso sistema de streaming está operando em capacidade total com excelente desempenho.</p>
-                <!-- Gráfico de Linha Animado para visualização do status -->
+                <!-- Animated Line Chart for status visualization -->
                 <div class="line-chart-container">
                     <div class="line-segment"></div><div class="line-segment"></div><div class="line-segment"></div><div class="line-segment"></div><div class="line-segment"></div><div class="line-segment"></div><div class="line-segment"></div><div class="line-segment"></div><div class="line-segment"></div><div class="line-segment"></div>
                 </div>
@@ -941,23 +927,23 @@
         </div>
     </section>
 
-    <!-- Seção de Presença Nacional: Destaca a abrangência do serviço -->
+    <!-- National Presence Section: Highlights service coverage -->
     <section id="brazil-presence" class="py-16 bg-white relative overflow-hidden" data-section-main>
         <div class="container mx-auto px-4 text-center">
             <h2 class="text-3xl md:text-4xl font-bold mb-4">Presente em Todo o Brasil!</h2>
             <p class="text-xl text-[var(--secondary-charcoal-blue)] mb-8">A Velotex TV leva o melhor do entretenimento para todos os cantos do país.</p>
-            <!-- Separador visual com as cores da bandeira do Brasil -->
+            <!-- Visual separator with Brazil flag colors -->
             <div class="brazil-flag-separator"></div>
             <p class="text-[var(--secondary-charcoal-blue)] mt-8 max-w-2xl mx-auto">Com nossa infraestrutura robusta e parcerias estratégicas, garantimos que você tenha acesso aos seus canais, filmes e séries favoritos, não importa onde esteja no Brasil.</p>
         </div>
     </section>
 
-    <!-- Seção de Perguntas Frequentes (FAQ): Respostas para dúvidas comuns -->
+    <!-- Frequently Asked Questions (FAQ) Section: Answers to common questions -->
     <section id="faq" class="py-16 relative overflow-hidden section-dark" data-section-main>
         <div class="container mx-auto px-4 max-w-4xl">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Perguntas Frequentes</h2>
             <div class="space-y-4">
-                <!-- Item do FAQ: Como é feito o pagamento? -->
+                <!-- FAQ Item: How is payment made? -->
                 <div class="faq-item border rounded-lg overflow-hidden">
                     <button class="faq-question w-full flex justify-between items-center p-4 transition duration-200 ease-in-out">
                         <span class="font-medium text-left">Como é feito o pagamento?</span>
@@ -965,7 +951,7 @@
                     </button>
                     <div class="accordion-content"><div class="p-4"><p>Aceitamos pagamentos exclusivamente via PIX, que é rápido, seguro e sem taxas. Após a confirmação do pagamento, seu acesso é liberado imediatamente.</p></div></div>
                 </div>
-                <!-- Item do FAQ: Quantos dispositivos podem assistir simultaneamente? -->
+                <!-- FAQ Item: How many devices can watch simultaneously? -->
                 <div class="faq-item border rounded-lg overflow-hidden">
                     <button class="faq-question w-full flex justify-between items-center p-4 transition duration-200 ease-in-out">
                         <span class="font-medium text-left">Quantos dispositivos podem assistir simultaneamente?</span>
@@ -973,7 +959,7 @@
                     </button>
                     <div class="accordion-content"><div class="p-4"><p>Cada assinatura permite apenas 1 dispositivo assistindo simultaneamente. Isso garante a melhor qualidade de streaming para você.</p></div></div>
                 </div>
-                <!-- Item do FAQ: Quais dispositivos são compatíveis? -->
+                <!-- FAQ Item: Which devices are compatible? -->
                 <div class="faq-item border rounded-lg overflow-hidden">
                     <button class="faq-question w-full flex justify-between items-center p-4 transition duration-200 ease-in-out">
                         <span class="font-medium text-left">Quais dispositivos são compatíveis com a Velotex TV?</span>
@@ -981,7 +967,7 @@
                     </button>
                     <div class="accordion-content"><div class="p-4"><p>A Velotex TV é compatível com smartphones e tablets (Android e iOS), computadores (Windows e Mac), Smart TVs (Android TV, Samsung Tizen, LG WebOS), e dispositivos de streaming como Chromecast, Fire TV Stick e Apple TV.</p></div></div>
                 </div>
-                <!-- Item do FAQ: Posso cancelar a qualquer momento? -->
+                <!-- FAQ Item: Can I cancel at any time? -->
                 <div class="faq-item border rounded-lg overflow-hidden">
                     <button class="faq-question w-full flex justify-between items-center p-4 transition duration-200 ease-in-out">
                         <span class="font-medium text-left">Posso cancelar a qualquer momento?</span>
@@ -989,7 +975,7 @@
                     </button>
                     <div class="accordion-content"><div class="p-4"><p>Sim! Você pode cancelar seu plano a qualquer momento sem multa. O cancelamento é imediato.</p></div></div>
                 </div>
-                <!-- Item do FAQ: Há algum tipo de fidelidade? -->
+                <!-- FAQ Item: Is there any loyalty period? -->
                 <div class="faq-item border rounded-lg overflow-hidden">
                     <button class="faq-question w-full flex justify-between items-center p-4 transition duration-200 ease-in-out">
                         <span class="font-medium text-left">Há algum tipo de fidelidade?</span>
@@ -998,33 +984,10 @@
                     <div class="accordion-content"><div class="p-4"><p>Não temos fidelidade em nenhum de nossos planos. Você pode cancelar quando quiser sem nenhuma penalidade.</p></div></div>
                 </div>
             </div>
-
-            <!-- Nova secção de FAQ com LLM -->
-            <div class="mt-12 p-6 rounded-xl shadow-lg border border-[var(--dark-border)] bg-[var(--secondary-charcoal-blue)] text-light-text-on-dark">
-                <h3 class="text-2xl font-bold text-center mb-6">✨ Pergunte ao nosso Assistente de FAQ ✨</h3>
-                <p class="text-center text-secondary-text-on-dark mb-6">Digite sua pergunta e obtenha uma resposta instantânea do nosso assistente de IA.</p>
-                <div class="space-y-4">
-                    <div>
-                        <label for="llm-faq-question" class="block font-medium mb-2">Sua Pergunta:</label>
-                        <textarea id="llm-faq-question" rows="4" class="input-field bg-gray-700 text-white placeholder-gray-400" placeholder="Ex: Como posso assistir em minha Smart TV?"></textarea>
-                    </div>
-                    <button id="ask-llm-button" class="btn-primary w-full">
-                        <span id="ask-llm-button-text">Obter Resposta ✨</span>
-                        <div id="ask-llm-spinner" class="spinner hidden ml-3"></div>
-                    </button>
-                    <div id="llm-faq-answer" class="mt-4 p-4 bg-gray-700 rounded-lg text-white hidden">
-                        <p class="font-semibold mb-2">Resposta do Assistente:</p>
-                        <div id="llm-answer-content"></div>
-                    </div>
-                    <div id="llm-faq-error" class="mt-4 p-4 bg-red-800 text-white rounded-lg hidden">
-                        <p>Ocorreu um erro ao obter a resposta. Por favor, tente novamente mais tarde.</p>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
-    <!-- Seção de Contato: Formulário e informações de contato -->
+    <!-- Contact Section: Form and contact information -->
     <section id="contact" class="py-16 bg-[var(--light-accent-green-bg)] relative overflow-hidden" data-section-main>
         <div class="container mx-auto px-4">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Fale Conosco</h2>
@@ -1044,7 +1007,7 @@
                         <div><label for="name" class="block font-medium mb-1">Nome</label><input type="text" id="name" name="name" required class="input-field" placeholder="Seu nome completo"></div>
                         <div><label for="email" class="block font-medium mb-1">E-mail</label><input type="email" id="email" name="email" required class="input-field" placeholder="seuemail@exemplo.com"></div>
                         <div><label for="message" class="block font-medium mb-1">Mensagem</label><textarea id="message" name="message" rows="4" required class="input-field"></textarea></div>
-                        <button type="submit" class="btn-primary w-full" id="submit-button" aria-label="Enviar Mensagem">
+                        <button type="submit" class="btn-primary w-full" id="submit-button" aria-label="Send Message">
                             <span id="button-text">Enviar Mensagem</span>
                             <svg id="spinner" class="spinner hidden ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
                         </button>
@@ -1055,7 +1018,7 @@
         </div>
     </section>
 
-    <!-- Seção de Termos de Uso -->
+    <!-- Terms of Use Section -->
     <section id="termos-de-uso" class="py-16 bg-white relative overflow-hidden scroll-mt-20" data-section-main>
         <div class="container mx-auto px-4 max-w-4xl">
             <h1 class="text-4xl md:text-5xl font-bold text-center mb-8">Termos de Uso da Velotex TV</h1>
@@ -1087,7 +1050,7 @@
         </div>
     </section>
 
-    <!-- Seção de Política de Privacidade -->
+    <!-- Privacy Policy Section -->
     <section id="politica-de-privacidade" class="py-16 bg-[var(--light-gray-background)] relative overflow-hidden scroll-mt-20" data-section-main>
         <div class="container mx-auto px-4 max-w-4xl">
             <h1 class="text-4xl md:text-5xl font-bold text-center mb-8">Política de Privacidade da Velotex TV</h1>
@@ -1117,14 +1080,14 @@
         </div>
     </section>
 
-    <!-- Seção de Política de Cookies (mantida para referência, mas o banner foi removido) -->
+    <!-- Cookies Policy Section (kept for reference, but banner removed) -->
     <section id="politica-de-cookies" class="py-16 bg-white relative overflow-hidden scroll-mt-20" data-section-main>
         <div class="container mx-auto px-4 max-w-4xl">
             <h1 class="text-4xl md:text-5xl font-bold text-center mb-8">Política de Cookies da Velotex TV</h1>
             <div class="prose max-w-none text-[var(--secondary-charcoal-blue)]">
                 <p class="mb-4">Esta Política de Cookies explica como a Velotex TV utiliza cookies e tecnologias semelhantes para reconhecer você quando visita nosso site.</p>
                 <h2 class="text-2xl font-bold mt-8 mb-4">1. O que são Cookies?</h2>
-                <p class="mb-4">Cookies são pequenos arquivos de texto que são armazenados em seu computador ou dispositivo móvel quando você visita um site. Eles são amplamente utilizados para fazer com que os sites funcionem, ou funcionem de forma mais eficiente, bem como para fornecer informações aos proprietários do site.</p>
+                <p class="mb-4">Cookies are small text files that are stored on your computer or mobile device when you visit a website. They are widely used to make websites work, or work more efficiently, as well as to provide information to the site owners.</p>
                 <h2 class="text-2xl font-bold mt-8 mb-4">2. Como Usamos Cookies</h2>
                 <p class="mb-4">Utilizamos cookies por diversas razões, incluindo:</p>
                 <ul class="list-disc list-inside mb-4 space-y-2">
@@ -1147,8 +1110,8 @@
         </div>
     </section>
 
-    <!-- Rodapé do Site: Informações de contato, links rápidos e direitos autorais -->
-    <footer class="bg-gray-900 text-white py-12 pb-40"> <!-- Ajustado para pb-40 -->
+    <!-- Site Footer: Contact information, quick links, and copyright -->
+    <footer class="bg-gray-900 text-white py-12 pb-40"> <!-- Adjusted for pb-40 -->
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
@@ -1197,8 +1160,8 @@
         </div>
     </footer>
 
-    <!-- Botão Flutuante de Voltar: Visível apenas quando na seção de comanda ou teste grátis -->
-    <button id="back-button" class="back-button-fab hidden" aria-label="Voltar para a página anterior">
+    <!-- Floating Back Button: Visible only when in order or free trial section -->
+    <button id="back-button" class="back-button-fab hidden" aria-label="Back to previous page">
         <i class="fas fa-arrow-left"></i>
         <span class="back-button-fab-text">Voltar</span>
     </button>
@@ -1400,15 +1363,6 @@
             const plansSubscribeButton = document.getElementById('plans-subscribe-button');
             const freeTrialButton = document.getElementById('free-trial-button');
             const backButton = document.getElementById('back-button');
-
-            // LLM FAQ Elements
-            const llmFaqQuestionInput = document.getElementById('llm-faq-question');
-            const askLlmButton = document.getElementById('ask-llm-button');
-            const askLlmButtonText = document.getElementById('ask-llm-button-text');
-            const askLlmSpinner = document.getElementById('ask-llm-spinner');
-            const llmFaqAnswerDiv = document.getElementById('llm-faq-answer');
-            const llmAnswerContentDiv = document.getElementById('llm-answer-content');
-            const llmFaqErrorDiv = document.getElementById('llm-faq-error');
 
             // Ensure form sections and back button are hidden on initial load
             const comandaSection = document.getElementById('comanda-section');
@@ -1783,82 +1737,9 @@
             // Updates active link on initial load and on scroll
             window.addEventListener('scroll', updateActiveNavLink);
             updateActiveNavLink(); // Initial call to set active link
-
-            // --- Gemini API Integration for FAQ Assistant ---
-            if (askLlmButton && llmFaqQuestionInput && llmAnswerContentDiv && llmFaqAnswerDiv && llmFaqErrorDiv) {
-                askLlmButton.addEventListener('click', async () => {
-                    const userQuestion = llmFaqQuestionInput.value.trim();
-                    if (!userQuestion) {
-                        llmAnswerContentDiv.textContent = 'Por favor, digite a sua pergunta.';
-                        llmFaqAnswerDiv.classList.remove('hidden');
-                        llmFaqErrorDiv.classList.add('hidden');
-                        return;
-                    }
-
-                    // Show loading spinner and hide previous results/errors
-                    askLlmButtonText.classList.add('hidden');
-                    askLlmSpinner.classList.remove('hidden');
-                    askLlmButton.disabled = true;
-                    llmFaqAnswerDiv.classList.add('hidden');
-                    llmFaqErrorDiv.classList.add('hidden');
-                    llmAnswerContentDiv.textContent = ''; // Clear previous answer
-
-                    // Define the existing FAQs to provide context to the LLM
-                    const existingFaqs = `
-                        **Como é feito o pagamento?** Aceitamos pagamentos exclusivamente via PIX, que é rápido, seguro e sem taxas. Após a confirmação do pagamento, seu acesso é liberado imediatamente.
-                        **Quantos dispositivos podem assistir simultaneamente?** Cada assinatura permite apenas 1 dispositivo assistindo simultaneamente. Isso garante a melhor qualidade de streaming para você.
-                        **Quais dispositivos são compatíveis com a Velotex TV?** A Velotex TV é compatível com smartphones e tablets (Android e iOS), computadores (Windows e Mac), Smart TVs (Android TV, Samsung Tizen, LG WebOS), e dispositivos de streaming como Chromecast, Fire TV Stick e Apple TV.
-                        **Posso cancelar a qualquer momento?** Sim! Você pode cancelar seu plano a qualquer momento sem multa. O cancelamento é imediato.
-                        **Há algum tipo de fidelidade?** Não temos fidelidade em nenhum de nossos planos. Você pode cancelar quando quiser sem nenhuma penalidade.
-                    `;
-
-                    // Construct the prompt for the LLM
-                    const prompt = `Você é um assistente de suporte para a Velotex TV. Responda à pergunta do utilizador com base nas seguintes Perguntas Frequentes. Se a resposta não for encontrada explicitamente nas FAQs, forneça uma resposta útil e concisa relacionada com serviços de IPTV ou a Velotex TV. Seja sempre amigável e direto.
-
-                    Perguntas Frequentes da Velotex TV:
-                    ${existingFaqs}
-
-                    Pergunta do Utilizador: ${userQuestion}`;
-
-                    try {
-                        let chatHistory = [];
-                        chatHistory.push({ role: "user", parts: [{ text: prompt }] });
-                        const payload = { contents: chatHistory };
-                        const apiKey = ""; // Leave this as-is; Canvas will provide the key
-                        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
-                        const response = await fetch(apiUrl, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify(payload)
-                        });
-
-                        const result = await response.json();
-
-                        if (result.candidates && result.candidates.length > 0 &&
-                            result.candidates[0].content && result.candidates[0].content.parts &&
-                            result.candidates[0].content.parts.length > 0) {
-                            const text = result.candidates[0].content.parts[0].text;
-                            llmAnswerContentDiv.textContent = text;
-                            llmFaqAnswerDiv.classList.remove('hidden');
-                        } else {
-                            llmFaqErrorDiv.classList.remove('hidden');
-                            console.error('Unexpected LLM response structure:', result);
-                        }
-                    } catch (error) {
-                        llmFaqErrorDiv.classList.remove('hidden');
-                        console.error('Error calling Gemini API:', error);
-                    } finally {
-                        // Hide loading spinner and re-enable button
-                        askLlmButtonText.classList.remove('hidden');
-                        askLlmSpinner.classList.add('hidden');
-                        askLlmButton.disabled = false;
-                    }
-                });
-            }
         });
     </script>
-    <!-- Script do Imgur para a incorporação da galeria (assíncrono para não bloquear o carregamento) -->
+    <!-- Imgur script for gallery embedding (async to not block loading) -->
     <script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
 </body>
 </html>
