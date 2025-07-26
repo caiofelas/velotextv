@@ -11,14 +11,14 @@
     <!-- Content Security Policy for security, allowing necessary resources. -->
     <meta http-equiv="Content-Security-Policy" content="
         default-src 'self';
-        script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://cdnjs.cloudflare.com https://s.imgur.com;
+        script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://cdnjs.cloudflare.com https://s.imgur.com https://www.youtube.com https://www.youtube-nocookie.com;
         style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
         img-src 'self' data: blob: https://imgur.com https://i.imgur.com https://placehold.co;
         font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;
         connect-src 'self' https://generativelanguage.googleapis.com https://formsubmit.co;
         form-action https://formsubmit.co;
-        frame-src 'self' https://imgur.com;
-        child-src 'self' https://imgur.com;
+        frame-src 'self' https://imgur.com https://www.youtube.com https://www.youtube-nocookie.com;
+        child-src 'self' https://imgur.com https://www.youtube.com https://www.youtube-nocookie.com;
         worker-src 'self' blob:;
     ">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
@@ -567,7 +567,7 @@
                 <a href="#server-status" class="mobile-nav-link font-medium hover:text-[var(--primary-accent-green)] transition" data-section-link="server-status">Status do Servidor</a>
                 <a href="#brazil-presence" class="mobile-nav-link font-medium hover:text-[var(--primary-accent-green)] transition" data-section-link="brazil-presence">Presença Nacional</a>
                 <a href="#faq" class="mobile-nav-link font-medium hover:text-[var(--primary-accent-green)] transition" data-section-link="faq">FAQ</a>
-                <!-- Removed Contact link -->
+                <a href="#recommended-apps" class="mobile-nav-link font-medium hover:text-[var(--primary-accent-green)] transition" data-section-link="recommended-apps">Apps Recomendados</a>
                 <a href="#termos-de-uso" class="mobile-nav-link font-medium hover:text-[var(--primary-accent-green)] transition" data-section-link="termos-de-uso">Termos de Uso</a>
                 <a href="#politica-de-privacidade" class="mobile-nav-link font-medium hover:text-[var(--primary-accent-green)] transition" data-section-link="politica-de-privacidade">Política de Privacidade</a>
                 <a href="#politica-de-cookies" class="mobile-nav-link font-medium hover:text-[var(--primary-accent-green)] transition" data-section-link="politica-de-cookies">Política de Cookies</a>
@@ -577,340 +577,529 @@
         </div>
     </header>
 
-    <!-- Main Section: Home (Hero Section) -->
-    <section id="home" class="hero-image-bg text-white py-16 md:py-28 relative overflow-hidden" data-section-main>
-        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-center relative z-10">
-            <div class="md:w-1/2 mb-10 md:mb-0 text-center md:text-left">
-                <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight animate-fade-in-up">Velotex TV: Sua diversão conectada!</h1>
-                <p class="text-xl md:text-2xl mb-8 opacity-90 animate-fade-in-up delay-1">Mais de 200 canais, filmes e séries para toda a família, tudo em HD e Full HD.</p>
-                <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 justify-center md:justify-start animate-fade-in-up delay-2">
-                    <button id="hero-subscribe-button" class="btn-primary" aria-label="Subscribe Now!">Assine Agora!</button>
-                    <a href="#features" class="border-2 border-white text-white font-bold py-3 px-6 rounded-lg text-center hover:bg-white hover:bg-opacity-10 transition duration-300 ease-in-out shadow-lg hover:shadow-xl" aria-label="Learn More about our features">Saiba Mais</a>
+    <!-- Main content container for SPA-like routing -->
+    <main id="app-content">
+        <!-- Main Section: Home (Hero Section) -->
+        <section id="home" class="hero-image-bg text-white py-16 md:py-28 relative overflow-hidden" data-page="home">
+            <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-center relative z-10">
+                <div class="md:w-1/2 mb-10 md:mb-0 text-center md:text-left">
+                    <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight animate-fade-in-up">Velotex TV: Sua diversão conectada!</h1>
+                    <p class="text-xl md:text-2xl mb-8 opacity-90 animate-fade-in-up delay-1">Mais de 200 canais, filmes e séries para toda a família, tudo em HD e Full HD.</p>
+                    <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 justify-center md:justify-start animate-fade-in-up delay-2">
+                        <button id="hero-subscribe-button" class="btn-primary" aria-label="Subscribe Now!" data-target-page="comanda-section">Assine Agora!</button>
+                        <a href="#features" class="border-2 border-white text-white font-bold py-3 px-6 rounded-lg text-center hover:bg-white hover:bg-opacity-10 transition duration-300 ease-in-out shadow-lg hover:shadow-xl" aria-label="Learn More about our features" data-target-page="features">Saiba Mais</a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex flex-col justify-center items-center mt-10 md:mt-0 animate-fade-in-up delay-3">
+                    <!-- Banner for the movie -->
+                    <div class="bg-[var(--primary-accent-green)] text-white p-4 rounded-t-lg text-center w-full max-w-xl mb-0 shadow-lg">
+                        <h3 class="text-2xl md:text-3xl font-bold">Só na Velotex TV!</h3>
+                        <p class="text-lg md:text-xl mt-1">Assista agora: Como Treinar o Seu Dragão</p>
+                    </div>
+
+                    <!-- Video Player Container (responsive embed) -->
+                    <div class="relative w-full max-w-xl" style="padding-bottom: 56.25%;"> <!-- 16:9 Aspect Ratio (height / width = 9/16 = 0.5625) -->
+                        <iframe
+                            class="absolute top-0 left-0 w-full h-full rounded-b-lg shadow-xl"
+                            src="https://www.youtube.com/embed/HIbwgbbJzSs?autoplay=0&controls=1&modestbranding=1&rel=0"
+                            title="Trailer Oficial Como Treinar o Seu Dragão"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
                 </div>
             </div>
-            <div class="md:w-1/2 flex justify-center items-center mt-10 md:mt-0 animate-fade-in-up delay-3">
-                <!-- Image of a living room with a large TV displaying a streaming service -->
-                
+        </section>
+
+        <!-- Promotion Banner Section: Highlights a special offer -->
+        <section id="promotion-banner" class="bg-[var(--primary-accent-green)] text-white py-4 text-center shadow-lg" data-page="promotion-banner">
+            <div class="container mx-auto px-4">
+                <p class="text-xl md:text-2xl font-bold">
+                    PROMOÇÃO EXCLUSIVA: De <span class="line-through">R$ 35,00</span> por apenas <span class="text-yellow-300">R$ 25,00</span> no plano mensal!
+                </p>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Promotion Banner Section: Highlights a special offer -->
-    <section id="promotion-banner" class="bg-[var(--primary-accent-green)] text-white py-4 text-center shadow-lg" data-section-main>
-        <div class="container mx-auto px-4">
-            <p class="text-xl md:text-2xl font-bold">
-                PROMOÇÃO EXCLUSIVA: De <span class="line-through">R$ 35,00</span> por apenas <span class="text-yellow-300">R$ 25,00</span> no plano mensal!
-            </p>
-        </div>
-    </section>
-
-    <!-- Features Section: Presents the service's differentials -->
-    <section id="features" class="py-16 bg-[var(--main-dark-bg)] relative overflow-hidden" data-section-main>
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-[var(--light-text-on-dark)]">Por que escolher a Velotex TV?</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Feature Card: 200+ channels -->
-                <div class="feature-card p-6 rounded-xl shadow-md animate-fade-in-up">
-                    <div class="relative w-16 h-16 bg-[var(--subtle-green-bg-dark)] rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-tv text-[var(--primary-accent-green)] text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-center mb-3 text-[var(--light-text-on-dark)]">200+ canais</h3>
-                    <p class="text-[var(--secondary-text-on-dark)] text-center">Desfrute de um universo de entretenimento ilimitado com mais de 200 canais de TV, incluindo esportes, filmes, notícias e desenhos animados.</p>
-                </div>
-                <!-- Feature Card: HD/Full HD Quality -->
-                <div class="feature-card p-6 rounded-xl shadow-md animate-fade-in-up delay-1">
-                    <div class="relative w-16 h-16 bg-[var(--subtle-green-bg-dark)] rounded-full flex items-center justify-center mb-4 mx-auto">
-                        <i class="fas fa-video text-[var(--primary-accent-green)] text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-center mb-3 text-[var(--light-text-on-dark)]">Qualidade HD/Full HD</h3>
-                    <p class="text-[var(--secondary-text-on-dark)] text-center">Experimente seus programas favoritos com clareza cristalina e a melhor qualidade de imagem em HD e Full HD.</p>
-                </div>
-                <!-- Feature Card: On Demand Movies and Series -->
-                <div class="feature-card p-6 rounded-xl shadow-md animate-fade-in-up delay-2">
-                    <div class="relative w-16 h-16 bg-[var(--subtle-green-bg-dark)] rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-film text-[var(--primary-accent-green)] text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-center mb-3 text-[var(--light-text-on-dark)]">Filmes e Séries On Demand</h3>
-                    <p class="text-[var(--secondary-text-on-dark)] text-center">Acesse uma biblioteca completa de filmes e séries para assistir quando quiser, sem limites.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- New Section: Streaming Price Comparison -->
-    <section id="price-comparison" class="py-16 bg-[var(--main-dark-bg)] relative overflow-hidden scroll-mt-20" data-section-main>
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-[var(--light-text-on-dark)]">Compare e Economize!</h2>
-            <p class="text-xl text-[var(--secondary-text-on-dark)] mb-8">Veja como a Velotex TV se compara aos principais serviços de streaming do mercado:</p>
-            <div class="overflow-x-auto">
-                <table class="comparison-table mx-auto max-w-2xl">
-                    <thead>
-                        <tr>
-                            <th>Serviço</th>
-                            <th>Preço Mensal (aprox.)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Netflix (Padrão)</td><td>R$ 39,90</td></tr>
-                        <tr><td>Prime Video</td><td>R$ 19,90</td></tr>
-                        <tr><td>HBO Max</td><td>R$ 34,90</td></tr>
-                        <tr><td>Disney+</td><td>R$ 33,90</td></tr>
-                        <tr><td>Globoplay (Básico)</td><td>R$ 24,90</td></tr>
-                        <tr><td>Sky (Pacote Básico Streaming)</td><td>R$ 49,90</td></tr>
-                        <tr class="highlight-row"><td>Velotex TV</td><td>R$ 25,00</td></tr>
-                    </tbody>
-                </table>
-            </div>
-            <p class="text-sm text-[var(--secondary-text-on-dark)] mt-8">
-                * Os preços dos outros serviços são aproximados e podem variar de acordo com o plano e promoções.
-            </p>
-        </div>
-    </section>
-
-    <!-- Plans Section: Presents subscription options -->
-    <section id="plans" class="py-16 relative overflow-hidden section-dark" data-section-main>
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-[var(--light-text-on-dark)]">Nossos Planos</h2>
-            <p class="text-xl text-center text-[var(--secondary-text-on-dark)] mb-12">Escolha o plano perfeito para sua diversão</p>
-            <div class="max-w-md mx-auto">
-                <!-- Monthly Plan Card -->
-                <div class="plan-card p-8 rounded-xl shadow-lg animate-fade-in-up">
-                    <h3 class="text-2xl font-bold mb-2 text-[var(--light-text-on-dark)]">Plano Mensal</h3>
-                    <div class="flex items-end mb-4">
-                        <span class="text-4xl md:text-5xl font-bold text-[var(--primary-accent-green)]">R$ 25</span>
-                        <span class="text-[var(--secondary-text-on-dark)] ml-2">/mês</span>
-                    </div>
-                    <ul class="mb-6 space-y-2">
-                        <li class="flex items-center text-[var(--light-text-on-dark)]"><i class="fas fa-check text-[var(--success-green)] mr-2"></i><span>200+ canais em HD</span></li>
-                        <li class="flex items-center text-[var(--light-text-on-dark)]"><i class="fas fa-check text-[var(--success-green)] mr-2"></i><span>Filmes e séries on demand</span></li>
-                        <li class="flex items-center text-[var(--light-text-on-dark)]"><i class="fas fa-check text-[var(--success-green)] mr-2"></i><span>Suporte 24/7</span></li>
-                        <li class="flex items-center text-[var(--light-text-on-dark)]"><i class="fas fa-check text-[var(--success-green)] mr-2"></i><span>Cancelamento a qualquer momento</span></li>
-                    </ul>
-                    <button id="plans-subscribe-button" class="btn-primary w-full" aria-label="Choose Subscription">Escolher Assinatura</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Free Trial Section: Invitation to try the service -->
-    <section id="free-trial" class="py-16 bg-[var(--main-dark-bg)] relative overflow-hidden scroll-mt-20" data-section-main>
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-[var(--light-text-on-dark)]">Experimente Grátis por 3 Horas!</h2>
-            <p class="text-xl text-[var(--secondary-text-on-dark)] mb-8">Curioso para conhecer a Velotex TV? Teste nosso serviço por 3 horas sem compromisso e descubra o melhor do entretenimento!</p>
-            <button id="free-trial-button" class="btn-primary" aria-label="Free Trial">Quero meu Teste Grátis!</button>
-        </div>
-    </section>
-
-    <!-- Order Section (Client Form and PIX Payment): Hidden by default -->
-    <section id="comanda-section" class="py-12 bg-[var(--main-dark-bg)] text-[var(--light-text-on-dark)] hidden" data-section-main>
-        <div class="container mx-auto px-4">
-            <div class="max-w-xl mx-auto bg-[var(--card-dark-bg)] p-8 rounded-xl shadow-lg border border-[var(--dark-border-color)]">
-                <h2 class="text-2xl font-bold text-center mb-8 text-[var(--light-text-on-dark)]">Dados do Cliente e Plano Mensal</h2>
-                <form id="comanda-form" class="space-y-6">
-                    <div>
-                        <label for="comanda-name" class="block text-[var(--light-text-on-dark)] font-medium mb-2">Nome Completo</label>
-                        <input type="text" id="comanda-name" name="name" required class="input-field" placeholder="Seu nome completo">
-                    </div>
-                    <div>
-                        <label for="comanda-email" class="block text-[var(--light-text-on-dark)] font-medium mb-2">E-mail</label>
-                        <input type="email" id="comanda-email" name="email" required class="input-field" placeholder="seuemail@exemplo.com">
-                    </div>
-                    <div>
-                        <label for="comanda-phone" class="block text-[var(--light-text-on-dark)] font-medium mb-2">Celular (WhatsApp)</label>
-                        <input type="tel" id="comanda-phone" name="phone" required class="input-field" placeholder="(XX) XXXXX-XXXX">
-                    </div>
-                    <div>
-                        <label for="comanda-plan" class="block text-[var(--light-text-on-dark)] font-medium mb-2">Plano Selecionado</label>
-                        <input type="text" id="comanda-plan" name="plan" value="Plano Mensal - R$ 25,00" readonly class="input-field bg-[var(--main-dark-bg)] cursor-not-allowed">
-                    </div>
-                    <!-- Button to Generate PIX -->
-                    <button type="submit" class="btn-primary w-full" id="comanda-generate-pix-button">
-                        <span id="comanda-button-text">Gerar PIX para Pagamento</span>
-                        <div id="comanda-spinner" class="spinner hidden ml-3"></div>
-                    </button>
-                </form>
-                <!-- PIX Payment Section (visibility controlled by JS) -->
-                <div id="comanda-pix-payment-section" class="pix-container mt-10 hidden">
-                    <h3 class="text-xl font-bold text-center mb-6 text-[var(--primary-accent-green)]">Realize o Pagamento via PIX</h3>
-                    <div class="flex flex-col items-center space-y-6">
-                        <p class="text-[var(--light-text-on-dark)] text-center">Escaneie o QR Code ou use a Chave PIX abaixo para pagar:</p>
-                        <div class="qr-code-wrapper">
-                            <!-- PIX QR Code - Direct Imgur image, with fallback -->
-                            <img id="comanda-qr-code-img" src="https://i.imgur.com/XKLweH0.png" alt="QR Code PIX for Velotex TV subscription payment" class="qr-code-img w-48 h-48 mx-auto" onerror="this.onerror=null;this.src='https://placehold.co/192x192/2ECC71/FFFFFF?text=QR+Code+Indisponível'; console.error('Error loading QR Code image. Check URL or connection.');">
+        <!-- Features Section: Presents the service's differentials -->
+        <section id="features" class="py-16 bg-[var(--main-dark-bg)] relative overflow-hidden" data-page="features">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-[var(--light-text-on-dark)]">Por que escolher a Velotex TV?</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Feature Card: 200+ channels -->
+                    <div class="feature-card p-6 rounded-xl shadow-md animate-fade-in-up">
+                        <div class="relative w-16 h-16 bg-[var(--subtle-green-bg-dark)] rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-tv text-[var(--primary-accent-green)] text-2xl"></i>
                         </div>
-                        <div class="text-center">
-                            <p class="text-[var(--light-text-on-dark)] font-medium">Chave PIX Aleatória:</p>
-                            <p id="comanda-pix-key" class="text-xl font-bold text-[var(--light-text-on-dark)] break-all">8e01ee02-20f5-4e51-8422-ba84a7ebfe22</p>
-                            <button id="comanda-copy-pix-key" class="mt-2 bg-[var(--dark-border-color)] text-[var(--light-text-on-dark)] px-4 py-2 rounded-md hover:bg-gray-700 transition text-sm">
-                                <i class="fas fa-copy mr-2"></i>Copiar Chave
-                            </button>
-                            <p id="comanda-copy-message" class="text-[var(--success-green)] text-sm mt-1 hidden">Copiado!</p>
+                        <h3 class="text-xl font-bold text-center mb-3 text-[var(--light-text-on-dark)]">200+ canais</h3>
+                        <p class="text-[var(--secondary-text-on-dark)] text-center">Desfrute de um universo de entretenimento ilimitado com mais de 200 canais de TV, incluindo esportes, filmes, notícias e desenhos animados.</p>
+                    </div>
+                    <!-- Feature Card: HD/Full HD Quality -->
+                    <div class="feature-card p-6 rounded-xl shadow-md animate-fade-in-up delay-1">
+                        <div class="relative w-16 h-16 bg-[var(--subtle-green-bg-dark)] rounded-full flex items-center justify-center mb-4 mx-auto">
+                            <i class="fas fa-video text-[var(--primary-accent-green)] text-2xl"></i>
                         </div>
-                        <p class="text-sm text-[var(--light-text-on-dark)] text-center">Após o pagamento, clique no botão abaixo para nos enviar a confirmação e ativar seu serviço.</p>
-                        <!-- Button to send proof via WhatsApp -->
-                        <button id="comanda-send-to-whatsapp-button" class="btn-primary w-full mt-6">
-                            <i class="fab fa-whatsapp text-2xl mr-3"></i>
-                            Enviar Comprovante e Ativar
+                        <h3 class="text-xl font-bold text-center mb-3 text-[var(--light-text-on-dark)]">Qualidade HD/Full HD</h3>
+                        <p class="text-[var(--secondary-text-on-dark)] text-center">Experimente seus programas favoritos com clareza cristalina e a melhor qualidade de imagem em HD e Full HD.</p>
+                    </div>
+                    <!-- Feature Card: On Demand Movies and Series -->
+                    <div class="feature-card p-6 rounded-xl shadow-md animate-fade-in-up delay-2">
+                        <div class="relative w-16 h-16 bg-[var(--subtle-green-bg-dark)] rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-film text-[var(--primary-accent-green)] text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-center mb-3 text-[var(--light-text-on-dark)]">Filmes e Séries On Demand</h3>
+                        <p class="text-[var(--secondary-text-on-dark)] text-center">Acesse uma biblioteca completa de filmes e séries para assistir quando quiser, sem limites.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Section: Streaming Price Comparison -->
+        <section id="price-comparison" class="py-16 bg-[var(--main-dark-bg)] relative overflow-hidden scroll-mt-20" data-page="price-comparison">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-[var(--light-text-on-dark)]">Compare e Economize!</h2>
+                <p class="text-xl text-[var(--secondary-text-on-dark)] mb-8">Veja como a Velotex TV se compara aos principais serviços de streaming do mercado:</p>
+                <div class="overflow-x-auto">
+                    <table class="comparison-table mx-auto max-w-2xl">
+                        <thead>
+                            <tr>
+                                <th>Serviço</th>
+                                <th>Preço Mensal (aprox.)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Netflix (Padrão)</td><td>R$ 39,90</td></tr>
+                            <tr><td>Prime Video</td><td>R$ 19,90</td></tr>
+                            <tr><td>HBO Max</td><td>R$ 34,90</td></tr>
+                            <tr><td>Disney+</td><td>R$ 33,90</td></tr>
+                            <tr><td>Globoplay (Básico)</td><td>R$ 24,90</td></tr>
+                            <tr><td>Sky (Pacote Básico Streaming)</td><td>R$ 49,90</td></tr>
+                            <tr class="highlight-row"><td>Velotex TV</td><td>R$ 25,00</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="text-sm text-[var(--secondary-text-on-dark)] mt-8">
+                    * Os preços dos outros serviços são aproximados e podem variar de acordo com o plano e promoções.
+                </p>
+            </div>
+        </section>
+
+        <!-- Plans Section: Presents subscription options -->
+        <section id="plans" class="py-16 relative overflow-hidden section-dark" data-page="plans">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-[var(--light-text-on-dark)]">Nossos Planos</h2>
+                <p class="text-xl text-center text-[var(--secondary-text-on-dark)] mb-12">Escolha o plano perfeito para sua diversão</p>
+                <div class="max-w-md mx-auto">
+                    <!-- Monthly Plan Card -->
+                    <div class="plan-card p-8 rounded-xl shadow-lg animate-fade-in-up">
+                        <h3 class="text-2xl font-bold mb-2 text-[var(--light-text-on-dark)]">Plano Mensal</h3>
+                        <div class="flex items-end mb-4">
+                            <span class="text-4xl md:text-5xl font-bold text-[var(--primary-accent-green)]">R$ 25</span>
+                            <span class="text-[var(--secondary-text-on-dark)] ml-2">/mês</span>
+                        </div>
+                        <ul class="mb-6 space-y-2">
+                            <li class="flex items-center text-[var(--light-text-on-dark)]"><i class="fas fa-check text-[var(--success-green)] mr-2"></i><span>200+ canais em HD</span></li>
+                            <li class="flex items-center text-[var(--light-text-on-dark)]"><i class="fas fa-check text-[var(--success-green)] mr-2"></i><span>Filmes e séries on demand</span></li>
+                            <li class="flex items-center text-[var(--light-text-on-dark)]"><i class="fas fa-check text-[var(--success-green)] mr-2"></i><span>Suporte 24/7</span></li>
+                            <li class="flex items-center text-[var(--light-text-on-dark)]"><i class="fas fa-check text-[var(--success-green)] mr-2"></i><span>Cancelamento a qualquer momento</span></li>
+                        </ul>
+                        <button id="plans-subscribe-button" class="btn-primary w-full" aria-label="Choose Subscription" data-target-page="comanda-section">Escolher Assinatura</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Free Trial Section: Invitation to try the service -->
+        <section id="free-trial" class="py-16 bg-[var(--main-dark-bg)] relative overflow-hidden scroll-mt-20" data-page="free-trial">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-[var(--light-text-on-dark)]">Experimente Grátis por 3 Horas!</h2>
+                <p class="text-xl text-[var(--secondary-text-on-dark)] mb-8">Curioso para conhecer a Velotex TV? Teste nosso serviço por 3 horas sem compromisso e descubra o melhor do entretenimento!</p>
+                <button id="free-trial-button" class="btn-primary" aria-label="Free Trial" data-target-page="free-trial-form-section">Quero meu Teste Grátis!</button>
+            </div>
+        </section>
+
+        <!-- "How It Works" Section: Explains the service usage process -->
+        <section id="how-it-works" class="py-16 bg-[var(--main-dark-bg)] relative overflow-hidden" data-page="how-it-works">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-[var(--light-text-on-dark)]">Como Funciona?</h2>
+                <p class="text-xl text-[var(--secondary-text-on-dark)] mb-12">É simples e rápido começar a usar a Velotex TV!</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Card "Choose your Plan" -->
+                    <div class="how-it-works-card p-6 rounded-xl shadow-md animate-fade-in-up">
+                        <div class="relative w-16 h-16 bg-[var(--subtle-green-bg-dark)] rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-user-plus text-[var(--primary-accent-green)] text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-center mb-2 text-[var(--light-text-on-dark)]">1. Escolha seu Plano</h3>
+                        <p class="text-[var(--secondary-text-on-dark)]">Selecione o plano mensal que melhor se adapta às suas necessidades.</p>
+                    </div>
+                    <!-- Card "Pay via PIX" -->
+                    <div class="how-it-works-card p-6 rounded-xl shadow-md animate-fade-in-up delay-1">
+                        <div class="relative w-16 h-16 bg-[var(--subtle-green-bg-dark)] rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-money-bill-wave text-[var(--primary-accent-green)] text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-[var(--light-text-on-dark)]">2. Pague via PIX</h3>
+                        <p class="text-[var(--secondary-text-on-dark)]">Realize o pagamento de forma rápida e segura utilizando o PIX.</p>
+                    </div>
+                    <!-- Card "Start Watching" -->
+                    <div class="how-it-works-card p-6 rounded-xl shadow-md animate-fade-in-up delay-2">
+                        <div class="relative w-16 h-16 bg-[var(--subtle-green-bg-dark)] rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-play-circle text-[var(--primary-accent-green)] text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-[var(--light-text-on-dark)]">3. Comece a Assistir</h3>
+                        <p class="text-[var(--secondary-text-on-dark)]">Após a confirmação, seu acesso é liberado e você já pode desfrutar!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- National Presence Section: Highlights service coverage -->
+        <section id="brazil-presence" class="py-16 bg-[var(--main-dark-bg)] relative overflow-hidden" data-page="brazil-presence">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-[var(--light-text-on-dark)]">Presente em Todo o Brasil!</h2>
+                <p class="text-xl text-[var(--secondary-text-on-dark)] mb-8">A Velotex TV leva o melhor do entretenimento para todos os cantos do país.</p>
+                <!-- Visual separator with Brazil flag colors -->
+                <div class="brazil-flag-separator"></div>
+                <p class="text-[var(--secondary-text-on-dark)] mt-8 max-w-2xl mx-auto">Com nossa infraestrutura robusta e parcerias estratégicas, garantimos que você tenha acesso aos seus canais, filmes e séries favoritos, não importa onde esteja no Brasil.</p>
+            </div>
+        </section>
+
+        <!-- Frequently Asked Questions (FAQ) Section: Answers to common questions -->
+        <section id="faq" class="py-16 relative overflow-hidden section-dark" data-page="faq">
+            <div class="container mx-auto px-4 max-w-4xl">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-[var(--light-text-on-dark)]">Perguntas Frequentes</h2>
+                <div class="space-y-4">
+                    <!-- FAQ Item: How is payment made? -->
+                    <div class="faq-item border rounded-lg overflow-hidden">
+                        <button class="faq-question w-full flex justify-between items-center p-4 transition duration-200 ease-in-out">
+                            <span class="font-medium text-left text-[var(--light-text-on-dark)]">Como é feito o pagamento?</span>
+                            <i class="fas fa-chevron-down text-[var(--light-text-on-dark)] transition-transform"></i>
                         </button>
+                        <div class="accordion-content"><div class="p-4"><p class="text-[var(--secondary-text-on-dark)]">Aceitamos pagamentos exclusivamente via PIX, que é rápido, seguro e sem taxas. Após a confirmação do pagamento, seu acesso é liberado imediatamente.</p></div></div>
                     </div>
-                </div>
-                <!-- Success message for the payment form -->
-                <div id="comanda-success-message" class="mt-4 text-center text-sm hidden">
-                    <div class="message-box">
-                        <p class="text-lg font-semibold">Seu pedido de ativação foi enviado!</p>
-                        <p>Verifique o WhatsApp para mais detalhes sobre a ativação do seu plano.</p>
+                    <!-- FAQ Item: How many devices can watch simultaneously? -->
+                    <div class="faq-item border rounded-lg overflow-hidden">
+                        <button class="faq-question w-full flex justify-between items-center p-4 transition duration-200 ease-in-out">
+                            <span class="font-medium text-left text-[var(--light-text-on-dark)]">Quantos dispositivos podem assistir simultaneamente?</span>
+                            <i class="fas fa-chevron-down text-[var(--light-text-on-dark)] transition-transform"></i>
+                        </button>
+                        <div class="accordion-content"><div class="p-4"><p class="text-[var(--secondary-text-on-dark)]">Cada assinatura permite apenas 1 dispositivo assistindo simultaneamente. Isso garante a melhor qualidade de streaming para você.</p></div></div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- New Section: Free Trial Form -->
-    <section id="free-trial-form-section" class="py-12 bg-[var(--main-dark-bg)] text-[var(--light-text-on-dark)] hidden" data-section-main>
-        <div class="container mx-auto px-4">
-            <div class="max-w-xl mx-auto bg-[var(--card-dark-bg)] p-8 rounded-xl shadow-lg border border-[var(--dark-border-color)]">
-                <h2 class="text-2xl font-bold text-center mb-8 text-[var(--light-text-on-dark)]">Ative seu Teste Grátis de 3 Horas!</h2>
-                <p class="text-center text-[var(--secondary-text-on-dark)] mb-6">Preencha seus dados para começar a desfrutar da Velotex TV.</p>
-                <form id="free-trial-form" class="space-y-6">
-                    <div>
-                        <label for="free-trial-name" class="block text-[var(--light-text-on-dark)] font-medium mb-2">Nome Completo</label>
-                        <input type="text" id="free-trial-name" name="name" required class="input-field" placeholder="Seu nome completo">
+                    <!-- FAQ Item: Which devices are compatible? -->
+                    <div class="faq-item border rounded-lg overflow-hidden">
+                        <button class="faq-question w-full flex justify-between items-center p-4 transition duration-200 ease-in-out">
+                            <span class="font-medium text-left text-[var(--light-text-on-dark)]">Quais dispositivos são compatíveis com a Velotex TV?</span>
+                            <i class="fas fa-chevron-down text-[var(--light-text-on-dark)] transition-transform"></i>
+                        </button>
+                        <div class="accordion-content"><div class="p-4"><p class="text-[var(--secondary-text-on-dark)]">A Velotex TV é compatível com smartphones e tablets (Android e iOS), computadores (Windows e Mac), Smart TVs (Android TV, Samsung Tizen, LG WebOS), e dispositivos de streaming como Chromecast, Fire TV Stick e Apple TV.</p></div></div>
                     </div>
-                    <div>
-                        <label for="free-trial-email" class="block text-[var(--light-text-on-dark)] font-medium mb-2">E-mail</label>
-                        <input type="email" id="free-trial-email" name="email" required class="input-field" placeholder="seuemail@exemplo.com">
+                    <!-- FAQ Item: Can I cancel at any time? -->
+                    <div class="faq-item border rounded-lg overflow-hidden">
+                        <button class="faq-question w-full flex justify-between items-center p-4 transition duration-200 ease-in-out">
+                            <span class="font-medium text-left text-[var(--light-text-on-dark)]">Posso cancelar a qualquer momento?</span>
+                            <i class="fas fa-chevron-down text-[var(--light-text-on-dark)] transition-transform"></i>
+                        </button>
+                        <div class="accordion-content"><div class="p-4"><p class="text-[var(--secondary-text-on-dark)]">Sim! Você pode cancelar seu plano a qualquer momento sem multa. O cancelamento é imediato.</p></div></div>
                     </div>
-                    <div>
-                        <label for="free-trial-phone" class="block text-[var(--light-text-on-dark)] font-medium mb-2">Celular (WhatsApp)</label>
-                        <input type="tel" id="free-trial-phone" name="phone" required class="input-field" placeholder="(XX) XXXXX-XXXX">
-                    </div>
-                    <button type="submit" class="btn-primary w-full" id="free-trial-activate-button">
-                        <span id="free-trial-button-text">Ativar Teste Grátis</span>
-                        <div id="free-trial-spinner" class="spinner hidden ml-3"></div>
-                    </button>
-                </form>
-                <div id="free-trial-message" class="mt-4 text-center text-sm">
-                    <div class="message-box hidden">
-                        <p class="text-lg font-semibold">Seu pedido de teste grátis foi enviado!</p>
-                        <p>Verifique o WhatsApp para ativação.</p>
+                    <!-- FAQ Item: Is there any loyalty period? -->
+                    <div class="faq-item border rounded-lg overflow-hidden">
+                        <button class="faq-question w-full flex justify-between items-center p-4 transition duration-200 ease-in-out">
+                            <span class="font-medium text-left text-[var(--light-text-on-dark)]">Há algum tipo de fidelidade?</span>
+                            <i class="fas fa-chevron-down text-[var(--light-text-on-dark)] transition-transform"></i>
+                        </button>
+                        <div class="accordion-content"><div class="p-4"><p class="text-[var(--secondary-text-on-dark)]">Não temos fidelidade em nenhum de nossos planos. Você pode cancelar quando quiser sem nenhuma penalidade.</p></div></div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- "How It Works" Section: Explains the service usage process -->
-    <section id="how-it-works" class="py-16 bg-[var(--main-dark-bg)] relative overflow-hidden" data-section-main>
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-[var(--light-text-on-dark)]">Como Funciona?</h2>
-            <p class="text-xl text-[var(--secondary-text-on-dark)] mb-12">É simples e rápido começar a usar a Velotex TV!</p>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Card "Choose your Plan" -->
-                <div class="how-it-works-card p-6 rounded-xl shadow-md animate-fade-in-up">
-                    <div class="relative w-16 h-16 bg-[var(--subtle-green-bg-dark)] rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-user-plus text-[var(--primary-accent-green)] text-2xl"></i>
+        <!-- Order Section (Client Form and PIX Payment): Hidden by default -->
+        <section id="comanda-section" class="py-12 bg-[var(--main-dark-bg)] text-[var(--light-text-on-dark)] hidden" data-page="comanda-section">
+            <div class="container mx-auto px-4">
+                <div class="max-w-xl mx-auto bg-[var(--card-dark-bg)] p-8 rounded-xl shadow-lg border border-[var(--dark-border-color)]">
+                    <h2 class="text-2xl font-bold text-center mb-8 text-[var(--light-text-on-dark)]">Dados do Cliente e Plano Mensal</h2>
+                    <form id="comanda-form" class="space-y-6">
+                        <div>
+                            <label for="comanda-name" class="block text-[var(--light-text-on-dark)] font-medium mb-2">Nome Completo</label>
+                            <input type="text" id="comanda-name" name="name" required class="input-field" placeholder="Seu nome completo">
+                        </div>
+                        <div>
+                            <label for="comanda-email" class="block text-[var(--light-text-on-dark)] font-medium mb-2">E-mail</label>
+                            <input type="email" id="comanda-email" name="email" required class="input-field" placeholder="seuemail@exemplo.com">
+                        </div>
+                        <div>
+                            <label for="comanda-phone" class="block text-[var(--light-text-on-dark)] font-medium mb-2">Celular (WhatsApp)</label>
+                            <input type="tel" id="comanda-phone" name="phone" required class="input-field" placeholder="(XX) XXXXX-XXXX">
+                        </div>
+                        <div>
+                            <label for="comanda-plan" class="block text-[var(--light-text-on-dark)] font-medium mb-2">Plano Selecionado</label>
+                            <input type="text" id="comanda-plan" name="plan" value="Plano Mensal - R$ 25,00" readonly class="input-field bg-[var(--main-dark-bg)] cursor-not-allowed">
+                        </div>
+                        <!-- Button to Generate PIX -->
+                        <button type="submit" class="btn-primary w-full" id="comanda-generate-pix-button">
+                            <span id="comanda-button-text">Gerar PIX para Pagamento</span>
+                            <div id="comanda-spinner" class="spinner hidden ml-3"></div>
+                        </button>
+                    </form>
+                    <!-- PIX Payment Section (visibility controlled by JS) -->
+                    <div id="comanda-pix-payment-section" class="pix-container mt-10 hidden">
+                        <h3 class="text-xl font-bold text-center mb-6 text-[var(--primary-accent-green)]">Realize o Pagamento via PIX</h3>
+                        <div class="flex flex-col items-center space-y-6">
+                            <p class="text-[var(--light-text-on-dark)] text-center">Escaneie o QR Code ou use a Chave PIX abaixo para pagar:</p>
+                            <div class="qr-code-wrapper">
+                                <!-- PIX QR Code - Direct Imgur image, with fallback -->
+                                <img id="comanda-qr-code-img" src="https://i.imgur.com/XKLweH0.png" alt="QR Code PIX for Velotex TV subscription payment" class="qr-code-img w-48 h-48 mx-auto" onerror="this.onerror=null;this.src='https://placehold.co/192x192/2ECC71/FFFFFF?text=QR+Code+Indisponível'; console.error('Error loading QR Code image. Check URL or connection.');">
+                            </div>
+                            <div class="text-center">
+                                <p class="text-[var(--light-text-on-dark)] font-medium">Chave PIX Aleatória:</p>
+                                <p id="comanda-pix-key" class="text-xl font-bold text-[var(--light-text-on-dark)] break-all">8e01ee02-20f5-4e51-8422-ba84a7ebfe22</p>
+                                <button id="comanda-copy-pix-key" class="mt-2 bg-[var(--dark-border-color)] text-[var(--light-text-on-dark)] px-4 py-2 rounded-md hover:bg-gray-700 transition text-sm">
+                                    <i class="fas fa-copy mr-2"></i>Copiar Chave
+                                </button>
+                                <p id="comanda-copy-message" class="text-[var(--success-green)] text-sm mt-1 hidden">Copiado!</p>
+                            </div>
+                            <p class="text-sm text-[var(--light-text-on-dark)] text-center">Após o pagamento, clique no botão abaixo para nos enviar a confirmação e ativar seu serviço.</p>
+                            <!-- Button to send proof via WhatsApp -->
+                            <button id="comanda-send-to-whatsapp-button" class="btn-primary w-full mt-6">
+                                <i class="fab fa-whatsapp text-2xl mr-3"></i>
+                                Enviar Comprovante e Ativar
+                            </button>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold text-center mb-2 text-[var(--light-text-on-dark)]">1. Escolha seu Plano</h3>
-                    <p class="text-[var(--secondary-text-on-dark)]">Selecione o plano mensal que melhor se adapta às suas necessidades.</p>
-                </div>
-                <!-- Card "Pay via PIX" -->
-                <div class="how-it-works-card p-6 rounded-xl shadow-md animate-fade-in-up delay-1">
-                    <div class="relative w-16 h-16 bg-[var(--subtle-green-bg-dark)] rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-money-bill-wave text-[var(--primary-accent-green)] text-2xl"></i>
+                    <!-- Success message for the payment form -->
+                    <div id="comanda-success-message" class="mt-4 text-center text-sm hidden">
+                        <div class="message-box">
+                            <p class="text-lg font-semibold">Seu pedido de ativação foi enviado!</p>
+                            <p>Verifique o WhatsApp para mais detalhes sobre a ativação do seu plano.</p>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold mb-2 text-[var(--light-text-on-dark)]">2. Pague via PIX</h3>
-                    <p class="text-[var(--secondary-text-on-dark)]">Realize o pagamento de forma rápida e segura utilizando o PIX.</p>
-                </div>
-                <!-- Card "Start Watching" -->
-                <div class="how-it-works-card p-6 rounded-xl shadow-md animate-fade-in-up delay-2">
-                    <div class="relative w-16 h-16 bg-[var(--subtle-green-bg-dark)] rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-play-circle text-[var(--primary-accent-green)] text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2 text-[var(--light-text-on-dark)]">3. Comece a Assistir</h3>
-                    <p class="text-[var(--secondary-text-on-dark)]">Após a confirmação, seu acesso é liberado e você já pode desfrutar!</p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Server Status Section: Informs about service availability -->
-    <section id="server-status" class="py-16 relative overflow-hidden section-dark" data-section-main>
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-[var(--light-text-on-dark)]">Status do Servidor</h2>
-            <p class="text-xl text-[var(--secondary-text-on-dark)] mb-8">Verifique a disponibilidade e o desempenho dos nossos serviços.</p>
-            <div class="max-w-xl mx-auto p-8 rounded-xl shadow-lg border border-[var(--dark-border-color)] bg-[var(--card-dark-bg)]">
-                <div class="flex items-center justify-center mb-6">
-                    <div id="status-indicator" class="w-5 h-5 rounded-full mr-3" style="background-color: var(--success-green);"></div>
-                    <p id="status-message" class="text-2xl font-bold text-[var(--light-text-on-dark)]">Serviços Online</p>
-                </div>
-                <p class="text-[var(--secondary-text-on-dark)] mb-6">Nosso sistema de streaming está operando em capacidade total com excelente desempenho.</p>
-                <!-- Animated Line Chart for status visualization -->
-                <div class="line-chart-container">
-                    <div class="line-segment"></div><div class="line-segment"></div><div class="line-segment"></div><div class="line-segment"></div><div class="line-segment"></div><div class="line-segment"></div><div class="line-segment"></div><div class="line-segment"></div><div class="line-segment"></div><div class="line-segment"></div>
+        <!-- New Section: Free Trial Form -->
+        <section id="free-trial-form-section" class="py-12 bg-[var(--main-dark-bg)] text-[var(--light-text-on-dark)] hidden" data-page="free-trial-form-section">
+            <div class="container mx-auto px-4">
+                <div class="max-w-xl mx-auto bg-[var(--card-dark-bg)] p-8 rounded-xl shadow-lg border border-[var(--dark-border-color)]">
+                    <h2 class="text-2xl font-bold text-center mb-8 text-[var(--light-text-on-dark)]">Ative seu Teste Grátis de 3 Horas!</h2>
+                    <p class="text-center text-[var(--secondary-text-on-dark)] mb-6">Preencha seus dados para começar a desfrutar da Velotex TV.</p>
+                    <form id="free-trial-form" class="space-y-6">
+                        <div>
+                            <label for="free-trial-name" class="block text-[var(--light-text-on-dark)] font-medium mb-2">Nome Completo</label>
+                            <input type="text" id="free-trial-name" name="name" required class="input-field" placeholder="Seu nome completo">
+                        </div>
+                        <div>
+                            <label for="free-trial-email" class="block text-[var(--light-text-on-dark)] font-medium mb-2">E-mail</label>
+                            <input type="email" id="free-trial-email" name="email" required class="input-field" placeholder="seuemail@exemplo.com">
+                        </div>
+                        <div>
+                            <label for="free-trial-phone" class="block text-[var(--light-text-on-dark)] font-medium mb-2">Celular (WhatsApp)</label>
+                            <input type="tel" id="free-trial-phone" name="phone" required class="input-field" placeholder="(XX) XXXXX-XXXX">
+                        </div>
+                        <button type="submit" class="btn-primary w-full" id="free-trial-activate-button">
+                            <span id="free-trial-button-text">Ativar Teste Grátis</span>
+                            <div id="free-trial-spinner" class="spinner hidden ml-3"></div>
+                        </button>
+                    </form>
+                    <div id="free-trial-message" class="mt-4 text-center text-sm">
+                        <div class="message-box hidden">
+                            <p class="text-lg font-semibold">Seu pedido de teste grátis foi enviado!</p>
+                            <p>Verifique o WhatsApp para ativação.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- National Presence Section: Highlights service coverage -->
-    <section id="brazil-presence" class="py-16 bg-[var(--main-dark-bg)] relative overflow-hidden" data-section-main>
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-[var(--light-text-on-dark)]">Presente em Todo o Brasil!</h2>
-            <p class="text-xl text-[var(--secondary-text-on-dark)] mb-8">A Velotex TV leva o melhor do entretenimento para todos os cantos do país.</p>
-            <!-- Visual separator with Brazil flag colors -->
-            <div class="brazil-flag-separator"></div>
-            <p class="text-[var(--secondary-text-on-dark)] mt-8 max-w-2xl mx-auto">Com nossa infraestrutura robusta e parcerias estratégicas, garantimos que você tenha acesso aos seus canais, filmes e séries favoritos, não importa onde esteja no Brasil.</p>
-        </div>
-    </section>
-
-    <!-- Frequently Asked Questions (FAQ) Section: Answers to common questions -->
-    <section id="faq" class="py-16 relative overflow-hidden section-dark" data-section-main>
-        <div class="container mx-auto px-4 max-w-4xl">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-[var(--light-text-on-dark)]">Perguntas Frequentes</h2>
-            <div class="space-y-4">
-                <!-- FAQ Item: How is payment made? -->
-                <div class="faq-item border rounded-lg overflow-hidden">
-                    <button class="faq-question w-full flex justify-between items-center p-4 transition duration-200 ease-in-out">
-                        <span class="font-medium text-left text-[var(--light-text-on-dark)]">Como é feito o pagamento?</span>
-                        <i class="fas fa-chevron-down text-[var(--light-text-on-dark)] transition-transform"></i>
-                    </button>
-                    <div class="accordion-content"><div class="p-4"><p class="text-[var(--secondary-text-on-dark)]">Aceitamos pagamentos exclusivamente via PIX, que é rápido, seguro e sem taxas. Após a confirmação do pagamento, seu acesso é liberado imediatamente.</p></div></div>
-                </div>
-                <!-- FAQ Item: How many devices can watch simultaneously? -->
-                <div class="faq-item border rounded-lg overflow-hidden">
-                    <button class="faq-question w-full flex justify-between items-center p-4 transition duration-200 ease-in-out">
-                        <span class="font-medium text-left text-[var(--light-text-on-dark)]">Quantos dispositivos podem assistir simultaneamente?</span>
-                        <i class="fas fa-chevron-down text-[var(--light-text-on-dark)] transition-transform"></i>
-                    </button>
-                    <div class="accordion-content"><div class="p-4"><p class="text-[var(--secondary-text-on-dark)]">Cada assinatura permite apenas 1 dispositivo assistindo simultaneamente. Isso garante a melhor qualidade de streaming para você.</p></div></div>
-                </div>
-                <!-- FAQ Item: Which devices are compatible? -->
-                <div class="faq-item border rounded-lg overflow-hidden">
-                    <button class="faq-question w-full flex justify-between items-center p-4 transition duration-200 ease-in-out">
-                        <span class="font-medium text-left text-[var(--light-text-on-dark)]">Quais dispositivos são compatíveis com a Velotex TV?</span>
-                        <i class="fas fa-chevron-down text-[var(--light-text-on-dark)] transition-transform"></i>
-                    </button>
-                    <div class="accordion-content"><div class="p-4"><p class="text-[var(--secondary-text-on-dark)]">A Velotex TV é compatível com smartphones e tablets (Android e iOS), computadores (Windows e Mac), Smart TVs (Android TV, Samsung Tizen, LG WebOS), e dispositivos de streaming como Chromecast, Fire TV Stick e Apple TV.</p></div></div>
-                </div>
-                <!-- FAQ Item: Can I cancel at any time? -->
-                <div class="faq-item border rounded-lg overflow-hidden">
-                    <button class="faq-question w-full flex justify-between items-center p-4 transition duration-200 ease-in-out">
-                        <span class="font-medium text-left text-[var(--light-text-on-dark)]">Posso cancelar a qualquer momento?</span>
-                        <i class="fas fa-chevron-down text-[var(--light-text-on-dark)] transition-transform"></i>
-                    </button>
-                    <div class="accordion-content"><div class="p-4"><p class="text-[var(--secondary-text-on-dark)]">Sim! Você pode cancelar seu plano a qualquer momento sem multa. O cancelamento é imediato.</p></div></div>
-                </div>
-                <!-- FAQ Item: Is there any loyalty period? -->
-                <div class="faq-item border rounded-lg overflow-hidden">
-                    <button class="faq-question w-full flex justify-between items-center p-4 transition duration-200 ease-in-out">
-                        <span class="font-medium text-left text-[var(--light-text-on-dark)]">Há algum tipo de fidelidade?</span>
-                        <i class="fas fa-chevron-down text-[var(--light-text-on-dark)] transition-transform"></i>
-                    </button>
-                    <div class="accordion-content"><div class="p-4"><p class="text-[var(--secondary-text-on-dark)]">Não temos fidelidade em nenhum de nossos planos. Você pode cancelar quando quiser sem nenhuma penalidade.</p></div></div>
+        <!-- Server Status Section: Informs about service availability -->
+        <section id="server-status" class="py-16 relative overflow-hidden section-dark hidden" data-page="server-status">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-[var(--light-text-on-dark)]">Status do Servidor</h2>
+                <p class="text-xl text-[var(--secondary-text-on-dark)] mb-8">Verifique a disponibilidade e o desempenho dos nossos serviços.</p>
+                <div class="max-w-xl mx-auto p-8 rounded-xl shadow-lg border border-[var(--dark-border-color)] bg-[var(--card-dark-bg)]">
+                    <div class="flex items-center justify-center mb-6">
+                        <div id="status-indicator" class="w-5 h-5 rounded-full mr-3" style="background-color: var(--success-green);"></div>
+                        <p id="status-message" class="text-2xl font-bold text-[var(--light-text-on-dark)]">Serviços Online</p>
+                    </div>
+                    <p class="text-[var(--secondary-text-on-dark)] mb-6">Nosso sistema de streaming está operando em capacidade total com excelente desempenho.</p>
+                    <!-- Animated Line Chart for status visualization -->
+                    <div class="line-chart-container">
+                        <div class="line-segment"></div><div class="line-segment"></div><div class="line-segment"></div><div class="line-segment"></div><div class="line-segment"></div><div class="line-segment"></div><div class="line-segment"></div><div class="line-segment"></div><div class="line-segment"></div><div class="line-segment"></div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <!-- Recommended Apps Section -->
+        <section id="recommended-apps" class="py-16 bg-[var(--main-dark-bg)] relative overflow-hidden hidden" data-page="recommended-apps">
+            <div class="container mx-auto px-4 max-w-4xl">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-[var(--light-text-on-dark)]">Aplicativos Recomendados</h2>
+                <p class="text-xl text-[var(--secondary-text-on-dark)] text-center mb-8">Para uma melhor experiência com a Velotex TV, recomendamos os seguintes aplicativos:</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Android/iOS Apps -->
+                    <div class="feature-card p-6 rounded-xl shadow-md">
+                        <div class="relative w-16 h-16 bg-[var(--subtle-green-bg-dark)] rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fab fa-android text-[var(--primary-accent-green)] text-3xl"></i>
+                            <i class="fab fa-apple text-[var(--primary-accent-green)] text-3xl absolute top-0 right-0 -mr-4 -mt-4"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-center mb-4 text-[var(--light-text-on-dark)]">Smartphones e Tablets (Android/iOS)</h3>
+                        <ul class="list-disc list-inside space-y-2 text-[var(--secondary-text-on-dark)] ml-4">
+                            <li><strong>XTV Ultra:</strong> Leve e eficiente, ideal para dispositivos móveis.</li>
+                            <li><strong>iMPlayer:</strong> Interface intuitiva e recursos avançados para uma experiência completa.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Desktop/TV Box/Android TV Apps -->
+                    <div class="feature-card p-6 rounded-xl shadow-md">
+                        <div class="relative w-16 h-16 bg-[var(--subtle-green-bg-dark)] rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-desktop text-[var(--primary-accent-green)] text-3xl"></i>
+                            <i class="fas fa-tv text-[var(--primary-accent-green)] text-3xl absolute top-0 right-0 -mr-4 -mt-4"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-center mb-4 text-[var(--light-text-on-dark)]">Desktop, TV Box e Android TV</h3>
+                        <ul class="list-disc list-inside space-y-2 text-[var(--secondary-text-on-dark)] ml-4">
+                            <li><strong>Smarters Player Pro:</strong> Versátil e robusto para computadores.</li>
+                            <li><strong>XTV Ultra:</strong> Ótima performance e compatibilidade com TV Boxes e Android TVs.</li>
+                            <li><strong>iMPlayer:</strong> Experiência otimizada para telas maiores e controle remoto.</li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="text-sm text-[var(--secondary-text-on-dark)] text-center mt-8">
+                    * Verifique a loja de aplicativos do seu dispositivo para fazer o download. A Velotex TV não é afiliada a estes aplicativos, apenas os recomenda para melhor compatibilidade.
+                </p>
+            </div>
+        </section>
+
+        <!-- Termos de Uso Section -->
+        <section id="termos-de-uso" class="py-16 bg-[var(--main-dark-bg)] relative overflow-hidden hidden" data-page="termos-de-uso">
+            <div class="container mx-auto px-4 max-w-4xl">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-[var(--light-text-on-dark)]">Termos de Uso</h2>
+                <div class="text-[var(--secondary-text-on-dark)] space-y-4">
+                    <p>Bem-vindo(a) à Velotex TV! Ao acessar e utilizar nossos serviços, você concorda em cumprir e estar vinculado(a) aos seguintes termos e condições de uso. Por favor, leia-os atentamente.</p>
+                    
+                    <h3 class="text-2xl font-bold text-[var(--light-text-on-dark)] mt-8 mb-4">1. Aceitação dos Termos</h3>
+                    <p>Ao se registrar, acessar ou usar a Velotex TV, você concorda com estes Termos de Uso. Se você não concorda com qualquer parte destes termos, não deve usar nossos serviços.</p>
+
+                    <h3 class="text-2xl font-bold text-[var(--light-text-on-dark)] mt-8 mb-4">2. Alterações nos Termos</h3>
+                    <p>Reservamo-nos o direito de modificar estes Termos a qualquer momento. As alterações entrarão em vigor imediatamente após a publicação em nosso site. Seu uso continuado dos serviços após tais modificações constitui sua aceitação dos novos Termos.</p>
+
+                    <h3 class="text-2xl font-bold text-[var(--light-text-on-dark)] mt-8 mb-4">3. Acesso e Uso do Serviço</h3>
+                    <p>A Velotex TV oferece acesso a canais de TV, filmes e séries sob demanda. Você concorda em usar o serviço apenas para fins pessoais e não comerciais.</p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li>Não é permitido o compartilhamento de sua conta ou credenciais de acesso.</li>
+                        <li>O uso simultâneo é limitado a 1 (um) dispositivo por assinatura.</li>
+                        <li>É proibido qualquer tipo de revenda ou distribuição do conteúdo.</li>
+                        <li>Você é responsável por manter a confidencialidade de suas informações de login.</li>
+                    </ul>
+
+                    <h3 class="text-2xl font-bold text-[var(--light-text-on-dark)] mt-8 mb-4">4. Pagamento e Assinatura</h3>
+                    <p>Os pagamentos são processados via PIX. Ao assinar, você concorda em pagar as taxas de assinatura aplicáveis. Os planos são mensais e podem ser cancelados a qualquer momento sem multa.</p>
+
+                    <h3 class="text-2xl font-bold text-[var(--light-text-on-dark)] mt-8 mb-4">5. Conteúdo</h3>
+                    <p>Todo o conteúdo disponível na Velotex TV é protegido por direitos autorais e outras leis de propriedade intelectual. Você não pode reproduzir, distribuir, modificar, exibir, executar, publicar, licenciar, criar trabalhos derivados, vender ou explorar qualquer conteúdo sem permissão prévia.</p>
+
+                    <h3 class="2xl font-bold text-[var(--light-text-on-dark)] mt-8 mb-4">6. Limitação de Responsabilidade</h3>
+                    <p>A Velotex TV não garante que o serviço será ininterrupto ou livre de erros. Não nos responsabilizamos por quaisquer danos diretos, indiretos, incidentais, especiais ou consequenciais resultantes do uso ou da incapacidade de usar o serviço.</p>
+
+                    <h3 class="text-2xl font-bold text-[var(--light-text-on-dark)] mt-8 mb-4">7. Rescisão</h3>
+                    <p>Podemos rescindir ou suspender seu acesso ao serviço imediatamente, sem aviso prévio ou responsabilidade, por qualquer motivo, incluindo, sem limitação, se você violar os Termos.</p>
+
+                    <h3 class="text-2xl font-bold text-[var(--light-text-on-dark)] mt-8 mb-4">8. Lei Aplicável</h3>
+                    <p>Estes Termos serão regidos e interpretados de acordo com as leis do Brasil.</p>
+
+                    <p class="mt-8">Para qualquer dúvida ou esclarecimento sobre estes Termos de Uso, entre em contato conosco através dos canais de suporte.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Política de Privacidade Section -->
+        <section id="politica-de-privacidade" class="py-16 bg-[var(--main-dark-bg)] relative overflow-hidden hidden" data-page="politica-de-privacidade">
+            <div class="container mx-auto px-4 max-w-4xl">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-[var(--light-text-on-dark)]">Política de Privacidade</h2>
+                <div class="text-[var(--secondary-text-on-dark)] space-y-4">
+                    <p>A sua privacidade é de extrema importância para nós da Velotex TV. Esta Política de Privacidade descreve como coletamos, usamos, armazenamos e protegemos suas informações pessoais ao utilizar nossos serviços.</p>
+
+                    <h3 class="text-2xl font-bold text-[var(--light-text-on-dark)] mt-8 mb-4">1. Coleta de Informações</h3>
+                    <p>Coletamos informações para fornecer e melhorar nossos serviços. Isso inclui:</p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li><strong>Informações de Cadastro:</strong> Nome completo, e-mail, número de telefone (WhatsApp) fornecidos por você ao se registrar ou solicitar um teste grátis.</li>
+                        <li><strong>Informações de Uso:</strong> Dados sobre como você interage com o serviço, como histórico de visualização, preferências de conteúdo e tempo de uso.</li>
+                        <li><strong>Dados Técnicos:</strong> Endereço IP, tipo de dispositivo, sistema operacional, navegador, e informações de conexão para otimizar a experiência e garantir a segurança.</li>
+                    </ul>
+
+                    <h3 class="text-2xl font-bold text-[var(--light-text-on-dark)] mt-8 mb-4">2. Uso das Informações</h3>
+                    <p>Utilizamos as informações coletadas para:</p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li>Fornecer, manter e melhorar nossos serviços.</li>
+                        <li>Processar suas assinaturas e pagamentos.</li>
+                        <li>Personalizar sua experiência de conteúdo.</li>
+                        <li>Comunicar-nos com você sobre sua conta, atualizações e ofertas.</li>
+                        <li>Garantir a segurança e prevenir fraudes.</li>
+                        <li>Analisar o desempenho do serviço e identificar tendências de uso.</li>
+                    </ul>
+
+                    <h3 class="text-2xl font-bold text-[var(--light-text-on-dark)] mt-8 mb-4">3. Compartilhamento de Informações</h3>
+                    <p>Não vendemos, alugamos ou compartilhamos suas informações pessoais com terceiros, exceto nas seguintes circunstâncias:</p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li>Com provedores de serviços que nos auxiliam na operação do negócio (ex: processamento de pagamentos, suporte ao cliente), sempre sob acordos de confidencialidade.</li>
+                        <li>Quando exigido por lei ou ordem judicial.</li>
+                        <li>Para proteger nossos direitos, propriedade ou segurança, ou a de nossos usuários.</li>
+                    </ul>
+
+                    <h3 class="text-2xl font-bold text-[var(--light-text-on-dark)] mt-8 mb-4">4. Segurança dos Dados</h3>
+                    <p>Implementamos medidas de segurança técnicas e organizacionais para proteger suas informações pessoais contra acesso não autorizado, alteração, divulgação ou destruição. No entanto, nenhum método de transmissão pela internet ou armazenamento eletrônico é 100% seguro.</p>
+
+                    <h3 class="text-2xl font-bold text-[var(--light-text-on-dark)] mt-8 mb-4">5. Seus Direitos</h3>
+                    <p>Você tem o direito de acessar, corrigir, atualizar ou solicitar a exclusão de suas informações pessoais. Para exercer esses direitos, entre em contato conosco.</p>
+
+                    <h3 class="text-2xl font-bold text-[var(--light-text-on-dark)] mt-8 mb-4">6. Retenção de Dados</h3>
+                    <p>Reteremos suas informações pessoais apenas pelo tempo necessário para cumprir os propósitos descritos nesta Política de Privacidade, a menos que um período de retenção mais longo seja exigido ou permitido por lei.</p>
+
+                    <h3 class="text-2xl font-bold text-[var(--light-text-on-dark)] mt-8 mb-4">7. Alterações nesta Política</h3>
+                    <p>Podemos atualizar nossa Política de Privacidade periodicamente. Notificaremos você sobre quaisquer alterações publicando a nova Política de Privacidade nesta página. Aconselhamos que você revise esta Política de Privacidade periodicamente para quaisquer alterações.</p>
+
+                    <p class="mt-8">Ao usar a Velotex TV, você concorda com a coleta e o uso de informações de acordo com esta política.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Política de Cookies Section -->
+        <section id="politica-de-cookies" class="py-16 bg-[var(--main-dark-bg)] relative overflow-hidden hidden" data-page="politica-de-cookies">
+            <div class="container mx-auto px-4 max-w-4xl">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-[var(--light-text-on-dark)]">Política de Cookies</h2>
+                <div class="text-[var(--secondary-text-on-dark)] space-y-4">
+                    <p>Esta Política de Cookies explica o que são cookies e como os utilizamos na Velotex TV. Ao continuar a usar nosso site, você concorda com o uso de cookies de acordo com esta política.</p>
+
+                    <h3 class="text-2xl font-bold text-[var(--light-text-on-dark)] mt-8 mb-4">1. O que são Cookies?</h3>
+                    <p>Cookies são pequenos arquivos de texto que são armazenados em seu dispositivo (computador, tablet, celular) quando você visita um site. Eles são amplamente utilizados para fazer com que os sites funcionem, ou funcionem de forma mais eficiente, bem como para fornecer informações aos proprietários do site.</p>
+
+                    <h3 class="text-2xl font-bold text-[var(--light-text-on-dark)] mt-8 mb-4">2. Como Usamos os Cookies</h3>
+                    <p>Utilizamos cookies para diversas finalidades, incluindo:</p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li><strong>Cookies Essenciais:</strong> Necessários para o funcionamento básico do site, permitindo que você navegue e utilize recursos essenciais.</li>
+                        <li><strong>Cookies de Desempenho:</strong> Coletam informações sobre como os visitantes usam o site (ex: quais páginas são mais visitadas), ajudando-nos a melhorar a funcionalidade e a experiência do usuário.</li>
+                        <li><strong>Cookies de Funcionalidade:</strong> Permitem que o site lembre suas escolhas (ex: idioma, região) para proporcionar uma experiência mais personalizada.</li>
+                        <li><strong>Cookies de Publicidade:</strong> Usados para exibir anúncios mais relevantes para você e seus interesses.</li>
+                    </ul>
+
+                    <h3 class="text-2xl font-bold text-[var(--light-text-on-dark)] mt-8 mb-4">3. Cookies de Terceiros</h3>
+                    <p>Além dos nossos próprios cookies, também podemos usar vários cookies de terceiros para relatar estatísticas de uso do site, exibir anúncios e etc.</p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li><strong>Google Analytics:</strong> Para entender como os visitantes interagem com nosso site.</li>
+                        <li><strong>Redes Sociais:</strong> Para permitir o compartilhamento de conteúdo e a integração com plataformas sociais.</li>
+                    </ul>
+
+                    <h3 class="text-2xl font-bold text-[var(--light-text-on-dark)] mt-8 mb-4">4. Gerenciamento de Cookies</h3>
+                    <p>Você tem o direito de decidir se aceita ou rejeita cookies. Você pode configurar seu navegador para recusar todos ou alguns cookies, ou para alertá-lo quando um cookie estiver sendo enviado. No entanto, se você desabilitar os cookies, algumas partes do nosso site podem não funcionar corretamente.</p>
+                    <p>Para saber mais sobre como gerenciar cookies em seu navegador, consulte a seção de ajuda do seu navegador.</p>
+
+                    <h3 class="text-2xl font-bold text-[var(--light-text-on-dark)] mt-8 mb-4">5. Alterações nesta Política de Cookies</h3>
+                    <p>Podemos atualizar nossa Política de Cookies periodicamente. Quaisquer alterações serão publicadas nesta página.</p>
+
+                    <p class="mt-8">Se tiver alguma dúvida sobre nossa Política de Cookies, entre em contato conosco.</p>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <!-- Site Footer: Contact information, quick links, and copyright -->
     <footer class="bg-gray-900 text-white py-12 pb-40"> <!-- Adjusted for pb-40 -->
@@ -932,7 +1121,7 @@
                         <li><a href="#server-status" class="nav-link text-[var(--secondary-text-on-dark)] hover:text-white transition duration-200" data-section-link="server-status">Status do Servidor</a></li>
                         <li><a href="#brazil-presence" class="nav-link text-[var(--secondary-text-on-dark)] hover:text-white transition duration-200" data-section-link="brazil-presence">Presença Nacional</a></li>
                         <li><a href="#faq" class="nav-link text-[var(--secondary-text-on-dark)] hover:text-white transition duration-200" data-section-link="faq">FAQ</a></li>
-                        <!-- Removed Contact link from footer -->
+                        <li><a href="#recommended-apps" class="nav-link text-[var(--secondary-text-on-dark)] hover:text-white transition duration-200" data-section-link="recommended-apps">Apps Recomendados</a></li>
                     </ul>
                 </div>
                 <div>
@@ -994,49 +1183,82 @@
         }
 
         /**
-         * @function showSection
-         * @description Controls the visibility of main website sections and the back button.
-         * When 'comanda-section' or 'free-trial-form-section' is shown, others are hidden.
-         * @param {string} sectionId - The ID of the section to be shown.
+         * @function debounce
+         * @description Returns a function that delays invoking `func` until after `delay` milliseconds
+         * have passed since the last time the debounced function was invoked.
+         * @param {Function} func - The function to debounce.
+         * @param {number} delay - The number of milliseconds to delay.
+         * @returns {Function} The debounced function.
          */
-        function showSection(sectionId) {
-            const mainSections = document.querySelectorAll('section[data-section-main]');
-            const comandaSection = document.getElementById('comanda-section');
-            const freeTrialFormSection = document.getElementById('free-trial-form-section');
+        function debounce(func, delay) {
+            let timeout;
+            return function(...args) {
+                const context = this;
+                clearTimeout(timeout);
+                timeout = setTimeout(() => func.apply(context, args), delay);
+            };
+        }
+
+        /**
+         * @function navigateToPage
+         * @description Controls the visibility of different content sections (pages) in the SPA.
+         * Updates the URL hash and scrolls to the top of the new page.
+         * @param {string} pageId - The ID of the page (section) to be shown.
+         * @param {boolean} [updateHash=true] - Whether to update the URL hash (true for explicit navigation, false for initial load/popstate).
+         */
+        function navigateToPage(pageId, updateHash = true) {
+            const allPages = document.querySelectorAll('#app-content section[data-page]');
             const backButton = document.getElementById('back-button');
 
-            // Determine if we are navigating to a "special" section that requires hiding others
-            const isSpecialSection = (sectionId === 'comanda-section' || sectionId === 'free-trial-form-section');
+            // Define which pages are "main" (always visible by default when not on a peripheral page)
+            const mainPages = ['home', 'promotion-banner', 'features', 'price-comparison', 'plans', 'free-trial', 'how-it-works', 'brazil-presence', 'faq'];
+            // Define which pages are "peripheral" (hidden by default, only shown when explicitly navigated to)
+            const peripheralPages = ['comanda-section', 'free-trial-form-section', 'server-status', 'recommended-apps', 'termos-de-uso', 'politica-de-privacidade', 'politica-de-cookies'];
 
-            if (isSpecialSection) {
-                // If it's a special section, hide all main sections first
-                mainSections.forEach(section => {
-                    section.classList.add('hidden');
-                });
-                // Then show the specific special section
-                const targetSpecialSection = document.getElementById(sectionId);
-                if (targetSpecialSection) {
-                    targetSpecialSection.classList.remove('hidden');
+            // Hide all pages first
+            allPages.forEach(page => {
+                page.classList.add('hidden');
+            });
+
+            // If the target page is a peripheral page, show only that page
+            if (peripheralPages.includes(pageId)) {
+                const targetPage = document.getElementById(pageId);
+                if (targetPage) {
+                    targetPage.classList.remove('hidden');
+                } else {
+                    console.warn(`Página periférica com ID '${pageId}' não encontrada. Redirecionando para 'home'.`);
+                    document.getElementById('home')?.classList.remove('hidden');
+                    pageId = 'home'; // Fallback to home if page not found
                 }
-                // Show the back button
-                if (backButton) backButton.classList.remove('hidden');
             } else {
-                // If it's a regular navigation link (home, features, plans, etc.),
-                // ensure comanda and free trial forms are hidden, and other main sections are visible.
-                if (comandaSection) comandaSection.classList.add('hidden');
-                if (freeTrialFormSection) freeTrialFormSection.classList.add('hidden');
-                mainSections.forEach(section => {
-                    // Ensure all regular main sections are visible
-                    if (section.id !== 'comanda-section' && section.id !== 'free-trial-form-section') {
-                        section.classList.remove('hidden');
+                // If the target page is a main page, show all main pages
+                mainPages.forEach(id => {
+                    const page = document.getElementById(id);
+                    if (page) {
+                        page.classList.remove('hidden');
                     }
                 });
-                // Hide the back button
-                if (backButton) backButton.classList.add('hidden');
+                // Ensure the specific main page targeted is scrolled into view
+                const targetPage = document.getElementById(pageId);
+                if (!targetPage) {
+                    console.warn(`Página principal com ID '${pageId}' não encontrada. Redirecionando para 'home'.`);
+                    document.getElementById('home')?.classList.remove('hidden');
+                    pageId = 'home'; // Fallback to home if page not found
+                }
             }
 
-            // Scroll to the target section regardless of its type
-            const targetElement = document.getElementById(sectionId);
+            // Determine if the back button should be visible
+            // It should be visible for any page that is not 'home'
+            if (backButton) {
+                if (pageId !== 'home') {
+                    backButton.classList.remove('hidden');
+                } else {
+                    backButton.classList.add('hidden');
+                }
+            }
+
+            // Scroll to the top of the page (or the specific section if it's a main page)
+            const targetElement = document.getElementById(pageId);
             if (targetElement) {
                 const header = document.querySelector('header');
                 const headerOffset = header ? header.offsetHeight : 0;
@@ -1048,8 +1270,17 @@
                     behavior: "smooth"
                 });
             }
-            // Update active nav link
-            updateActiveNavLink();
+
+
+            // Update URL hash directly ONLY if updateHash is true
+            if (updateHash) {
+                // Only update if the hash is actually different to prevent unnecessary history entries/scroll jumps
+                if (window.location.hash !== `#${pageId}`) {
+                    window.location.hash = pageId;
+                }
+            }
+
+            // updateActiveNavLink(); // This call is now handled by the scroll event listener or initial load
         }
 
         /**
@@ -1065,7 +1296,7 @@
 
             // Checks if all necessary elements are present
             if (!mobileMenuButton || !mobileMenu || !hamburgerIcon || !closeIcon) {
-                console.error("Mobile menu elements not found. Check IDs.");
+                console.error("Elementos do menu móvel não encontrados. Verifique os IDs.");
                 return;
             }
 
@@ -1092,35 +1323,46 @@
          * @function updateActiveNavLink
          * @description Updates the 'active' class on navigation links based on the visible section in the viewport.
          * This provides visual feedback to the user about which section is currently being viewed.
+         * This function NO LONGER updates the URL hash to prevent scroll stuttering.
          */
         function updateActiveNavLink() {
-            const mainSections = document.querySelectorAll('section[data-section-main]');
+            // Only consider sections that are currently visible (not hidden by navigateToPage)
+            const visibleSections = document.querySelectorAll('#app-content section:not(.hidden)');
             const headerNavLinks = document.querySelectorAll('.mobile-nav-link');
             const header = document.querySelector('header');
             const headerOffset = header ? header.offsetHeight : 0;
 
             let currentActiveSectionId = '';
 
-            // Iterates over main sections to find which one is visible
-            mainSections.forEach(section => {
-                // Checks if the section is not hidden by the command logic
-                if (!section.classList.contains('hidden')) {
-                    const sectionTop = section.offsetTop - headerOffset;
-                    const sectionBottom = sectionTop + section.offsetHeight;
-                    // Determines if the section is visible in the viewport (with header adjustment)
-                    if (window.scrollY >= sectionTop && window.scrollY < sectionBottom) {
-                        currentActiveSectionId = section.id;
-                    }
+            // Find the currently visible section that is at the top of the viewport
+            for (const section of visibleSections) {
+                const rect = section.getBoundingClientRect();
+                // Check if the section is mostly visible at the top, considering header offset
+                // A small buffer (e.g., 20px) can help with smooth transitions between sections
+                if (rect.top <= headerOffset + 20 && rect.bottom > headerOffset + 20) {
+                    currentActiveSectionId = section.id;
+                    break;
                 }
-            });
+            }
 
-            // Removes 'active' class from all links and adds it to the current section's link
+            // If no specific section is at the top, and we are at the very top of the page, default to 'home'
+            // This condition ensures 'home' is active when scrolled to the very top.
+            if (!currentActiveSectionId && window.scrollY < headerOffset + 100) { // Larger buffer for "top of page" detection
+                currentActiveSectionId = 'home';
+            }
+
+
+            // Remove 'active' class from all links and add it to the current section's link
             headerNavLinks.forEach(link => {
                 link.classList.remove('active');
                 if (link.getAttribute('data-section-link') === currentActiveSectionId) {
                     link.classList.add('active');
                 }
             });
+
+            // IMPORTANT: The code that modified window.location.hash has been removed from here
+            // to prevent scroll stuttering. The hash is now only updated on explicit link clicks
+            // via navigateToPage.
         }
 
         // Ensures the DOM is fully loaded before executing the script
@@ -1130,12 +1372,6 @@
             const closeMenuButton = document.getElementById('close-menu-button'); // Close button inside the menu
             const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
             const faqQuestions = document.querySelectorAll('.faq-question');
-            // Removed contact form related selectors
-            // const contactForm = document.getElementById('contact-form');
-            // const submitButton = document.getElementById('submit-button');
-            // const contactButtonText = submitButton ? submitButton.querySelector('#button-text') : null;
-            // const contactSpinner = submitButton ? submitButton.querySelector('#spinner') : null;
-            // const formMessage = document.getElementById('form-message');
 
             // Comanda Section Elements
             const comandaForm = document.getElementById('comanda-form');
@@ -1157,6 +1393,7 @@
             const freeTrialEmailInput = document.getElementById('free-trial-email');
             const freeTrialPhoneInput = document.getElementById('free-trial-phone');
             const freeTrialActivateButton = document.getElementById('free-trial-activate-button');
+            // Ensure freeTrialButtonText and freeTrialSpinner are only accessed if freeTrialActivateButton exists
             const freeTrialButtonText = freeTrialActivateButton ? freeTrialActivateButton.querySelector('#free-trial-button-text') : null;
             const freeTrialSpinner = freeTrialActivateButton ? freeTrialActivateButton.querySelector('#free-trial-spinner') : null;
             const freeTrialMessageContainer = document.querySelector('#free-trial-form-section #free-trial-message div'); // Free trial success message container
@@ -1167,13 +1404,10 @@
             const freeTrialButton = document.getElementById('free-trial-button');
             const backButton = document.getElementById('back-button');
 
-            // Ensure form sections and back button are hidden on initial load
-            const comandaSection = document.getElementById('comanda-section');
-            const freeTrialFormSection = document.getElementById('free-trial-form-section');
-            if (comandaSection) comandaSection.classList.add('hidden');
-            if (freeTrialFormSection) freeTrialFormSection.classList.add('hidden');
-            if (backButton) backButton.classList.add('hidden');
-
+            // --- Initial Load: Hide all pages except the one specified in the hash or 'home' ---
+            // This ensures that only the relevant sections are shown based on the URL or default to home.
+            const initialPageId = window.location.hash ? window.location.hash.substring(1) : 'home';
+            navigateToPage(initialPageId, false); // Do not update hash again on initial load
 
             // --- Event Listeners Addition ---
 
@@ -1187,13 +1421,13 @@
                 closeMenuButton.addEventListener('click', toggleMobileMenu);
             }
 
-            // Listeners for mobile navigation links (close the menu and scroll to section)
+            // Listeners for mobile navigation links (close the menu and navigate to page)
             mobileNavLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault(); // Prevents default link behavior
-                    const targetSectionId = link.getAttribute('data-section-link');
-                    if (targetSectionId) {
-                        showSection(targetSectionId); // Shows the target section
+                    const targetPageId = link.getAttribute('data-section-link');
+                    if (targetPageId) {
+                        navigateToPage(targetPageId, true); // Use updateHash=true for clicks
                     }
                     toggleMobileMenu(); // Closes the menu after click
                 });
@@ -1231,96 +1465,17 @@
                 });
             });
 
-            // Removed contact form submission listener
-            /*
-            if (contactForm && submitButton) {
-                contactForm.addEventListener('submit', async (event) => {
-                    event.preventDefault(); // Prevents default form submission
-
-                    try {
-                        // Shows spinner and disables button
-                        if (contactButtonText) contactButtonText.classList.add('hidden');
-                        if (contactSpinner) contactSpinner.classList.remove('hidden');
-                        submitButton.disabled = true;
-                        if (formMessage) formMessage.textContent = ''; // Clears previous messages
-
-                        const formData = new FormData(contactForm);
-                        const object = {};
-                        formData.forEach((value, key) => {
-                            if (key !== '_captcha') { // Excludes internal FormSubmit fields
-                                object[key] = value;
-                            }
-                        });
-                        const json = JSON.stringify(object); // Converts data to JSON
-
-                        const response = await fetch(contactForm.action, {
-                            method: contactForm.method,
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Accept': 'application/json'
-                            },
-                            body: json
-                        });
-
-                        if (response.ok) {
-                            if (formMessage) {
-                                formMessage.textContent = 'Mensagem enviada com sucesso! Em breve entraremos em contato.';
-                                formMessage.classList.remove('text-red-500');
-                                formMessage.classList.add('text-green-500');
-                                formMessage.classList.remove('hidden'); // Ensure message box is visible
-                            }
-                            contactForm.reset(); // Resets form after success
-                        } else {
-                            const errorData = await response.json(); // Tries to read error message from response
-                            if (formMessage) {
-                                formMessage.textContent = `Erro ao enviar mensagem: ${errorData.message || 'Tente novamente mais tarde.'}`;
-                                formMessage.classList.remove('text-green-500');
-                                formMessage.classList.add('text-red-500');
-                                formMessage.classList.remove('hidden'); // Ensure message box is visible
-                            }
-                        }
-                    } catch (error) {
-                        // Catches network errors or other issues
-                        if (formMessage) {
-                            formMessage.textContent = 'Ocorreu um erro na conexão. Por favor, tente novamente.';
-                            formMessage.classList.remove('text-green-500');
-                            formMessage.classList.add('text-red-500');
-                            formMessage.classList.remove('hidden'); // Ensure message box is visible
-                        }
-                        console.error('Form submission error:', error);
-                    } finally {
-                        // Hides spinner and re-enables button
-                        if (contactButtonText) contactButtonText.classList.remove('hidden');
-                        if (contactSpinner) contactSpinner.classList.add('hidden');
-                        submitButton.disabled = false;
-                    }
-                });
-            }
-            */
-
             // Smooth scrolling for all internal links starting with '#'
+            // These links will now trigger navigateToPage
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
-                    // Prevents duplicate behavior with mobile menu links that already use showSection
+                    // Only handle if it's not already handled by data-section-link
                     if (!this.hasAttribute('data-section-link')) {
                         e.preventDefault();
                         const targetId = this.getAttribute('href');
-                        // Adds check to ensure targetId is not just "#" or empty.
-                        if (!targetId || targetId === '#') {
-                            return; // Exits function if href is invalid or just "#"
-                        }
-                        const targetElement = document.querySelector(targetId);
-
-                        if (targetElement) {
-                            const header = document.querySelector('header');
-                            const headerOffset = header ? header.offsetHeight : 0;
-                            const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-                            const offsetPosition = elementPosition - headerOffset;
-
-                            window.scrollTo({
-                                top: offsetPosition,
-                                behavior: "smooth"
-                            });
+                        if (targetId && targetId !== '#') {
+                            const pageId = targetId.substring(1); // Get ID without '#'
+                            navigateToPage(pageId, true); // Use updateHash=true for clicks
                         }
                     }
                 });
@@ -1338,22 +1493,22 @@
                     event.preventDefault(); // Prevents default form submission
 
                     // Hides previous success message, if any
-                    comandaSuccessMessage.classList.add('hidden');
+                    if (comandaSuccessMessage) comandaSuccessMessage.classList.add('hidden');
 
                     try {
                         // Shows spinner and disables button
                         if (comandaButtonTextComanda) comandaButtonTextComanda.classList.add('hidden');
                         if (comandaSpinnerComanda) comandaSpinnerComanda.classList.remove('hidden');
-                        comandaGeneratePixButton.disabled = true;
+                        if (comandaGeneratePixButton) comandaGeneratePixButton.disabled = true;
 
                         // Simulates a processing delay for PIX generation
                         await new Promise(resolve => setTimeout(resolve, 1000));
 
                         // Sets the PIX key (hardcoded for this example)
-                        comandaPixKeyElement.textContent = '8e01ee02-20f5-4e51-8422-ba84a7ebfe22'; // Updated PIX key
+                        if (comandaPixKeyElement) comandaPixKeyElement.textContent = '8e01ee02-20f5-4e51-8422-ba84a7ebfe22'; // Updated PIX key
 
                         // Shows the PIX payment section
-                        comandaPixPaymentSection.classList.remove('hidden');
+                        if (comandaPixPaymentSection) comandaPixPaymentSection.classList.remove('hidden');
 
                         // Logs QR Code image URL for debugging
                         const qrCodeImg = document.getElementById('comanda-qr-code-img');
@@ -1364,20 +1519,20 @@
                         }
 
                         // Smoothly scrolls to the PIX payment section
-                        comandaPixPaymentSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        if (comandaPixPaymentSection) comandaPixPaymentSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
                     } catch (error) {
-                        console.error('Error processing command form:', error);
+                        console.error('Erro ao processar o formulário de comando:', error);
                         // Optionally, display an error message to the user on the interface
                     } finally {
                         // Hides spinner and re-enables button
                         if (comandaButtonTextComanda) comandaButtonTextComanda.classList.remove('hidden');
                         if (comandaSpinnerComanda) comandaSpinnerComanda.classList.add('hidden');
-                        comandaGeneratePixButton.disabled = false;
+                        if (comandaGeneratePixButton) comandaGeneratePixButton.disabled = false;
                     }
                 });
 
-                // Listener for the "Send Proof and Activate" (WhatsApp) button in the command section
+                // Listener for the "Enviar Comprovante e Ativar" (WhatsApp) button in the command section
                 if (comandaSendToWhatsappButton) {
                     comandaSendToWhatsappButton.addEventListener('click', () => {
                         // Collects form data at the time of click
@@ -1386,17 +1541,17 @@
                         const phone = document.getElementById('comanda-phone')?.value || '';
                         const plan = document.getElementById('comanda-plan')?.value || '';
 
-                        console.log('Form data for WhatsApp (Comanda):');
-                        console.log('Name:', name);
+                        console.log('Dados do formulário para WhatsApp (Comanda):');
+                        console.log('Nome:', name);
                         console.log('Email:', email);
-                        console.log('Phone:', phone);
-                        console.log('Plan:', plan);
+                        console.log('Telefone:', phone);
+                        console.log('Plano:', plan);
 
                         // Prepares the WhatsApp message with client data
                         const whatsappMessage = `Olá, Velotex TV!%0A%0ARealizei o pagamento do meu plano via PIX (chave: 8e01ee02-20f5-4e51-8422-ba84a7ebfe22) e gostaria de ativar meu serviço.%0A%0ADados do Cliente:%0A- Nome: ${encodeURIComponent(name)}%0A- E-mail: ${encodeURIComponent(email)}%0A- Celular: ${encodeURIComponent(phone)}%0A- Plano Escolhido: ${encodeURIComponent(plan)}%0A%0AAguardando a ativação!`;
                         const whatsappLink = `https://wa.me/5585988960589?text=${whatsappMessage}`;
 
-                        console.log('WhatsApp link generated (Comanda):', whatsappLink);
+                        console.log('Link do WhatsApp gerado (Comanda):', whatsappLink);
 
                         // Opens the WhatsApp link in a new tab
                         window.open(whatsappLink, '_blank');
@@ -1410,18 +1565,18 @@
             }
 
 
-            // Listener for the "Copy PIX Key" button
+            // Listener for the "Copiar Chave" button
             if (comandaCopyPixKeyButton && comandaPixKeyElement && comandaCopyMessage) {
                 comandaCopyPixKeyButton.addEventListener('click', () => {
                     const pixKey = comandaPixKeyElement.textContent;
                     // Uses the Clipboard API to copy text
                     navigator.clipboard.writeText(pixKey).then(() => {
-                        comandaCopyMessage.classList.remove('hidden'); // Shows "Copied!" message
+                        if (comandaCopyMessage) comandaCopyMessage.classList.remove('hidden'); // Shows "Copiado!" message
                         setTimeout(() => {
-                            comandaCopyMessage.classList.add('hidden'); // Hides after 2 seconds
+                            if (comandaCopyMessage) comandaCopyMessage.classList.add('hidden'); // Hides after 2 seconds
                         }, 2000);
                     }).catch(err => {
-                        console.error('Error copying PIX key:', err);
+                        console.error('Erro ao copiar a chave PIX:', err);
                         // Fallback for older browsers or restricted environments (like iframes)
                         const textArea = document.createElement('textarea');
                         textArea.value = pixKey;
@@ -1429,12 +1584,12 @@
                         textArea.select();
                         try {
                             document.execCommand('copy');
-                            comandaCopyMessage.classList.remove('hidden');
+                            if (comandaCopyMessage) comandaCopyMessage.classList.remove('hidden');
                             setTimeout(() => {
-                                comandaCopyMessage.classList.add('hidden');
+                                if (comandaCopyMessage) comandaCopyMessage.classList.add('hidden');
                             }, 2000);
                         } catch (copyErr) {
-                            console.error('Failed to copy using execCommand:', copyErr);
+                            console.error('Falha ao copiar usando execCommand:', copyErr);
                             // If both fail, the user can be informed to copy manually
                         }
                         document.body.removeChild(textArea);
@@ -1455,13 +1610,13 @@
                     event.preventDefault(); // Prevents default form submission
 
                     // Hides previous success message, if any
-                    freeTrialMessageContainer.classList.add('hidden');
+                    if (freeTrialMessageContainer) freeTrialMessageContainer.classList.add('hidden');
 
                     try {
                         // Shows spinner and disables button
                         if (freeTrialButtonText) freeTrialButtonText.classList.add('hidden');
                         if (freeTrialSpinner) freeTrialSpinner.classList.remove('hidden');
-                        freeTrialActivateButton.disabled = true;
+                        if (freeTrialActivateButton) freeTrialActivateButton.disabled = true;
 
                         // Simulates a processing delay
                         await new Promise(resolve => setTimeout(resolve, 1500));
@@ -1474,50 +1629,51 @@
                         const whatsappMessage = `Olá, Velotex TV!%0A%0AGostaria de ativar meu Teste Grátis de 3 Horas.%0A%0ADados do Cliente:%0A- Nome: ${encodeURIComponent(name)}%0A- E-mail: ${encodeURIComponent(email)}%0A- Celular: ${encodeURIComponent(phone)}%0A%0AAguardando a ativação!`;
                         const whatsappLink = `https://wa.me/5585988960589?text=${whatsappMessage}`;
 
-                        console.log('WhatsApp link generated (Free Trial):', whatsappLink);
+                        console.log('Link do WhatsApp gerado (Teste Grátis):', whatsappLink);
 
                         // Opens the WhatsApp link in a new tab
                         window.open(whatsappLink, '_blank');
 
                         // Shows success message
-                        freeTrialMessageContainer.classList.remove('hidden');
-                        freeTrialForm.reset(); // Resets the form after submission
+                        if (freeTrialMessageContainer) freeTrialMessageContainer.classList.remove('hidden');
+                        if (freeTrialForm) freeTrialForm.reset(); // Resets the form after submission
                     } catch (error) {
-                        console.error('Error processing free trial form:', error);
+                        console.error('Erro ao processar o formulário de teste grátis:', error);
                         // Optionally, display an error message to the user on the interface
                         // You can add a div to display error messages here too
                     } finally {
                         // Hides spinner and re-enables button
                         if (freeTrialButtonText) freeTrialButtonText.classList.remove('hidden');
                         if (freeTrialSpinner) freeTrialSpinner.classList.add('hidden');
-                        freeTrialActivateButton.disabled = false;
+                        if (freeTrialActivateButton) freeTrialActivateButton.disabled = false;
                     }
                 });
             }
 
             // Events for buttons that open sections
-            if (heroSubscribeButton) {
-                heroSubscribeButton.addEventListener('click', () => {
-                    showSection('comanda-section');
+            // Changed to use data-target-page attribute and navigateToPage function
+            document.querySelectorAll('button[data-target-page], a[data-target-page]').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetPageId = button.getAttribute('data-target-page');
+                    if (targetPageId) {
+                        navigateToPage(targetPageId, true);
+                    }
                 });
-            }
-            if (plansSubscribeButton) {
-                plansSubscribeButton.addEventListener('click', () => {
-                    showSection('comanda-section');
-                });
-            }
-            if (freeTrialButton) {
-                freeTrialButton.addEventListener('click', () => {
-                    showSection('free-trial-form-section');
-                });
-            }
+            });
 
             // Event for the back button - Returns to the home section
             if (backButton) {
                 backButton.addEventListener('click', () => {
-                    showSection('home');
+                    navigateToPage('home', true);
                 });
             }
+
+            // Listen for popstate event (browser back/forward buttons)
+            window.addEventListener('popstate', () => {
+                const pageId = window.location.hash ? window.location.hash.substring(1) : 'home';
+                navigateToPage(pageId, false); // Do not update hash again
+            });
 
             // Intersection Observer implementation for scroll-in animations
             const observerOptions = {
@@ -1542,8 +1698,8 @@
                 animateOnScrollObserver.observe(card);
             });
 
-            // Updates active link on initial load and on scroll
-            window.addEventListener('scroll', updateActiveNavLink);
+            // Updates active link on initial load and on scroll (debounced for performance)
+            window.addEventListener('scroll', debounce(updateActiveNavLink, 100)); // Debounce by 100ms
             updateActiveNavLink(); // Initial call to set active link
         });
     </script>
